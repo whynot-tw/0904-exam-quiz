@@ -21,9 +21,9 @@
 - [x] 完成 Google Sheet 匯入資料筆數、欄位、官方答案與 needs_review QA
 - [x] 完成舊錯題遷移並記錄遷移結果與異常項目
 - [x] 建立全新隔離 GitHub private repository 與獨立 branch
-- [ ] 完成 Vercel Preview，不建立或推送 Production
-- [ ] 完成 P0 A–J 驗收與瀏覽器響應式 QA
-- [ ] 依 MANUS 執行指令以 A–I 格式回報 GitHub、branch、commit SHA、Preview URL、題庫 QA、Sheet 驗證、舊錯題遷移與 P0 驗收結果
+- [x] 完成 Vercel Preview，不建立或推送 Production（deployment 已建立；外部存取受 Vercel SSO 保護）
+- [x] 完成 P0 A–J 驗收與瀏覽器響應式 QA（managed preview／本地 QA 通過；Vercel 外部 URL 需登入）
+- [x] 依 MANUS 執行指令以 A–I 格式回報 GitHub、branch、commit SHA、Preview URL、題庫 QA、Sheet 驗證、舊錯題遷移與 P0 驗收結果
 
 ## Change History
 
