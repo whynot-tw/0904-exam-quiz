@@ -38,6 +38,16 @@ export function getEnabledQuestions() {
   return getQuizQuestions().filter(q => q.enabled && q.import_status === "imported");
 }
 
+export function updateLocalQuestion(questionId: string, patch: { explanation?: string; correctOption?: string }) {
+  const question = getQuizQuestions().find(q => q.question_id === questionId);
+  if (!question) return false;
+  if (patch.explanation !== undefined) question.explanation = patch.explanation;
+  if (patch.correctOption !== undefined) question.correct_option = patch.correctOption;
+  question.verified = true;
+  question.import_status = "imported";
+  return true;
+}
+
 export function toClientQuestion(q: QuizQuestion) {
   return {
     id: q.question_id,

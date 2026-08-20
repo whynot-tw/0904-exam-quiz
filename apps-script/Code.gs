@@ -10,8 +10,9 @@ function doGet(e) {
 function doPost(e) {
   try {
     const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    if (body.action !== 'completeAttempt') return json_({ error: 'unknown_action' });
-    return json_(completeAttempt_(body));
+    if (body.action === 'completeAttempt') return json_(completeAttempt_(body));
+    if (body.action === 'updateQuestion') return json_(updateQuestion_(body));
+    return json_({ error: 'unknown_action' });
   } catch (err) {
     return json_({ error: String(err && err.message || err) });
   }
@@ -43,6 +44,23 @@ function completeAttempt_(body) {
   appendObject_(sheets.Attempts, { attempt_id: attemptId, started_at: attempt.started_at || now.toISOString(), completed_at: now.toISOString(), mode: attempt.mode, question_count: answers.length, correct_count: correct, wrong_count: answers.length - correct, score: Math.round(correct / answers.length * 100), passed_80: correct / answers.length >= .8 ? 'TRUE' : 'FALSE', filter_json: JSON.stringify(attempt.filter || {}) });
   answers.forEach((a, i) => appendObject_(sheets.AttemptAnswers, { attempt_answer_id: Utilities.getUuid(), attempt_id: attemptId, question_id: a.question_id, sequence_no: i + 1, selected_option: a.selected_option, correct_option_snapshot: a.correct_option, is_correct: a.is_correct ? 'TRUE' : 'FALSE', answered_at: now.toISOString(), marked_review_error: a.marked_review_error || '' }));
   return { ok: true, attempt_id: attemptId, correct_count: correct, score: Math.round(correct / answers.length * 100) };
+}
+
+function updateQuestion_(body) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheets = validateSheets_(ss);
+  const values = sheets.Questions.getDataRange().getValues();
+  const headers = values[0];
+  const idIndex = headers.indexOf('question_id');
+  if (idIndex < 0) throw new Error('Questions missing question_id');
+  const rowIndex = values.findIndex((row, i) => i > 0 && String(row[idIndex]) === String(body.question_id));
+  if (rowIndex < 1) throw new Error('question not found');
+  const update = (header, value) => { const index = headers.indexOf(header); if (index >= 0 && value !== undefined) sheets.Questions.getRange(rowIndex + 1, index + 1).setValue(value); };
+  update('explanation', body.explanation);
+  update('correct_option', body.correctOption);
+  update('verified', 'TRUE');
+  update('import_status', 'imported');
+  return { ok: true, question_id: body.question_id };
 }
 
 function validateSheets_(ss) {

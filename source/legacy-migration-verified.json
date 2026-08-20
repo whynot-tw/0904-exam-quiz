@@ -1,0 +1,11 @@
+{
+  "spreadsheet_id": "1kyCJVFF74BZ_NR5KGHeXactHDd5zH2WfF2LQ0gOsGyU",
+  "range": "WrongQuestions!A13:J16",
+  "verified_at": "2026-08-20",
+  "rows": [
+    {"question_id":"HARDWARE-1","legacy_key":"SRAM 主要組成元件","correct_answer_snapshot":"A","wrong_count":1,"consecutive_correct":0,"status":"待複習","migration_status":"matched"},
+    {"question_id":"HARDWARE-167","legacy_key":"Linux 編輯排程","correct_answer_snapshot":"C","wrong_count":1,"consecutive_correct":0,"status":"待複習","migration_status":"matched"},
+    {"question_id":"HARDWARE-171","legacy_key":"Windows 10 呼叫說明快速鍵","correct_answer_snapshot":"A","wrong_count":1,"consecutive_correct":0,"status":"待複習","migration_status":"matched"},
+    {"question_id":"HARDWARE-30-2","legacy_key":"Modem 連上 Internet 所需協定配接卡","correct_answer_snapshot":"C","wrong_count":1,"consecutive_correct":0,"status":"待複習","migration_status":"matched"}
+  ]
+}

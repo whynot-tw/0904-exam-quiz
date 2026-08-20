@@ -34,7 +34,12 @@ export async function getUserByOpenId(openId: string) {
 
 export async function getUserAttempts(userId: number) {
   const db = await getDb();
-  return db ? db.select().from(attempts).where(eq(attempts.userId, userId)).orderBy(desc(attempts.startedAt)).limit(50) : [];
+  return db ? db.select().from(attempts).where(eq(attempts.userId, userId)).orderBy(desc(attempts.startedAt)) : [];
+}
+
+export async function getUserAnswerRows(userId: number) {
+  const db = await getDb();
+  return db ? db.select().from(attemptAnswers).where(eq(attemptAnswers.userId, userId)).orderBy(desc(attemptAnswers.answeredAt)) : [];
 }
 
 export async function getWrongQuestions(userId: number) {
