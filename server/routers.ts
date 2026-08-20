@@ -7,6 +7,9 @@ import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toCli
 import { applyCmsQuestionSubcategoryBatch, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestions, recordAttempt, restoreCmsQuestionSubcategoryBatch, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal } from "./db";
 import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
+import { invokeLLM } from "./_core/llm";
+import { buildWrongQuestionAiMessages, parseWrongQuestionAiExplanation } from "./wrongQuestionAi";
+import { TRPCError } from "@trpc/server";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
 
@@ -84,7 +87,49 @@ export const appRouter = router({
     learningGoal: protectedProcedure.query(({ ctx }) => getUserLearningGoal(ctx.user.id)),
     updateLearningGoal: protectedProcedure.input(z.object({ targetCompletion: z.number().int().min(1).max(100) })).mutation(({ ctx, input }) => updateUserLearningGoal(ctx.user.id, input.targetCompletion)),
   }),
-  wrongQuestions: router({ list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)) }),
+  wrongQuestions: router({
+    list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)),
+    explain: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(async ({ ctx, input }) => {
+      const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      if (!userWrongQuestions.some(row => row.questionId === input.questionId)) throw new TRPCError({ code: "NOT_FOUND", message: "Wrong question not found for this user" });
+      const cmsQuestion = cmsRows.find(row => row.questionId === input.questionId);
+      if (!cmsQuestion) throw new TRPCError({ code: "NOT_FOUND", message: "Official question not found" });
+      const question = cmsQuestionToQuizQuestion(cmsQuestion);
+      const latestAnswer = answerRows.filter(row => row.questionId === input.questionId).sort((a, b) => b.answeredAt.getTime() - a.answeredAt.getTime())[0];
+      try {
+        const response = await invokeLLM({
+          model: "gpt-5-mini",
+          messages: buildWrongQuestionAiMessages(question, latestAnswer?.selectedOption),
+          maxTokens: 900,
+          response_format: {
+            type: "json_schema",
+            json_schema: {
+              name: "wrong_question_explanation",
+              strict: true,
+              schema: {
+                type: "object",
+                properties: {
+                  errorReason: { type: "string" },
+                  whyItMatters: { type: "string" },
+                  correctThinking: { type: "string" },
+                  reviewTip: { type: "string" },
+                  sourceNotice: { type: "string" },
+                },
+                required: ["errorReason", "whyItMatters", "correctThinking", "reviewTip", "sourceNotice"],
+                additionalProperties: false,
+              },
+            },
+          },
+        });
+        const content = response.choices[0]?.message.content;
+        if (typeof content !== "string") throw new Error("AI explanation response is empty");
+        return { questionId: input.questionId, explanation: parseWrongQuestionAiExplanation(content), officialAnswer: question.correct_option, officialExplanation: question.explanation };
+      } catch (error) {
+        console.error("[WrongQuestionAI] explanation failed", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "AI explanation is temporarily unavailable" });
+      }
+    }),
+  }),
   starredQuestions: router({
     list: protectedProcedure.query(({ ctx }) => getStarredQuestions(ctx.user.id)),
     toggle: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(({ ctx, input }) => toggleStarredQuestion(ctx.user.id, input.questionId)),
