@@ -85,3 +85,8 @@
 ## New Change Request
 
 - [x] 整理並交付 8 題 needs_review 題目的完整內容、現行答案、解析與待審原因，供使用者逐題審核
+
+## New Change Request
+
+- [x] 維持 8 題 needs_review 題目不變，不進行啟用、刪除、合併或答案修改
+- [x] 優先確認並交付既有刷題網站的可用預覽與核心功能狀態
