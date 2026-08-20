@@ -33,7 +33,7 @@ function completeAttempt_(body) {
   const sheets = validateSheets_(ss);
   const attempt = body.attempt || {};
   const answers = body.answers || [];
-  if (!['practice', 'mock', 'wrong'].includes(attempt.mode)) throw new Error('invalid mode');
+  if (!['practice', 'mock', 'wrong', 'starred'].includes(attempt.mode)) throw new Error('invalid mode');
   if (![5, 10, 20].includes(Number(attempt.question_count))) throw new Error('invalid question count');
   if (answers.length !== Number(attempt.question_count)) throw new Error('answer count mismatch');
   const validIds = new Set(rows_(sheets.Questions).filter(r => r.import_status === 'imported' && String(r.enabled).toUpperCase() === 'TRUE').map(r => r.question_id));

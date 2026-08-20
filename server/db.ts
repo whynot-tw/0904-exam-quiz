@@ -64,6 +64,29 @@ export async function toggleStarredQuestion(userId: number, questionId: string) 
   return { questionId, starred: true };
 }
 
+export async function updateStarredQuestionTag(userId: number, questionId: string, tag: string | null) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(starredQuestions).where(and(eq(starredQuestions.userId, userId), eq(starredQuestions.questionId, questionId))).limit(1);
+  if (!existing[0]) throw new Error("Starred question not found");
+  await db.update(starredQuestions).set({ tag }).where(eq(starredQuestions.id, existing[0].id));
+  return { questionId, tag };
+}
+
+export async function getStarredQuestionStats(userId: number) {
+  const [stars, answers] = await Promise.all([getStarredQuestions(userId), getUserAnswerRows(userId)]);
+  const starIds = new Set(stars.map(star => star.questionId));
+  const answerRows = answers.filter(answer => starIds.has(answer.questionId));
+  const reviewedQuestionIds = new Set(answerRows.map(answer => answer.questionId));
+  const recent = answerRows.reduce<Date | null>((latest, answer) => !latest || answer.answeredAt > latest ? answer.answeredAt : latest, null);
+  return {
+    total: stars.length,
+    reviewedCount: reviewedQuestionIds.size,
+    completionRate: stars.length ? Math.round(reviewedQuestionIds.size / stars.length * 100) : 0,
+    lastReviewedAt: recent,
+  };
+}
+
 export async function recordAttempt(userId: number, input: { mode: string; questionCount: number; answers: Array<{ questionId: string; sequenceNo: number; selectedOption: string; correctOption: string; isCorrect: boolean; markedReviewError?: string }> }) {
   const db = await getDb();
   if (!db) throw new Error("Database unavailable");

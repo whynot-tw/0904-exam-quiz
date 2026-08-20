@@ -78,6 +78,7 @@ export const starredQuestions = mysqlTable("starredQuestions", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull(),
   questionId: varchar("questionId", { length: 100 }).notNull(),
+  tag: varchar("tag", { length: 64 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 }, table => ({
   userQuestionUnique: uniqueIndex("starredQuestions_user_question_unique").on(table.userId, table.questionId),

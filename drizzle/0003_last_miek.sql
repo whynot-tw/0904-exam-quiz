@@ -1,0 +1,1 @@
+ALTER TABLE `starredQuestions` ADD `tag` varchar(64);

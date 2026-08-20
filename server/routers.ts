@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { getStarredQuestions, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion } from "./db";
+import { getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateStarredQuestionTag } from "./db";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
@@ -26,7 +26,7 @@ export const appRouter = router({
     adminUpdate: adminProcedure.input(z.object({ questionId: z.string(), explanation: z.string().optional(), correctOption: z.enum(["A", "B", "C", "D"]).optional() })).mutation(async ({ input }) => { if (!updateLocalQuestion(input.questionId, input)) throw new Error("question not found"); const sheet = await updateSheetQuestion(input.questionId, { explanation: input.explanation, correctOption: input.correctOption }); return { success: true, questionId: input.questionId, persistedTo: sheet ? "google-sheet" : "preview-memory" }; }),
   }),
   attempts: router({
-    complete: protectedProcedure.input(z.object({ mode: z.enum(["practice", "mock", "wrong"]), questionCount: z.number().int().positive(), answers: z.array(answerSchema).min(1) })).mutation(async ({ ctx, input }) => { const result = await recordAttempt(ctx.user.id, input); await postSheetAttempt({ attempt: { mode: input.mode, question_count: input.questionCount }, answers: input.answers }).catch(error => console.warn("[Sheet] attempt write fallback:", error)); return result; }),
+    complete: protectedProcedure.input(z.object({ mode: z.enum(["practice", "mock", "wrong", "starred"]), questionCount: z.number().int().positive(), answers: z.array(answerSchema).min(1) })).mutation(async ({ ctx, input }) => { const result = await recordAttempt(ctx.user.id, input); await postSheetAttempt({ attempt: { mode: input.mode, question_count: input.questionCount }, answers: input.answers }).catch(error => console.warn("[Sheet] attempt write fallback:", error)); return result; }),
     history: protectedProcedure.query(({ ctx }) => getUserAttempts(ctx.user.id)),
     stats: protectedProcedure.query(async ({ ctx }) => {
       const rows = await getUserAnswerRows(ctx.user.id);
@@ -45,6 +45,8 @@ export const appRouter = router({
   starredQuestions: router({
     list: protectedProcedure.query(({ ctx }) => getStarredQuestions(ctx.user.id)),
     toggle: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(({ ctx, input }) => toggleStarredQuestion(ctx.user.id, input.questionId)),
+    updateTag: protectedProcedure.input(z.object({ questionId: z.string().min(1), tag: z.string().trim().max(64).nullable() })).mutation(({ ctx, input }) => updateStarredQuestionTag(ctx.user.id, input.questionId, input.tag)),
+    stats: protectedProcedure.query(({ ctx }) => getStarredQuestionStats(ctx.user.id)),
   }),
 });
 
