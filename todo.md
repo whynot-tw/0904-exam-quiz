@@ -36,3 +36,9 @@
 - [x] 2026-08-20：adminUpdate 改為本地預覽持久化並在設定 Sheet API 時寫回 Questions，前端編輯表單已接 mutation。
 - [x] 2026-08-20：新增 admin 權限、admin 更新、題庫規則測試。
 - [x] 2026-08-20：四筆舊錯題已實際回填 Google Sheet WrongQuestions!A13:J16，並回讀驗證為 matched。
+
+## New Change Request
+
+- [x] 將深色主題改為明亮、高質感且適合長時間備考的配色
+- [x] 更新明亮主題下的頁面 metadata、PWA theme color 與可讀性對比
+- [x] 完成明亮主題的桌面／手機響應式 QA、測試與新 checkpoint
