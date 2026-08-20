@@ -109,6 +109,18 @@ export const userLearningSettings = mysqlTable("userLearningSettings", {
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
+export const classificationReviewBatches = mysqlTable("classificationReviewBatches", {
+  id: int("id").autoincrement().primaryKey(),
+  adminUserId: int("adminUserId").notNull(),
+  questionIdsJson: text("questionIdsJson").notNull(),
+  beforeStatesJson: text("beforeStatesJson").notNull(),
+  appliedSubcategory: varchar("appliedSubcategory", { length: 80 }).notNull(),
+  appliedStatus: varchar("appliedStatus", { length: 32 }).notNull(),
+  appliedNotes: text("appliedNotes"),
+  restoredAt: timestamp("restoredAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Question = typeof questions.$inferSelect;

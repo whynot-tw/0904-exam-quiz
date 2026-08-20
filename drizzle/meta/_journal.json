@@ -50,6 +50,13 @@
       "when": 1787228689190,
       "tag": "0006_big_omega_flight",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1787261462372,
+      "tag": "0007_brown_sersi",
+      "breakpoints": true
     }
   ]
 }

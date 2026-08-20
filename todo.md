@@ -198,3 +198,27 @@
 
 - [x] 以登入 admin 工作階段實際驗證未審核徽章、多關鍵字、題目勾選、批次儲存與成功通知
 - [x] 保存批次審核工具完整版本並以 checkpoint 正式交付
+
+## New Change Request
+
+- [x] 設計並建立分類審核歷程資料模型，保存批次操作前的分類欄位以供安全復原
+- [x] 新增僅 admin 可用的批次操作復原與待確認題目匯出功能，不觸及官方內容欄位
+- [x] 在 admin 審核頁新增審核完成率儀表板與近期可復原操作清單
+- [x] 補齊歷程、復原、匯出、完成率、權限、手機／桌面 QA、checkpoint 與交付說明
+
+## Review Workflow Quality Follow-up
+
+- [x] 為完成率與復原歷程補上明確 loading、error 與無歷程 empty state，避免查詢失敗顯示為 0
+- [x] 以 admin 已登入工作階段驗證桌面／手機的完成率、復原清單、復原按鈕與 CSV 匯出流程
+- [x] 保存本輪 checkpoint 並交付分類審核管理流程的功能與 QA 證據
+
+## Review Workflow Verification Recovery
+
+- [x] 為完成率與復原歷程提供頁面內可見的 loading、error 與 empty state，且錯誤時不顯示為 0% 完成率
+- [x] 完成已登入 admin 的桌面／手機實際互動 QA，保存完成率、復原操作及 CSV 匯出的可追溯證據
+- [ ] 保存本輪 checkpoint 並整理本輪分類審核管理流程的交付與 QA 證據
+
+## Publish-First Scope Change
+
+- [ ] 暫停管理員進階功能的後續驗證與擴充，先整理核心刷題 App v0.1 的可發布版本
+- [ ] 完成核心功能回歸驗證並保存可發布 checkpoint，交由使用者在介面執行 Publish

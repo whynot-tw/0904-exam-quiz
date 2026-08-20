@@ -1,6 +1,6 @@
-import { and, asc, desc, eq, inArray } from "drizzle-orm";
+import { and, asc, count, desc, eq, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -37,6 +37,35 @@ export async function getCmsQuestions() {
   return db ? db.select().from(questions).orderBy(asc(questions.sourceKey), asc(questions.sourcePage), asc(questions.questionId)) : [];
 }
 
+const adminQuestionFields = {
+  questionId: questions.questionId,
+  sourceKey: questions.sourceKey,
+  sourceSection: questions.sourceSection,
+  sourceQuestionNo: questions.sourceQuestionNo,
+  sourcePage: questions.sourcePage,
+  category: questions.category,
+  subcategory: questions.subcategory,
+  subcategoryStatus: questions.subcategoryStatus,
+  subcategoryNotes: questions.subcategoryNotes,
+  questionText: questions.questionText,
+  optionA: questions.optionA,
+  optionB: questions.optionB,
+  optionC: questions.optionC,
+  optionD: questions.optionD,
+  correctOption: questions.correctOption,
+  explanation: questions.explanation,
+  enabled: questions.enabled,
+  requiresMedia: questions.requiresMedia,
+  importStatus: questions.importStatus,
+  verified: questions.verified,
+  notes: questions.notes,
+};
+
+export async function getCmsQuestionsForAdmin() {
+  const db = await getDb();
+  return db ? db.select(adminQuestionFields).from(questions).orderBy(asc(questions.sourceKey), asc(questions.sourcePage), asc(questions.questionId)) : [];
+}
+
 export async function getCmsSettings() {
   const db = await getDb();
   if (!db) return {} as Record<string, string>;
@@ -70,16 +99,52 @@ export async function updateCmsQuestionSubcategory(questionId: string, patch: { 
   return true;
 }
 
-export async function batchUpdateCmsQuestionSubcategories(questionIds: string[], patch: { subcategory: string; subcategoryStatus: "assigned" | "needs_manual_review"; subcategoryNotes?: string }) {
+type ClassificationBeforeState = { questionId: string; subcategory: string | null; subcategoryStatus: string; subcategoryNotes: string | null };
+
+export async function applyCmsQuestionSubcategoryBatch(adminUserId: number, questionIds: string[], patch: { subcategory: string; subcategoryStatus: "assigned" | "needs_manual_review"; subcategoryNotes?: string }) {
   const db = await getDb();
   const uniqueIds = Array.from(new Set(questionIds));
-  if (!db || !uniqueIds.length) return 0;
-  const existing = await db.select({ questionId: questions.questionId }).from(questions).where(inArray(questions.questionId, uniqueIds));
+  if (!db || !uniqueIds.length) throw new Error("database unavailable");
+  const existing = await db.select({ questionId: questions.questionId, subcategory: questions.subcategory, subcategoryStatus: questions.subcategoryStatus, subcategoryNotes: questions.subcategoryNotes }).from(questions).where(inArray(questions.questionId, uniqueIds));
   if (existing.length !== uniqueIds.length) throw new Error("one or more questions not found");
   const update: { subcategory: string; subcategoryStatus: "assigned" | "needs_manual_review"; subcategoryNotes?: string } = { subcategory: patch.subcategory, subcategoryStatus: patch.subcategoryStatus };
   if (patch.subcategoryNotes !== undefined) update.subcategoryNotes = patch.subcategoryNotes;
+  const [batch] = await db.insert(classificationReviewBatches).values({ adminUserId, questionIdsJson: JSON.stringify(uniqueIds), beforeStatesJson: JSON.stringify(existing as ClassificationBeforeState[]), appliedSubcategory: patch.subcategory, appliedStatus: patch.subcategoryStatus, appliedNotes: patch.subcategoryNotes ?? null });
   await db.update(questions).set(update).where(inArray(questions.questionId, uniqueIds));
-  return uniqueIds.length;
+  return { batchId: Number(batch.insertId), updatedCount: uniqueIds.length };
+}
+
+export async function getClassificationReviewBatches(limit = 10) {
+  const db = await getDb();
+  return db ? db.select().from(classificationReviewBatches).orderBy(desc(classificationReviewBatches.createdAt)).limit(limit) : [];
+}
+
+export async function restoreCmsQuestionSubcategoryBatch(batchId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("database unavailable");
+  const rows = await db.select().from(classificationReviewBatches).where(eq(classificationReviewBatches.id, batchId)).limit(1);
+  const batch = rows[0];
+  if (!batch) throw new Error("review batch not found");
+  if (batch.restoredAt) throw new Error("review batch already restored");
+  const beforeStates = JSON.parse(batch.beforeStatesJson) as ClassificationBeforeState[];
+  for (const state of beforeStates) {
+    await db.update(questions).set({ subcategory: state.subcategory, subcategoryStatus: state.subcategoryStatus, subcategoryNotes: state.subcategoryNotes }).where(eq(questions.questionId, state.questionId));
+  }
+  await db.update(classificationReviewBatches).set({ restoredAt: new Date() }).where(eq(classificationReviewBatches.id, batchId));
+  return { batchId, restoredCount: beforeStates.length };
+}
+
+export async function getClassificationReviewSummary() {
+  const db = await getDb();
+  if (!db) return { total: 0, pending: 0, reviewed: 0, completionRate: 0 };
+  const [totalRows, pendingRows] = await Promise.all([
+    db.select({ value: count() }).from(questions),
+    db.select({ value: count() }).from(questions).where(eq(questions.subcategoryStatus, "needs_manual_review")),
+  ]);
+  const total = Number(totalRows[0]?.value ?? 0);
+  const pending = Number(pendingRows[0]?.value ?? 0);
+  const reviewed = total - pending;
+  return { total, pending, reviewed, completionRate: total ? Math.round(reviewed / total * 100) : 0 };
 }
 
 export async function getUserAttempts(userId: number) {

@@ -71,4 +71,24 @@ describe("admin access rules", () => {
       await Promise.all(candidates.map(question => caller.quiz.adminUpdate({ questionId: question.id, subcategory: question.subcategory, subcategoryStatus: "needs_manual_review", subcategoryNotes: question.subcategoryNotes })));
     }
   });
+
+  it("records, restores, summarizes, and exports classification review batches", async () => {
+    const caller = appRouter.createCaller(context("admin"));
+    const pending = await caller.quiz.adminList({ needsReviewOnly: false, subcategoryReviewOnly: true });
+    const candidate = pending.find(question => question.source === "HARDWARE")!;
+    const summaryBefore = await caller.quiz.adminReviewSummary();
+    const applied = await caller.quiz.adminBatchUpdateSubcategory({ questionIds: [candidate.id], subcategory: "電腦硬體與組裝", subcategoryStatus: "assigned", subcategoryNotes: "測試：可復原批次審核" });
+    expect(applied.updatedCount).toBe(1);
+    const history = await caller.quiz.adminReviewHistory();
+    expect(history.some(batch => batch.id === applied.batchId)).toBe(true);
+    const summaryAfterApply = await caller.quiz.adminReviewSummary();
+    expect(summaryAfterApply.pending).toBe(summaryBefore.pending - 1);
+    const restored = await caller.quiz.adminRestoreReviewBatch({ batchId: applied.batchId });
+    expect(restored.restoredCount).toBe(1);
+    const summaryAfterRestore = await caller.quiz.adminReviewSummary();
+    expect(summaryAfterRestore.pending).toBe(summaryBefore.pending);
+    const exported = await caller.quiz.adminExportPending();
+    expect(exported).toHaveLength(summaryBefore.pending);
+    expect(exported.some(question => question.id === candidate.id)).toBe(true);
+  });
 });
