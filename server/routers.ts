@@ -3,8 +3,8 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
-import { getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateStarredQuestionReminder, updateStarredQuestionTag } from "./db";
+import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
+import { getCmsQuestions, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateCmsQuestion, updateStarredQuestionReminder, updateStarredQuestionTag } from "./db";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
@@ -17,13 +17,20 @@ export const appRouter = router({
   }),
   quiz: router({
     bootstrap: publicProcedure.query(async () => {
+      const cmsRows = await getCmsQuestions();
+      const cmsSettings = await getCmsSettings();
+      if (cmsRows.length) {
+        const all = cmsRows.map(cmsQuestionToQuizQuestion);
+        const enabled = all.filter(question => question.enabled && question.import_status === "imported");
+        return { settings: { examDate: cmsSettings.exam_date ?? "2026-09-04", targetScore: Number(cmsSettings.target_score ?? 80), mockQuestionCount: Number(cmsSettings.mock_question_count ?? 20), maxWrong: Number(cmsSettings.max_wrong_for_target ?? 4) }, questions: enabled.map(toClientQuestion), qa: { total: all.length, enabled: enabled.length, needsReview: all.filter(question => question.import_status === "needs_review").length }, source: "cms-database" };
+      }
       const remote = await fetchSheetBootstrap().catch(error => { console.warn("[Sheet] bootstrap fallback:", error); return null; });
       const local = getQuizQuestions();
       const questions = remote?.questions?.length ? remote.questions : getEnabledQuestions();
       return { settings: remote?.settings ?? { examDate: "2026-09-04", targetScore: 80, mockQuestionCount: 20, maxWrong: 4 }, questions: questions.map(toClientQuestion), qa: { total: remote?.questions?.length ?? local.length, enabled: questions.length, needsReview: local.filter(q => q.import_status === "needs_review").length }, source: remote ? "google-sheet" : "official-pdf-snapshot" };
     }),
-    adminList: adminProcedure.input(z.object({ needsReviewOnly: z.boolean().default(false) })).query(({ input }) => { const list = input.needsReviewOnly ? getQuizQuestions().filter(q => q.import_status === "needs_review") : getQuizQuestions(); return list.map(toClientQuestion); }),
-    adminUpdate: adminProcedure.input(z.object({ questionId: z.string(), explanation: z.string().optional(), correctOption: z.enum(["A", "B", "C", "D"]).optional() })).mutation(async ({ input }) => { if (!updateLocalQuestion(input.questionId, input)) throw new Error("question not found"); const sheet = await updateSheetQuestion(input.questionId, { explanation: input.explanation, correctOption: input.correctOption }); return { success: true, questionId: input.questionId, persistedTo: sheet ? "google-sheet" : "preview-memory" }; }),
+    adminList: adminProcedure.input(z.object({ needsReviewOnly: z.boolean().default(false) })).query(async ({ input }) => { const cmsRows = await getCmsQuestions(); const list = cmsRows.length ? cmsRows.map(cmsQuestionToQuizQuestion) : getQuizQuestions(); return (input.needsReviewOnly ? list.filter(question => question.import_status === "needs_review") : list).map(toClientQuestion); }),
+    adminUpdate: adminProcedure.input(z.object({ questionId: z.string(), explanation: z.string().optional(), correctOption: z.enum(["A", "B", "C", "D"]).optional() })).mutation(async ({ input }) => { const cmsUpdated = await updateCmsQuestion(input.questionId, input); if (!cmsUpdated && !updateLocalQuestion(input.questionId, input)) throw new Error("question not found"); updateLocalQuestion(input.questionId, input); const sheet = await updateSheetQuestion(input.questionId, { explanation: input.explanation, correctOption: input.correctOption }); return { success: true, questionId: input.questionId, persistedTo: sheet ? "cms-database+google-sheet" : cmsUpdated ? "cms-database" : "preview-memory" }; }),
   }),
   attempts: router({
     complete: protectedProcedure.input(z.object({ mode: z.enum(["practice", "mock", "wrong", "starred"]), questionCount: z.number().int().positive(), answers: z.array(answerSchema).min(1) })).mutation(async ({ ctx, input }) => { const result = await recordAttempt(ctx.user.id, input); await postSheetAttempt({ attempt: { mode: input.mode, question_count: input.questionCount }, answers: input.answers }).catch(error => console.warn("[Sheet] attempt write fallback:", error)); return result; }),

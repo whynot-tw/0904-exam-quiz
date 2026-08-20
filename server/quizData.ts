@@ -66,3 +66,32 @@ export function toClientQuestion(q: QuizQuestion) {
     notes: q.notes,
   };
 }
+
+export function cmsQuestionToQuizQuestion(q: {
+  questionId: string; sourceKey: string; sourceSection: string; sourceQuestionNo: string; sourcePage: number | null; category: string | null;
+  questionText: string; optionA: string; optionB: string; optionC: string; optionD: string; correctOption: string; explanation: string | null;
+  enabled: number; requiresMedia: number; sourceRaw: string | null; sourceUrl: string | null; importStatus: string; verified: number; notes: string | null;
+}): QuizQuestion {
+  return {
+    question_id: q.questionId,
+    source_key: q.sourceKey,
+    source_section: q.sourceSection,
+    source_question_no: q.sourceQuestionNo,
+    source_page: q.sourcePage ?? 0,
+    category: q.category ?? "",
+    question_text: q.questionText,
+    option_a: q.optionA,
+    option_b: q.optionB,
+    option_c: q.optionC,
+    option_d: q.optionD,
+    correct_option: q.correctOption,
+    explanation: q.explanation ?? "",
+    enabled: q.enabled === 1,
+    requires_media: q.requiresMedia === 1,
+    source_raw: q.sourceRaw ?? "",
+    source_url: q.sourceUrl ?? "",
+    import_status: q.importStatus,
+    verified: q.verified === 1,
+    notes: q.notes ?? "",
+  };
+}

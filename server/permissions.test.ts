@@ -17,10 +17,12 @@ describe("admin access rules", () => {
     await expect(caller.quiz.adminList({ needsReviewOnly: true })).rejects.toMatchObject({ code: "FORBIDDEN" });
   });
 
-  it("allows admins to update a known question in preview memory", async () => {
+  it("allows admins to update a known CMS question", async () => {
     const caller = appRouter.createCaller(context("admin"));
-    const result = await caller.quiz.adminUpdate({ questionId: "HARDWARE-1", explanation: "admin QA note", correctOption: "A" });
+    const knownQuestion = (await caller.quiz.adminList({ needsReviewOnly: false })).find(question => question.id === "HARDWARE-1");
+    expect(knownQuestion).toBeDefined();
+    const result = await caller.quiz.adminUpdate({ questionId: "HARDWARE-1", explanation: knownQuestion!.explanation, correctOption: knownQuestion!.correctOption });
     expect(result.success).toBe(true);
-    expect(result.persistedTo).toBe("preview-memory");
+    expect(result.persistedTo).toMatch(/cms-database/);
   });
 });

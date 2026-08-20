@@ -1,0 +1,29 @@
+{
+  "version": "cms-import-v1",
+  "source_priority": "official_pdf_answers",
+  "sources": {
+    "questions": {
+      "file": "source/questions-parsed.json",
+      "records": 657,
+      "target": "questions",
+      "classification": ["sourceKey", "sourceSection", "category", "importStatus", "requiresMedia"]
+    },
+    "legacy_wrong_questions": {
+      "file": "source/legacy-migration-verified.json",
+      "records": 4,
+      "target": "wrongQuestions",
+      "rule": "matched rows only; imported for the CMS owner account"
+    },
+    "legacy_review_notes": {
+      "sheet": "ReviewNotes!A2:G",
+      "records": 1,
+      "target": "settings",
+      "rule": "preserve unmatched note in cms_unmatched_review_notes until a questionId is resolved"
+    },
+    "settings": {
+      "sheet": "Settings!A2:C",
+      "records": 14,
+      "target": "settings"
+    }
+  }
+}

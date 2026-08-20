@@ -1,6 +1,6 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, reviewNotes, starredQuestions, users, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, questions, reviewNotes, settings, starredQuestions, users, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -30,6 +30,30 @@ export async function getUserByOpenId(openId: string) {
   if (!db) return undefined;
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
   return result[0];
+}
+
+export async function getCmsQuestions() {
+  const db = await getDb();
+  return db ? db.select().from(questions).orderBy(asc(questions.sourceKey), asc(questions.sourcePage), asc(questions.questionId)) : [];
+}
+
+export async function getCmsSettings() {
+  const db = await getDb();
+  if (!db) return {} as Record<string, string>;
+  const rows = await db.select().from(settings);
+  return Object.fromEntries(rows.map(row => [row.key, row.value]));
+}
+
+export async function updateCmsQuestion(questionId: string, patch: { explanation?: string; correctOption?: "A" | "B" | "C" | "D" }) {
+  const db = await getDb();
+  if (!db) return false;
+  const existing = await db.select({ id: questions.id }).from(questions).where(eq(questions.questionId, questionId)).limit(1);
+  if (!existing[0]) return false;
+  const update: { explanation?: string; correctOption?: "A" | "B" | "C" | "D"; verified: number; importStatus: string } = { verified: 1, importStatus: "imported" };
+  if (patch.explanation !== undefined) update.explanation = patch.explanation;
+  if (patch.correctOption !== undefined) update.correctOption = patch.correctOption;
+  await db.update(questions).set(update).where(eq(questions.id, existing[0].id));
+  return true;
 }
 
 export async function getUserAttempts(userId: number) {
