@@ -1,0 +1,22 @@
+import { describe, expect, it } from "vitest";
+import { ALL_COURSE_TYPES, filterQuestionsByCourse, getCourseTypes } from "../client/src/lib/courseTypes";
+
+const questions = [
+  { id: "HARDWARE-1", source: "HARDWARE", category: "電腦硬體裝修" },
+  { id: "HARDWARE-2", source: "HARDWARE", category: "電腦硬體裝修" },
+  { id: "AI-1", source: "AI", category: "AI人工智慧工具應用" },
+];
+
+describe("course type filter", () => {
+  it("derives one visible course type per CMS sourceKey using the category label", () => {
+    expect(getCourseTypes(questions)).toEqual([
+      { id: "AI", label: "AI人工智慧工具應用" },
+      { id: "HARDWARE", label: "電腦硬體裝修" },
+    ]);
+  });
+
+  it("limits the question pool to the selected course type and retains all questions for all courses", () => {
+    expect(filterQuestionsByCourse(questions, "HARDWARE").map(question => question.id)).toEqual(["HARDWARE-1", "HARDWARE-2"]);
+    expect(filterQuestionsByCourse(questions, ALL_COURSE_TYPES).map(question => question.id)).toEqual(["HARDWARE-1", "HARDWARE-2", "AI-1"]);
+  });
+});
