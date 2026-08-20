@@ -33,4 +33,27 @@ describe("admin access rules", () => {
     const result = await caller.quiz.adminUpdate({ questionId: "HARDWARE-1", subcategory: knownQuestion!.subcategory, subcategoryStatus: knownQuestion!.subcategoryStatus, subcategoryNotes: knownQuestion!.subcategoryNotes });
     expect(result.persistedTo).toBe("cms-database");
   });
+
+  it("allows admins to list only questions pending subcategory review", async () => {
+    const caller = appRouter.createCaller(context("admin"));
+    const pending = await caller.quiz.adminList({ needsReviewOnly: false, subcategoryReviewOnly: true });
+    expect(pending).toHaveLength(234);
+    expect(pending.every(question => question.subcategoryStatus === "needs_manual_review")).toBe(true);
+  });
+
+  it("persists a reviewed classification and removes it from the pending list", async () => {
+    const caller = appRouter.createCaller(context("admin"));
+    const pending = await caller.quiz.adminList({ needsReviewOnly: false, subcategoryReviewOnly: true });
+    const candidate = pending.find(question => question.source === "HARDWARE")!;
+    expect(candidate).toBeDefined();
+
+    try {
+      const saved = await caller.quiz.adminUpdate({ questionId: candidate.id, subcategory: "電腦硬體與組裝", subcategoryStatus: "assigned", subcategoryNotes: "測試：已完成人工審核" });
+      expect(saved.persistedTo).toBe("cms-database");
+      const afterReview = await caller.quiz.adminList({ needsReviewOnly: false, subcategoryReviewOnly: true });
+      expect(afterReview.some(question => question.id === candidate.id)).toBe(false);
+    } finally {
+      await caller.quiz.adminUpdate({ questionId: candidate.id, subcategory: candidate.subcategory, subcategoryStatus: "needs_manual_review", subcategoryNotes: candidate.subcategoryNotes });
+    }
+  });
 });
