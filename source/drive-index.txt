@@ -1,0 +1,43 @@
+--- folder ---
+{
+  "id": "1YV27LhKnGnlER0mnZtmq0Sa3tHxeEfRt",
+  "mimeType": "application/vnd.google-apps.folder",
+  "name": "115_電腦應用與AI工具班_甄試準備",
+  "parents": [
+    "0APCiIe9SARy5Uk9PVA"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1YV27LhKnGnlER0mnZtmq0Sa3tHxeEfRt"
+}
+--- command doc ---
+{
+  "id": "1-5StJ2YAnhCFF34shqkBUKRYSYJ7AzPHw5GsVZJh7mM",
+  "mimeType": "application/vnd.google-apps.document",
+  "modifiedTime": "2026-08-20T01:12:16.535Z",
+  "name": "MANUS_執行指令_9-4筆試刷題App_v0.1",
+  "parents": [
+    "1L7j_va_Mm7LAwnMQZG2TFFGTzwDRRmCh"
+  ],
+  "webViewLink": "https://docs.google.com/document/d/1-5StJ2YAnhCFF34shqkBUKRYSYJ7AzPHw5GsVZJh7mM/edit?usp=drivesdk"
+}
+--- spec doc ---
+{
+  "id": "108ie5fYs8VJgKWLihbWjRGmHhATKWbP7CQZHNcOQtXo",
+  "mimeType": "application/vnd.google-apps.document",
+  "modifiedTime": "2026-08-20T01:12:03.070Z",
+  "name": "SPEC_9-4筆試刷題App_v0.1",
+  "parents": [
+    "1L7j_va_Mm7LAwnMQZG2TFFGTzwDRRmCh"
+  ],
+  "webViewLink": "https://docs.google.com/document/d/108ie5fYs8VJgKWLihbWjRGmHhATKWbP7CQZHNcOQtXo/edit?usp=drivesdk"
+}
+--- sheet ---
+{
+  "id": "1kyCJVFF74BZ_NR5KGHeXactHDd5zH2WfF2LQ0gOsGyU",
+  "mimeType": "application/vnd.google-apps.spreadsheet",
+  "modifiedTime": "2026-08-20T01:11:27.698Z",
+  "name": "9-4筆試刷題App_DB",
+  "parents": [
+    "1L7j_va_Mm7LAwnMQZG2TFFGTzwDRRmCh"
+  ],
+  "webViewLink": "https://docs.google.com/spreadsheets/d/1kyCJVFF74BZ_NR5KGHeXactHDd5zH2WfF2LQ0gOsGyU/edit?usp=drivesdk"
+}

@@ -1,0 +1,42 @@
+{
+  "files": [
+    {
+      "id": "1L7j_va_Mm7LAwnMQZG2TFFGTzwDRRmCh",
+      "kind": "drive#file",
+      "mimeType": "application/vnd.google-apps.folder",
+      "name": "05_WebApp"
+    },
+    {
+      "id": "1rwBEFbdOrBp4xg_Gtq98pPN3SAsAKGjdyNpXh3ToweE",
+      "kind": "drive#file",
+      "mimeType": "application/vnd.google-apps.document",
+      "name": "README_115電腦應用與AI工具班_專案索引"
+    },
+    {
+      "id": "1Uji64abEefYevWa8A-7SFZ0BX5OZ2VgO",
+      "kind": "drive#file",
+      "mimeType": "application/vnd.google-apps.folder",
+      "name": "04_準備筆記"
+    },
+    {
+      "id": "1iMIL6FzLQVXIFqMX0VHbx1qibdydNjr0",
+      "kind": "drive#file",
+      "mimeType": "application/vnd.google-apps.folder",
+      "name": "03_甄試題庫"
+    },
+    {
+      "id": "1W_aD8zX4rflhmsCesRjv8qzqFDX5YvgM",
+      "kind": "drive#file",
+      "mimeType": "application/vnd.google-apps.folder",
+      "name": "02_報名資料"
+    },
+    {
+      "id": "1jeeNw-HbfP8aVz4TwlLZwip0M42DnEtk",
+      "kind": "drive#file",
+      "mimeType": "application/vnd.google-apps.folder",
+      "name": "01_官方資料"
+    }
+  ],
+  "incompleteSearch": false,
+  "kind": "drive#fileList"
+}

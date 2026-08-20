@@ -1,0 +1,43 @@
+Manus 執行指令｜9/4 筆試刷題 App v0.1
+
+請直接執行，不要重新設計需求，也不要先做大量替代方案評估。
+
+先讀取 Google Drive 專案資料夾「115_電腦應用與AI工具班_甄試準備」（folder ID: 1YV27LhKnGnlER0mnZtmq0Sa3tHxeEfRt），並特別讀取：
+03_甄試題庫／試題一_電腦硬體裝修（file ID: 1GmP0SCNd9NP8Vvp1sH-NHRYsCzZnlO9S）
+03_甄試題庫／試題二_AI人工智慧工具應用（file ID: 1RIbQF_XG0eMP3i0UI9OkvOgq9zxySgyj）
+05_WebApp／SPEC_9-4筆試刷題App_v0.1（document ID: 108ie5fYs8VJgKWLihbWjRGmHhATKWbP7CQZHNcOQtXo）
+05_WebApp／9-4筆試刷題App_DB（spreadsheet ID: 1kyCJVFF74BZ_NR5KGHeXactHDd5zH2WfF2LQ0gOsGyU）
+
+Source of Truth 優先順序：官方兩份 PDF 的題幹與答案 > SPEC 的功能規則 > App DB 的結構與既有錯題。不要用網路常識或新版 Windows 知識修改官方題庫答案。
+
+請依 SPEC 完整建置 v0.1：
+1. 解析兩份官方 PDF，寫入 Questions，建立全域唯一 question_id，保留來源 section、原題號、頁碼、A-D、標準答案、解析與來源原文。
+2. 缺圖／依賴圖片題標 requires_media=true；圖片未可靠帶入前 enabled=false。解析不明、非四選一、缺答案或重複無法唯一辨識時標 needs_review，不准猜。
+3. 匯入後產出兩份題庫 QA 摘要並抽查每份至少 20 題。
+4. 將 WrongQuestions 目前 4 筆 pending_match 舊錯題匹配到 Questions；無法唯一匹配則 needs_review。
+5. 建立手機優先 Web App / PWA：首頁、測驗、作答、結果、錯題、統計；底部主導覽為首頁／測驗／錯題／統計。
+6. 支援 5 題、10 題、20 題模擬考、錯題重刷；同場不可重複題目。v0.1 不打亂 A-D 選項順序。
+7. 練習模式作答後立即回饋；模擬考 20 題完成前不可公布答案。
+8. 答錯後可標「真的不會」或「題目看反」；前者進 WrongQuestions，後者只進 ReviewNotes。
+9. WrongQuestions 連續答對 2 次改為已熟悉；再答錯回待複習。
+10. 20 題模擬考以 80 分為達標線；16/20=80 顯示達標，15/20=75 顯示未達標。
+11. 測驗中狀態存在本機，重新整理可續作；完成後批次寫入 Attempts、AttemptAnswers 並更新 WrongQuestions／ReviewNotes。
+12. Google Sheet 是唯一可寫入 Source of Truth，不建立第二套永久資料庫。
+13. 技術採全新隔離專案：Next.js App Router + TypeScript + PWA，Google Apps Script Web App 作薄 API，Apps Script 原始碼放 repo /apps-script。部署 Vercel Preview。
+14. 全站繁中優先、Android 手機優先、答案整塊按鈕可點、無 hover-only、正文至少 16px、題幹 18–20px、答案按鈕高度至少 56px。
+15. 不做登入、多使用者、排行榜、AI 自動出題、複雜後台、花俏動畫。
+16. 不得修改或 Merge 到有何不可官網、Career OS 或任何既有網站 repo。建立新 repo／新 Vercel 專案，先提供 Preview，等我確認後再決定 Production。
+
+完成後不要只說「完成」。請回報：
+A. GitHub repo／branch
+B. 最新 commit SHA
+C. Vercel Preview URL
+D. Apps Script 若需要我手動部署／授權，只列最少必要步驟
+E. 兩份題庫解析 QA 數字：總題數、enabled、needs_review、requires_media、缺答案、非四選一、重複疑慮
+F. 六個 Sheet 分頁讀寫驗證結果
+G. 四筆舊錯題匹配結果
+H. SPEC 第十二節驗收條件 A-J 逐項 Pass/Fail，Fail 要附原因
+I. 未 Merge、未改既有網站 repo 的確認
+
+不要問我已經在 SPEC 或 Drive 裡有答案的問題。遇到解析不明的題目標 needs_review 後繼續做其餘工作，不要因少數題目卡住整個建置。
+

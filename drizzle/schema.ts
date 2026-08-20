@@ -1,28 +1,94 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
-/**
- * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
- */
 export const users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
   id: int("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
   openId: varchar("openId", { length: 64 }).notNull().unique(),
   name: text("name"),
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  role: varchar("role", { length: 16 }).default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
 
+export const questions = mysqlTable("questions", {
+  id: int("id").autoincrement().primaryKey(),
+  questionId: varchar("questionId", { length: 100 }).notNull().unique(),
+  sourceKey: varchar("sourceKey", { length: 32 }).notNull(),
+  sourceSection: varchar("sourceSection", { length: 120 }).notNull(),
+  sourceQuestionNo: varchar("sourceQuestionNo", { length: 32 }).notNull(),
+  sourcePage: int("sourcePage"),
+  category: varchar("category", { length: 80 }),
+  questionText: text("questionText").notNull(),
+  optionA: text("optionA").notNull(),
+  optionB: text("optionB").notNull(),
+  optionC: text("optionC").notNull(),
+  optionD: text("optionD").notNull(),
+  correctOption: varchar("correctOption", { length: 1 }).notNull(),
+  explanation: text("explanation"),
+  enabled: int("enabled").default(1).notNull(),
+  requiresMedia: int("requiresMedia").default(0).notNull(),
+  sourceRaw: text("sourceRaw"),
+  sourceUrl: text("sourceUrl"),
+  importStatus: varchar("importStatus", { length: 32 }).default("imported").notNull(),
+  verified: int("verified").default(0).notNull(),
+  notes: text("notes"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export const attempts = mysqlTable("attempts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  mode: varchar("mode", { length: 32 }).notNull(),
+  questionCount: int("questionCount").notNull(),
+  correctCount: int("correctCount").default(0).notNull(),
+  wrongCount: int("wrongCount").default(0).notNull(),
+  score: int("score").default(0).notNull(),
+  passed80: int("passed80").default(0).notNull(),
+  startedAt: timestamp("startedAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+});
+
+export const attemptAnswers = mysqlTable("attemptAnswers", {
+  id: int("id").autoincrement().primaryKey(),
+  attemptId: int("attemptId").notNull(),
+  userId: int("userId").notNull(),
+  questionId: varchar("questionId", { length: 100 }).notNull(),
+  sequenceNo: int("sequenceNo").notNull(),
+  selectedOption: varchar("selectedOption", { length: 1 }).notNull(),
+  correctOptionSnapshot: varchar("correctOptionSnapshot", { length: 1 }).notNull(),
+  isCorrect: int("isCorrect").notNull(),
+  markedReviewError: varchar("markedReviewError", { length: 32 }),
+  answeredAt: timestamp("answeredAt").defaultNow().notNull(),
+});
+
+export const wrongQuestions = mysqlTable("wrongQuestions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  questionId: varchar("questionId", { length: 100 }).notNull(),
+  wrongCount: int("wrongCount").default(1).notNull(),
+  consecutiveCorrect: int("consecutiveCorrect").default(0).notNull(),
+  status: varchar("status", { length: 20 }).default("待複習").notNull(),
+  migrationStatus: varchar("migrationStatus", { length: 24 }).default("matched").notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export const reviewNotes = mysqlTable("reviewNotes", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  questionId: varchar("questionId", { length: 100 }).notNull(),
+  noteType: varchar("noteType", { length: 32 }).notNull(),
+  noteText: text("noteText"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const settings = mysqlTable("settings", {
+  key: varchar("key", { length: 80 }).primaryKey(),
+  value: text("value").notNull(),
+  notes: text("notes"),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
-
-// TODO: Add your tables here
+export type Question = typeof questions.$inferSelect;

@@ -1,0 +1,38 @@
+
+## Questions	375192171
+question_id	source_key	source_section	source_question_no	source_page	category	question_text	option_a	option_b	option_c	option_d	correct_option	explanation	enabled	requires_media	source_raw	source_url	import_status	verified	notes
+
+## Attempts	678892177
+attempt_id	started_at	completed_at	mode	question_count	correct_count	wrong_count	score	passed_80	filter_json
+
+## AttemptAnswers	1363949724
+attempt_answer_id	attempt_id	question_id	sequence_no	selected_option	correct_option_snapshot	is_correct	answered_at	marked_review_error	response_ms	source_key_snapshot	notes
+
+## WrongQuestions	213578082
+question_id	legacy_key	correct_answer_snapshot	wrong_count	first_wrong_at	last_wrong_at	consecutive_correct	status	updated_at	migration_status
+	SRAM 主要組成元件	正反器（Flip-Flop）	1			0	待複習	2026-08-20	pending_match
+	Linux 編輯排程	crontab -e	1			0	待複習	2026-08-20	pending_match
+	Windows 10 呼叫「說明」快速鍵	F1	1			0	待複習	2026-08-20	pending_match
+	Modem 連上 Internet 所需協定／配接卡	TCP/IP＋撥號配接卡	1			0	待複習	2026-08-20	pending_match
+
+## ReviewNotes	2053192671
+note_id	question_id	note_type	note_text	created_at	resolved	resolved_at
+legacy-reading-001		題目看反	Linux 重新啟動「何者錯誤」：題目看反，不算知識錯題。	2026-08-20	FALSE
+
+## Settings	1757014980
+key	value	notes
+exam_date	2026-09-04	甄試日期
+target_score	80	最低目標分數
+mock_question_count	20	模擬考題數
+max_wrong_for_target	4	20 題達 80 分最多可錯題數
+wrong_mastery_consecutive_correct	2	錯題連續答對 2 次後改為已熟悉
+source_hardware_file_id	1GmP0SCNd9NP8Vvp1sH-NHRYsCzZnlO9S	試題一_電腦硬體裝修
+source_hardware_url	https://drive.google.com/file/d/1GmP0SCNd9NP8Vvp1sH-NHRYsCzZnlO9S/view	官方參考試題 Source of Truth
+source_ai_file_id	1RIbQF_XG0eMP3i0UI9OkvOgq9zxySgyj	試題二_AI人工智慧工具應用
+source_ai_url	https://drive.google.com/file/d/1RIbQF_XG0eMP3i0UI9OkvOgq9zxySgyj/view	官方參考試題 Source of Truth
+project_folder_id	1YV27LhKnGnlER0mnZtmq0Sa3tHxeEfRt	115_電腦應用與AI工具班_甄試準備
+webapp_folder_id	1L7j_va_Mm7LAwnMQZG2TFFGTzwDRRmCh	05_WebApp
+spec_doc_id	108ie5fYs8VJgKWLihbWjRGmHhATKWbP7CQZHNcOQtXo	SPEC_9-4筆試刷題App_v0.1
+manus_prompt_doc_id	1-5StJ2YAnhCFF34shqkBUKRYSYJ7AzPHw5GsVZJh7mM	MANUS_執行指令_9-4筆試刷題App_v0.1
+legacy_wrong_sheet_id	1BLqX6BGukuoCRBNxH5S2paIepyQk-Bg2ikCSOhbBJcw	04_準備筆記／9-4筆試錯題紀錄
+legacy_wrong_md_id	1KTbp6P1wD6bLSQWmoCWyk8uoBFBUs_6V	04_準備筆記／9-4筆試錯題紀錄.md

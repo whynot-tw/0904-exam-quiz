@@ -1,0 +1,148 @@
+9/4 筆試刷題 App v0.1｜建置規格
+
+狀態：Approved for Build
+用途：2026-09-04 甄試前的個人刷題、模擬考、錯題追蹤與考前衝刺。
+目標：20 題模擬考至少 80 分；等價於最多錯 4 題。
+
+一、Source of Truth 與衝突規則
+
+專案總資料夾：115_電腦應用與AI工具班_甄試準備
+專案資料夾 ID：1YV27LhKnGnlER0mnZtmq0Sa3tHxeEfRt
+WebApp 資料夾：05_WebApp
+WebApp 資料夾 ID：1L7j_va_Mm7LAwnMQZG2TFFGTzwDRRmCh
+App DB：9-4筆試刷題App_DB
+App DB Spreadsheet ID：1kyCJVFF74BZ_NR5KGHeXactHDd5zH2WfF2LQ0gOsGyU
+
+官方題庫一：試題一_電腦硬體裝修，Drive file ID：1GmP0SCNd9NP8Vvp1sH-NHRYsCzZnlO9S
+官方題庫二：試題二_AI人工智慧工具應用，Drive file ID：1RIbQF_XG0eMP3i0UI9OkvOgq9zxySgyj
+
+答案與題幹的最終 Source of Truth 是上述兩份官方題庫 PDF。不得用網路知識、模型常識或新版作業系統知識去修正題庫答案。舊式 Windows、IE、Outlook Express、舊硬體規格等題目仍以官方題庫答案為準，因為本專案目標是應付甄試。
+
+若 PDF 解析結果不完整、答案不明、選項不足四個、題目依賴缺失圖片或同題重複且無法唯一辨識，不得自行猜測。該題標記 import_status=needs_review、enabled=false。
+
+二、資料模型
+
+Google Sheet 必須維持六個分頁，不另外建立平行資料庫：
+Questions：題庫主表。欄位已建立，包含唯一 ID、來源、工作項目/章節、原題號、頁碼、分類、題幹、A-D、正解、解析、啟用、是否需要媒體、來源原文、來源檔案、匯入狀態、驗證狀態、備註。
+Attempts：每次測驗摘要。
+AttemptAnswers：每次測驗逐題作答紀錄。
+WrongQuestions：真正知識錯題的累積狀態。
+ReviewNotes：題目看反、閱讀失誤等，不算知識錯題的紀錄。
+Settings：考試日期、80 分目標、20 題模擬考、最多錯 4 題、題庫檔案 ID、資料夾 ID 等設定。
+
+Questions.question_id 必須全域唯一。電腦硬體題庫的題號可能在不同工作項目重新開始，因此不得只用原題號當 ID。建議格式：HARDWARE-{section}-{question_no}；AI 題庫使用 AI-{question_no}。若同 section 仍有重複，加入 page 或穩定序號。
+
+三、題庫匯入規則
+
+直接從兩份官方 PDF 解析，不從網路重建題目。保留題幹與 A-D 選項原意，不改寫成新版敘述。
+
+AI 題庫：題目前通常有答案標記，例如 (A)1.；若有【解析】則寫入 explanation。解析跨頁時必須併回正確題目。
+
+電腦硬體題庫：題目前的括號數字為標準答案，例如 (4) 代表第 4 選項。題號會跨不同工作項目與區段，必須保留 source_section。看到「如下圖所示」、波形、接線圖或題目明顯依賴圖像時，requires_media=true；若尚未把對應圖像可靠帶入網站，enabled=false，不得用缺圖題測驗使用者。
+
+匯入後輸出 QA 摘要：每份題庫總解析題數、成功啟用題數、needs_review 題數、requires_media 題數、缺答案題數、非四選一題數、疑似重複題數。不得靜默丟題。
+
+至少抽查每份題庫 20 題，逐題對照 PDF 的題幹、四選項與答案。所有 needs_review 題另外列清單。
+
+四、既有錯題遷移
+
+WrongQuestions 已預先放入四筆舊錯題，migration_status=pending_match。題庫匯入後必須依題意唯一比對到 Questions.question_id，再將 migration_status 改為 matched：
+SRAM 主要組成元件 → 正反器（Flip-Flop）
+Linux 編輯排程 → crontab -e
+Windows 10 呼叫「說明」快速鍵 → F1
+Modem 連上 Internet 所需協定／配接卡 → TCP/IP＋撥號配接卡
+
+ReviewNotes 已預先放入：Linux 重新啟動「何者錯誤」題目看反。這一類紀錄不得計入知識錯題。
+
+若舊錯題無法唯一匹配，不得猜；migration_status=needs_review。
+
+五、P0 功能範圍
+
+首頁 Dashboard：顯示 9/4 考試、80 分目標、最近一次模擬考分數、目前錯題數、已熟悉錯題數、開始測驗、只刷錯題、考前衝刺。
+
+測驗設定：可選 5 題快速練習、10 題一般練習、20 題模擬考、錯題重刷。至少能按來源篩選「全部／電腦硬體／AI」。若 category 資料可靠，再提供 Windows／Linux／硬體／網路／資安／AI 子分類；分類不得阻塞 v0.1 上線。
+
+練習模式：使用者點整塊答案按鈕。作答後立即顯示正解與簡短解析。答錯時先提供「真的不會／題目看反」處理：
+真的不會 → WrongQuestions wrong_count +1、consecutive_correct=0、status=待複習。
+題目看反 → 寫入 ReviewNotes，不增加 WrongQuestions。
+
+模擬考：20 題完成前不得公布正解或單題對錯。完成後才顯示答對、答錯、分數、是否達到 80 分，並可查看錯題及立即重刷。
+
+錯題熟練規則：已在 WrongQuestions 的題目若答對，consecutive_correct +1；連續答對 2 次改 status=已熟悉。再次答錯時回到待複習並歸零 consecutive_correct。保留歷史，不刪除錯題列。
+
+出題不得在同一次測驗重複。預設「新題優先」：先抽從未作答的 enabled 題，不足時再補已作答題。另提供「錯題優先」與「全部隨機」。v0.1 不打亂 A-D 選項順序，只隨機題目，避免答案字母映射出錯。
+
+六、作答與同步
+
+前端每題作答先寫入本機暫存，避免頁面關閉造成整場遺失。完成測驗時一次送出 attempt summary 與 answers batch，後端原子化寫入 Attempts、AttemptAnswers，並更新 WrongQuestions／ReviewNotes。
+
+中途重新整理頁面時，若存在未完成 attempt，提供「繼續作答／放棄本次」；不得偷偷開新 attempt。
+
+七、技術架構
+
+建立全新、隔離的專案，不得修改有何不可設計既有官網或 Career OS。建議新 repo 名稱：exam-quiz-pwa 或 0904-exam-quiz。
+
+前端：Next.js App Router + TypeScript，使用建置環境當下可用的穩定版本；手機優先。部署 Vercel Preview，確認後再決定 Production。
+
+PWA：提供 manifest、app icon placeholder、可加入 Android 主畫面。v0.1 要做到 App-like navigation；完整離線同步列為 P1，但測驗進行中的狀態必須能在本機續作。
+
+資料：Google Sheet 9-4筆試刷題App_DB 為唯一可寫入 Source of Truth。
+
+後端：優先採 Google Apps Script Web App 作為薄 API，直接讀寫上述 Sheet，不建立第二套永久資料庫。Apps Script 原始碼一併放進 GitHub repo 的 /apps-script。正式資料不可 hardcode 在前端。
+
+建議 API：
+GET bootstrap：回傳 Settings、enabled Questions、WrongQuestions 摘要與最近 Attempts 所需資料。
+POST completeAttempt：一次接收 attempt + answers；後端驗證 question_id、selected_option、模式與題數，寫入 Attempts、AttemptAnswers，依 marked_review_error 更新 WrongQuestions 或 ReviewNotes。
+
+此資料不包含財務、健康等敏感資料。v0.1 不做帳號系統。Apps Script 部署與權限要採最低必要設定，不要公開 Sheet 本身。
+
+八、頁面與導覽
+
+底部固定四個主入口：首頁／測驗／錯題／統計。
+
+首頁：考試日期、80 分目標、最近成績、錯題數、三個主要 CTA。
+測驗：選模式、題數、來源／分類、出題策略。
+作答：一次只呈現一題；大尺寸 A-D 按鈕；顯示題號進度；沒有 hover-only 操作。
+結果：分數、80 分達標狀態、答錯數、錯題重刷。
+錯題：待複習／已熟悉篩選；顯示題目關鍵字、正解、錯誤次數、連續答對。
+統計：歷次模擬考列表、最近分數趨勢、來源別正確率。不要做複雜分析儀表板。
+
+九、UI 約束
+
+全站繁體中文優先。必要專有名詞可保留英文，例如 Windows、AI、PWA。
+手機 360–430 px 為優先驗收尺寸。答案按鈕最小高度 56 px，整塊可點。正文至少 16 px，題幹建議 18–20 px。高對比、清爽、留白足夠，不做過燥動畫，不依賴 hover，不要把所有資訊塞同一頁。
+
+十、P0 明確不做
+
+不做登入、多使用者、排行榜、社群、留言、成就徽章、AI 自動生成題目、AI 改寫題目、複雜後台、花俏動畫、付費功能。不要為未來擴充先做大型架構。
+
+十一、P1 可後補
+
+完整離線題庫與離線答題同步、分類細化、錯題間隔複習、考前衝刺權重調整、MD 自動匯出、題目圖片完整支援、可自訂測驗題數。
+
+十二、驗收條件
+
+A. 兩份官方 PDF 可被解析進 Questions，並有 QA 摘要與 needs_review 清單。
+B. 5／10／20 題可正常開始，單次不重複題目。
+C. 練習模式答完立即回饋；模擬考完成前不揭露答案。
+D. 20 題模擬考正確計算分數；16/20=80 分顯示達標，15/20=75 分顯示未達標。
+E. 真正答錯會進 WrongQuestions；題目看反只進 ReviewNotes。
+F. 錯題連續答對 2 次改已熟悉，再答錯會回待複習。
+G. 四筆既有錯題能成功匹配 Questions，若無法唯一匹配則標 needs_review，不能猜。
+H. Android 手機可順暢點選；重新整理可續未完成測驗。
+I. Vercel Preview 可開啟，手機版無明顯橫向溢出、文字截斷、按鈕過小。
+J. 不修改既有有何不可官網、Career OS、其他 repo；新專案隔離。
+
+十三、Manus 交付格式
+
+完成後只回報以下內容：
+1. GitHub repo／branch。
+2. 最新 commit SHA。
+3. Vercel Preview URL。
+4. Google Apps Script 部署需要使用者手動完成的最少步驟；若可由現有授權完成則直接完成。
+5. 題庫解析 QA：兩份來源各自的總題數、啟用題、needs_review、requires_media、缺答案、非四選一、重複疑慮。
+6. 六個 Sheet 分頁是否寫入／讀取正常。
+7. 四筆舊錯題遷移結果。
+8. P0 驗收逐項 Pass/Fail 與 Fail 原因。
+9. 不得 Merge 到任何既有網站 repo；等使用者確認 Preview 後再處理 Production。
+

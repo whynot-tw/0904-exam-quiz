@@ -1,0 +1,1278 @@
+{
+  "body": {
+    "content": [
+      {
+        "endIndex": 1,
+        "sectionBreak": {
+          "sectionStyle": {
+            "columnSeparatorStyle": "NONE",
+            "contentDirection": "LEFT_TO_RIGHT",
+            "sectionType": "CONTINUOUS"
+          }
+        }
+      },
+      {
+        "endIndex": 30,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 30,
+              "startIndex": 1,
+              "textRun": {
+                "content": "Manus 執行指令｜9/4 筆試刷題 App v0.1\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "headingId": "h.80ok3h57agbh",
+            "namedStyleType": "TITLE"
+          }
+        },
+        "startIndex": 1
+      },
+      {
+        "endIndex": 31,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 31,
+              "startIndex": 30,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 30
+      },
+      {
+        "endIndex": 61,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 61,
+              "startIndex": 31,
+              "textRun": {
+                "content": "請直接執行，不要重新設計需求，也不要先做大量替代方案評估。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 31
+      },
+      {
+        "endIndex": 62,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 62,
+              "startIndex": 61,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 61
+      },
+      {
+        "endIndex": 159,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 159,
+              "startIndex": 62,
+              "textRun": {
+                "content": "先讀取 Google Drive 專案資料夾「115_電腦應用與AI工具班_甄試準備」（folder ID: 1YV27LhKnGnlER0mnZtmq0Sa3tHxeEfRt），並特別讀取：\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 62
+      },
+      {
+        "endIndex": 222,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 222,
+              "startIndex": 159,
+              "textRun": {
+                "content": "03_甄試題庫／試題一_電腦硬體裝修（file ID: 1GmP0SCNd9NP8Vvp1sH-NHRYsCzZnlO9S）\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 159
+      },
+      {
+        "endIndex": 289,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 289,
+              "startIndex": 222,
+              "textRun": {
+                "content": "03_甄試題庫／試題二_AI人工智慧工具應用（file ID: 1RIbQF_XG0eMP3i0UI9OkvOgq9zxySgyj）\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 222
+      },
+      {
+        "endIndex": 379,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 379,
+              "startIndex": 289,
+              "textRun": {
+                "content": "05_WebApp／SPEC_9-4筆試刷題App_v0.1（document ID: 108ie5fYs8VJgKWLihbWjRGmHhATKWbP7CQZHNcOQtXo）\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 289
+      },
+      {
+        "endIndex": 465,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 465,
+              "startIndex": 379,
+              "textRun": {
+                "content": "05_WebApp／9-4筆試刷題App_DB（spreadsheet ID: 1kyCJVFF74BZ_NR5KGHeXactHDd5zH2WfF2LQ0gOsGyU）\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 379
+      },
+      {
+        "endIndex": 466,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 466,
+              "startIndex": 465,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 465
+      },
+      {
+        "endIndex": 565,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 565,
+              "startIndex": 466,
+              "textRun": {
+                "content": "Source of Truth 優先順序：官方兩份 PDF 的題幹與答案 > SPEC 的功能規則 > App DB 的結構與既有錯題。不要用網路常識或新版 Windows 知識修改官方題庫答案。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 466
+      },
+      {
+        "endIndex": 566,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 566,
+              "startIndex": 565,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 565
+      },
+      {
+        "endIndex": 585,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 585,
+              "startIndex": 566,
+              "textRun": {
+                "content": "請依 SPEC 完整建置 v0.1：\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "headingId": "h.cztz8ao3jtrl",
+            "namedStyleType": "HEADING_1"
+          }
+        },
+        "startIndex": 566
+      },
+      {
+        "endIndex": 669,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 669,
+              "startIndex": 585,
+              "textRun": {
+                "content": "1. 解析兩份官方 PDF，寫入 Questions，建立全域唯一 question_id，保留來源 section、原題號、頁碼、A-D、標準答案、解析與來源原文。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 585
+      },
+      {
+        "endIndex": 768,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 768,
+              "startIndex": 669,
+              "textRun": {
+                "content": "2. 缺圖／依賴圖片題標 requires_media=true；圖片未可靠帶入前 enabled=false。解析不明、非四選一、缺答案或重複無法唯一辨識時標 needs_review，不准猜。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 669
+      },
+      {
+        "endIndex": 800,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 800,
+              "startIndex": 768,
+              "textRun": {
+                "content": "3. 匯入後產出兩份題庫 QA 摘要並抽查每份至少 20 題。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 768
+      },
+      {
+        "endIndex": 880,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 880,
+              "startIndex": 800,
+              "textRun": {
+                "content": "4. 將 WrongQuestions 目前 4 筆 pending_match 舊錯題匹配到 Questions；無法唯一匹配則 needs_review。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 800
+      },
+      {
+        "endIndex": 941,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 941,
+              "startIndex": 880,
+              "textRun": {
+                "content": "5. 建立手機優先 Web App / PWA：首頁、測驗、作答、結果、錯題、統計；底部主導覽為首頁／測驗／錯題／統計。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 880
+      },
+      {
+        "endIndex": 997,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 997,
+              "startIndex": 941,
+              "textRun": {
+                "content": "6. 支援 5 題、10 題、20 題模擬考、錯題重刷；同場不可重複題目。v0.1 不打亂 A-D 選項順序。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 941
+      },
+      {
+        "endIndex": 1031,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1031,
+              "startIndex": 997,
+              "textRun": {
+                "content": "7. 練習模式作答後立即回饋；模擬考 20 題完成前不可公布答案。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 997
+      },
+      {
+        "endIndex": 1090,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1090,
+              "startIndex": 1031,
+              "textRun": {
+                "content": "8. 答錯後可標「真的不會」或「題目看反」；前者進 WrongQuestions，後者只進 ReviewNotes。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1031
+      },
+      {
+        "endIndex": 1131,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1131,
+              "startIndex": 1090,
+              "textRun": {
+                "content": "9. WrongQuestions 連續答對 2 次改為已熟悉；再答錯回待複習。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1090
+      },
+      {
+        "endIndex": 1183,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1183,
+              "startIndex": 1131,
+              "textRun": {
+                "content": "10. 20 題模擬考以 80 分為達標線；16/20=80 顯示達標，15/20=75 顯示未達標。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1131
+      },
+      {
+        "endIndex": 1269,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1269,
+              "startIndex": 1183,
+              "textRun": {
+                "content": "11. 測驗中狀態存在本機，重新整理可續作；完成後批次寫入 Attempts、AttemptAnswers 並更新 WrongQuestions／ReviewNotes。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1183
+      },
+      {
+        "endIndex": 1322,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1322,
+              "startIndex": 1269,
+              "textRun": {
+                "content": "12. Google Sheet 是唯一可寫入 Source of Truth，不建立第二套永久資料庫。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1269
+      },
+      {
+        "endIndex": 1462,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1462,
+              "startIndex": 1322,
+              "textRun": {
+                "content": "13. 技術採全新隔離專案：Next.js App Router + TypeScript + PWA，Google Apps Script Web App 作薄 API，Apps Script 原始碼放 repo /apps-script。部署 Vercel Preview。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1322
+      },
+      {
+        "endIndex": 1544,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1544,
+              "startIndex": 1462,
+              "textRun": {
+                "content": "14. 全站繁中優先、Android 手機優先、答案整塊按鈕可點、無 hover-only、正文至少 16px、題幹 18–20px、答案按鈕高度至少 56px。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1462
+      },
+      {
+        "endIndex": 1581,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1581,
+              "startIndex": 1544,
+              "textRun": {
+                "content": "15. 不做登入、多使用者、排行榜、AI 自動出題、複雜後台、花俏動畫。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1544
+      },
+      {
+        "endIndex": 1682,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1682,
+              "startIndex": 1581,
+              "textRun": {
+                "content": "16. 不得修改或 Merge 到有何不可官網、Career OS 或任何既有網站 repo。建立新 repo／新 Vercel 專案，先提供 Preview，等我確認後再決定 Production。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1581
+      },
+      {
+        "endIndex": 1683,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1683,
+              "startIndex": 1682,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1682
+      },
+      {
+        "endIndex": 1700,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1700,
+              "startIndex": 1683,
+              "textRun": {
+                "content": "完成後不要只說「完成」。請回報：\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "headingId": "h.k4e019y3rwux",
+            "namedStyleType": "HEADING_1"
+          }
+        },
+        "startIndex": 1683
+      },
+      {
+        "endIndex": 1722,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1722,
+              "startIndex": 1700,
+              "textRun": {
+                "content": "A. GitHub repo／branch\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1700
+      },
+      {
+        "endIndex": 1739,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1739,
+              "startIndex": 1722,
+              "textRun": {
+                "content": "B. 最新 commit SHA\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1722
+      },
+      {
+        "endIndex": 1761,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1761,
+              "startIndex": 1739,
+              "textRun": {
+                "content": "C. Vercel Preview URL\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1739
+      },
+      {
+        "endIndex": 1797,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1797,
+              "startIndex": 1761,
+              "textRun": {
+                "content": "D. Apps Script 若需要我手動部署／授權，只列最少必要步驟\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1761
+      },
+      {
+        "endIndex": 1867,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1867,
+              "startIndex": 1797,
+              "textRun": {
+                "content": "E. 兩份題庫解析 QA 數字：總題數、enabled、needs_review、requires_media、缺答案、非四選一、重複疑慮\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1797
+      },
+      {
+        "endIndex": 1888,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1888,
+              "startIndex": 1867,
+              "textRun": {
+                "content": "F. 六個 Sheet 分頁讀寫驗證結果\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1867
+      },
+      {
+        "endIndex": 1901,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1901,
+              "startIndex": 1888,
+              "textRun": {
+                "content": "G. 四筆舊錯題匹配結果\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1888
+      },
+      {
+        "endIndex": 1945,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1945,
+              "startIndex": 1901,
+              "textRun": {
+                "content": "H. SPEC 第十二節驗收條件 A-J 逐項 Pass/Fail，Fail 要附原因\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1901
+      },
+      {
+        "endIndex": 1972,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1972,
+              "startIndex": 1945,
+              "textRun": {
+                "content": "I. 未 Merge、未改既有網站 repo 的確認\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1945
+      },
+      {
+        "endIndex": 1973,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 1973,
+              "startIndex": 1972,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1972
+      },
+      {
+        "endIndex": 2050,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 2050,
+              "startIndex": 1973,
+              "textRun": {
+                "content": "不要問我已經在 SPEC 或 Drive 裡有答案的問題。遇到解析不明的題目標 needs_review 後繼續做其餘工作，不要因少數題目卡住整個建置。\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 1973
+      },
+      {
+        "endIndex": 2051,
+        "paragraph": {
+          "elements": [
+            {
+              "endIndex": 2051,
+              "startIndex": 2050,
+              "textRun": {
+                "content": "\n",
+                "textStyle": {}
+              }
+            }
+          ],
+          "paragraphStyle": {
+            "direction": "LEFT_TO_RIGHT",
+            "namedStyleType": "NORMAL_TEXT"
+          }
+        },
+        "startIndex": 2050
+      }
+    ]
+  },
+  "documentId": "1-5StJ2YAnhCFF34shqkBUKRYSYJ7AzPHw5GsVZJh7mM",
+  "documentStyle": {
+    "background": {
+      "color": {}
+    },
+    "documentFormat": {
+      "documentMode": "PAGES"
+    },
+    "marginBottom": {
+      "magnitude": 72,
+      "unit": "PT"
+    },
+    "marginFooter": {
+      "magnitude": 36,
+      "unit": "PT"
+    },
+    "marginHeader": {
+      "magnitude": 36,
+      "unit": "PT"
+    },
+    "marginLeft": {
+      "magnitude": 72,
+      "unit": "PT"
+    },
+    "marginRight": {
+      "magnitude": 72,
+      "unit": "PT"
+    },
+    "marginTop": {
+      "magnitude": 72,
+      "unit": "PT"
+    },
+    "pageNumberStart": 1,
+    "pageSize": {
+      "height": {
+        "magnitude": 841.8897637795277,
+        "unit": "PT"
+      },
+      "width": {
+        "magnitude": 595.2755905511812,
+        "unit": "PT"
+      }
+    },
+    "useCustomHeaderFooterMargins": true
+  },
+  "namedStyles": {
+    "styles": [
+      {
+        "namedStyleType": "NORMAL_TEXT",
+        "paragraphStyle": {
+          "alignment": "START",
+          "avoidWidowAndOrphan": true,
+          "borderBetween": {
+            "color": {},
+            "dashStyle": "SOLID",
+            "padding": {
+              "unit": "PT"
+            },
+            "width": {
+              "unit": "PT"
+            }
+          },
+          "borderBottom": {
+            "color": {},
+            "dashStyle": "SOLID",
+            "padding": {
+              "unit": "PT"
+            },
+            "width": {
+              "unit": "PT"
+            }
+          },
+          "borderLeft": {
+            "color": {},
+            "dashStyle": "SOLID",
+            "padding": {
+              "unit": "PT"
+            },
+            "width": {
+              "unit": "PT"
+            }
+          },
+          "borderRight": {
+            "color": {},
+            "dashStyle": "SOLID",
+            "padding": {
+              "unit": "PT"
+            },
+            "width": {
+              "unit": "PT"
+            }
+          },
+          "borderTop": {
+            "color": {},
+            "dashStyle": "SOLID",
+            "padding": {
+              "unit": "PT"
+            },
+            "width": {
+              "unit": "PT"
+            }
+          },
+          "direction": "LEFT_TO_RIGHT",
+          "indentEnd": {
+            "unit": "PT"
+          },
+          "indentFirstLine": {
+            "unit": "PT"
+          },
+          "indentStart": {
+            "unit": "PT"
+          },
+          "keepLinesTogether": false,
+          "keepWithNext": false,
+          "lineSpacing": 115,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "shading": {
+            "backgroundColor": {}
+          },
+          "spaceAbove": {
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "unit": "PT"
+          },
+          "spacingMode": "COLLAPSE_LISTS"
+        },
+        "textStyle": {
+          "backgroundColor": {},
+          "baselineOffset": "NONE",
+          "bold": false,
+          "fontSize": {
+            "magnitude": 11,
+            "unit": "PT"
+          },
+          "foregroundColor": {
+            "color": {
+              "rgbColor": {}
+            }
+          },
+          "italic": false,
+          "smallCaps": false,
+          "strikethrough": false,
+          "underline": false,
+          "weightedFontFamily": {
+            "fontFamily": "Arial",
+            "weight": 400
+          }
+        }
+      },
+      {
+        "namedStyleType": "HEADING_1",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "magnitude": 20,
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 6,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "fontSize": {
+            "magnitude": 20,
+            "unit": "PT"
+          }
+        }
+      },
+      {
+        "namedStyleType": "HEADING_2",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "magnitude": 18,
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 6,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "bold": false,
+          "fontSize": {
+            "magnitude": 16,
+            "unit": "PT"
+          }
+        }
+      },
+      {
+        "namedStyleType": "HEADING_3",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "magnitude": 16,
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 4,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "bold": false,
+          "fontSize": {
+            "magnitude": 14,
+            "unit": "PT"
+          },
+          "foregroundColor": {
+            "color": {
+              "rgbColor": {
+                "blue": 0.2627451,
+                "green": 0.2627451,
+                "red": 0.2627451
+              }
+            }
+          }
+        }
+      },
+      {
+        "namedStyleType": "HEADING_4",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "magnitude": 14,
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 4,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "fontSize": {
+            "magnitude": 12,
+            "unit": "PT"
+          },
+          "foregroundColor": {
+            "color": {
+              "rgbColor": {
+                "blue": 0.4,
+                "green": 0.4,
+                "red": 0.4
+              }
+            }
+          }
+        }
+      },
+      {
+        "namedStyleType": "HEADING_5",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "magnitude": 12,
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 4,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "fontSize": {
+            "magnitude": 11,
+            "unit": "PT"
+          },
+          "foregroundColor": {
+            "color": {
+              "rgbColor": {
+                "blue": 0.4,
+                "green": 0.4,
+                "red": 0.4
+              }
+            }
+          }
+        }
+      },
+      {
+        "namedStyleType": "HEADING_6",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "magnitude": 12,
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 4,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "fontSize": {
+            "magnitude": 11,
+            "unit": "PT"
+          },
+          "foregroundColor": {
+            "color": {
+              "rgbColor": {
+                "blue": 0.4,
+                "green": 0.4,
+                "red": 0.4
+              }
+            }
+          },
+          "italic": true
+        }
+      },
+      {
+        "namedStyleType": "TITLE",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 3,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "fontSize": {
+            "magnitude": 26,
+            "unit": "PT"
+          }
+        }
+      },
+      {
+        "namedStyleType": "SUBTITLE",
+        "paragraphStyle": {
+          "direction": "LEFT_TO_RIGHT",
+          "keepLinesTogether": true,
+          "keepWithNext": true,
+          "namedStyleType": "NORMAL_TEXT",
+          "pageBreakBefore": false,
+          "spaceAbove": {
+            "unit": "PT"
+          },
+          "spaceBelow": {
+            "magnitude": 16,
+            "unit": "PT"
+          }
+        },
+        "textStyle": {
+          "fontSize": {
+            "magnitude": 15,
+            "unit": "PT"
+          },
+          "foregroundColor": {
+            "color": {
+              "rgbColor": {
+                "blue": 0.4,
+                "green": 0.4,
+                "red": 0.4
+              }
+            }
+          },
+          "italic": false,
+          "weightedFontFamily": {
+            "fontFamily": "Arial",
+            "weight": 400
+          }
+        }
+      }
+    ]
+  },
+  "revisionId": "AIroW36niUOreNV8a3gk_nllO1tECB3LNsyqlTDpbxLjj1w4-c-5iE1ewaZLKJv7FdlDiW537M3NkHOgPPNkHJ2WNd8WmNp1vQXjAGFjHZs",
+  "suggestionsViewMode": "SUGGESTIONS_INLINE",
+  "title": "MANUS_執行指令_9-4筆試刷題App_v0.1"
+}
