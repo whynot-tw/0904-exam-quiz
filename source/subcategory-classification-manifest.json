@@ -1,0 +1,3985 @@
+{
+  "generatedAt": "2026-08-20T12:32:21.181Z",
+  "total": 657,
+  "summary": [
+    {
+      "status": "needs_manual_review",
+      "subcategory": "待確認",
+      "count": 234
+    },
+    {
+      "status": "assigned",
+      "subcategory": "AI 工具與生成式 AI",
+      "count": 211
+    },
+    {
+      "status": "assigned",
+      "subcategory": "網路與通訊",
+      "count": 75
+    },
+    {
+      "status": "assigned",
+      "subcategory": "電腦硬體與組裝",
+      "count": 66
+    },
+    {
+      "status": "assigned",
+      "subcategory": "Linux／Unix 作業系統",
+      "count": 28
+    },
+    {
+      "status": "assigned",
+      "subcategory": "儲存裝置與檔案系統",
+      "count": 27
+    },
+    {
+      "status": "assigned",
+      "subcategory": "Windows 與桌面作業系統",
+      "count": 16
+    }
+  ],
+  "rows": [
+    {
+      "questionId": "HARDWARE-1",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-2",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-3",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-4",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-5",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-6",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-7",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-8",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-9",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-10",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-11",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-12",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-13",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-14",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-15",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-16",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-17",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-18",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-19",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-20",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-21",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-22",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-23",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-24",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-25",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-26",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-27",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-28",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-29",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-30",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-31",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-32",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-33",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-34",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-35",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-36",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-37",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-38",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-39",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-40",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-41",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-42",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-43",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-44",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-45",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-46",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-47",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-48",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-49",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-50",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-51",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-52",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-53",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-54",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-55",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-56",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-57",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-58",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-59",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-60",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-61",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-62",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-63",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, hardware"
+    },
+    {
+      "questionId": "HARDWARE-64",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-65",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-66",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, storage"
+    },
+    {
+      "questionId": "HARDWARE-67",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-68",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-69",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-70",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-71",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-72",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-73",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-74",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-75",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-76",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-77",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-78",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-79",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-80",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-81",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-82",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-83",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-84",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-85",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-86",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-87",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-88",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-89",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-90",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-91",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-92",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-93",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-94",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-95",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-96",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-97",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-98",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-99",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-100",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-101",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-102",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-103",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-104",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-105",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-106",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-107",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-108",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-109",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-110",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-111",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-112",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-113",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-114",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-115",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-116",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-117",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-118",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-119",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-120",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-121",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-122",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-123",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-124",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-125",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-126",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-127",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-128",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-129",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-130",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-131",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-132",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-133",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-134",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-135",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-136",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-137",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-138",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-139",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-140",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-141",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-142",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, storage"
+    },
+    {
+      "questionId": "HARDWARE-143",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-144",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, network"
+    },
+    {
+      "questionId": "HARDWARE-145",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-146",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, storage"
+    },
+    {
+      "questionId": "HARDWARE-147",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, storage"
+    },
+    {
+      "questionId": "HARDWARE-148",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-149",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, hardware"
+    },
+    {
+      "questionId": "HARDWARE-150",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-151",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-152",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, hardware"
+    },
+    {
+      "questionId": "HARDWARE-153",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-154",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-155",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-156",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, storage"
+    },
+    {
+      "questionId": "HARDWARE-157",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, storage"
+    },
+    {
+      "questionId": "HARDWARE-158",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-159",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-160",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-161",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-162",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-163",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-164",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-165",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-166",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, hardware"
+    },
+    {
+      "questionId": "HARDWARE-167",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-168",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-169",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-170",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-171",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-172",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-173",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-174",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-175",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-176",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, network"
+    },
+    {
+      "questionId": "HARDWARE-177",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-178",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-179",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-180",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-181",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-182",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-183",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-184",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-185",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-186",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-187",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-188",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-189",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-190",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-191",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-192",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-193",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-194",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-195",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-196",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-197",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-198",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-199",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-200",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-201",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-202",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-203",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-204",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-205",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-206",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-207",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-208",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-209",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-210",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-211",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-212",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-213",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-214",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-215",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-216",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-217",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-218",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-219",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-220",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-221",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-222",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-223",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-224",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-225",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-226",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-227",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-228",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-229",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-230",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-231",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-232",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-233",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-234",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-235",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-236",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-237",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-238",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-239",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-240",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-241",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-242",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-243",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, network"
+    },
+    {
+      "questionId": "HARDWARE-244",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-245",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, linux"
+    },
+    {
+      "questionId": "HARDWARE-246",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-247",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-248",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, storage"
+    },
+    {
+      "questionId": "HARDWARE-249",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, storage"
+    },
+    {
+      "questionId": "HARDWARE-250",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, linux"
+    },
+    {
+      "questionId": "HARDWARE-251",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-1-2",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-2-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-3-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-4-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-5-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-6-2",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-7-2",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-8-2",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-9-2",
+      "subcategory": "Linux／Unix 作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：linux"
+    },
+    {
+      "questionId": "HARDWARE-10-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-11-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, storage"
+    },
+    {
+      "questionId": "HARDWARE-12-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, storage"
+    },
+    {
+      "questionId": "HARDWARE-13-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-14-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-15-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-16-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, linux"
+    },
+    {
+      "questionId": "HARDWARE-17-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-18-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-19-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-20-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, linux"
+    },
+    {
+      "questionId": "HARDWARE-21-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-22-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-23-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-24-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-25-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-26-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, network"
+    },
+    {
+      "questionId": "HARDWARE-27-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-28-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-29-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-30-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, network"
+    },
+    {
+      "questionId": "HARDWARE-31-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-32-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, network"
+    },
+    {
+      "questionId": "HARDWARE-33-2",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-34-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-35-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, linux"
+    },
+    {
+      "questionId": "HARDWARE-36-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-37-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-38-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-39-2",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-40-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：windows, network"
+    },
+    {
+      "questionId": "HARDWARE-41-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-42-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-43-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-44-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-45-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-46-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-47-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-48-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-49-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-50-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-51-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-52-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-53-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, hardware"
+    },
+    {
+      "questionId": "HARDWARE-54-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-55-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-56-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-57-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-58-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-59-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-60-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-61-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-62-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-63-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-64-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, hardware"
+    },
+    {
+      "questionId": "HARDWARE-65-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-66-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-67-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-68-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-69-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-70-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-71-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-72-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-73-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, storage"
+    },
+    {
+      "questionId": "HARDWARE-74-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-75-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-76-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-77-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-78-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-79-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-80-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-81-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-82-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-83-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-84-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-85-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-86-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-87-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-88-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-89-2",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-90-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-91-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-92-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-93-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-94-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-95-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-96-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-97-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-98-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-99-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, storage"
+    },
+    {
+      "questionId": "HARDWARE-100-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-101-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-102-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-103-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-104-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-105-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-106-2",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-107-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-108-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-109-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-110-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-111-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-112-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-113-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-114-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-115-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-116-2",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-117-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-118-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-119-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-120-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-121-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-122-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-123-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-124-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-125-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-126-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-127-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-128-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-129-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-130-2",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-131-2",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-132-2",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-1-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-2-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-3-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-4-3",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-5-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-6-3",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-7-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-8-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, storage"
+    },
+    {
+      "questionId": "HARDWARE-9-3",
+      "subcategory": "電腦硬體與組裝",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：hardware"
+    },
+    {
+      "questionId": "HARDWARE-10-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-11-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-12-3",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-13-3",
+      "subcategory": "儲存裝置與檔案系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：storage"
+    },
+    {
+      "questionId": "HARDWARE-14-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-15-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-16-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-17-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-18-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-19-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-20-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-21-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-22-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-23-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-24-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-25-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-26-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-27-3",
+      "subcategory": "Windows 與桌面作業系統",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：windows"
+    },
+    {
+      "questionId": "HARDWARE-28-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-29-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-30-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-31-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-32-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-33-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-34-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-35-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-36-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：linux, network"
+    },
+    {
+      "questionId": "HARDWARE-37-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-38-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-39-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-40-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-41-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-42-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-43-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-44-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-45-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-46-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-47-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-48-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-49-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-50-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-51-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-52-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-53-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-54-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "多主題命中：network, storage, hardware"
+    },
+    {
+      "questionId": "HARDWARE-55-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-56-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-57-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-58-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-59-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-60-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-61-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "HARDWARE-62-3",
+      "subcategory": "待確認",
+      "status": "needs_manual_review",
+      "notes": "未命中已確認的次分類規則，保留人工判讀。"
+    },
+    {
+      "questionId": "HARDWARE-63-3",
+      "subcategory": "網路與通訊",
+      "status": "assigned",
+      "notes": "官方題幹／選項明確命中：network"
+    },
+    {
+      "questionId": "AI-1",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-2",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-3",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-4",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-5",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-6",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-7",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-8",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-9",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-10",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-11",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-12",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-13",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-14",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-15",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-16",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-17",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-18",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-19",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-20",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-21",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-22",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-23",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-24",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-25",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-26",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-27",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-28",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-29",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-30",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-31",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-32",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-33",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-34",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-35",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-36",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-37",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-38",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-39",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-40",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-41",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-42",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-43",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-44",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-45",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-46",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-47",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-48",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-49",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-50",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-51",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-52",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-53",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-54",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-55",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-56",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-57",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-58",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-59",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-60",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-61",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-62",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-63",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-64",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-66",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-67",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-68",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-69",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-70",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-71",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-72",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-73",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-74",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-75",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-76",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-77",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-78",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-79",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-80",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-81",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-82",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-83",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-84",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-85",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-86",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-87",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-88",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-89",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-90",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-91",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-92",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-93",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-94",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-95",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-96",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-97",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-98",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-99",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-100",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-101",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-102",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-103",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-104",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-105",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-106",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-107",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-108",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-109",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-110",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-111",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-112",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-113",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-114",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-115",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-116",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-117",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-118",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-119",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-120",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-121",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-122",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-123",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-124",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-125",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-126",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-127",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-128",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-129",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-130",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-131",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-132",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-133",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-134",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-135",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-136",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-137",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-138",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-139",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-140",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-142",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-143",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-144",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-145",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-146",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-147",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-148",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-149",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-150",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-151",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-152",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-153",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-154",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-155",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-156",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-157",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-158",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-159",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-160",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-161",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-162",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-163",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-164",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-165",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-166",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-167",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-168",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-169",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-170",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-171",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-172",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-173",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-174",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-175",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-176",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-177",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-178",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-179",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-180",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-181",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-182",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-183",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-184",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-185",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-186",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-187",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-188",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-189",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-190",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-191",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-192",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-193",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-194",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-195",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-196",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-197",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-198",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-199",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-200",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-201",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-202",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-203",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-204",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-205",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-206",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-207",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-208",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-209",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-210",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-211",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-212",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    },
+    {
+      "questionId": "AI-213",
+      "subcategory": "AI 工具與生成式 AI",
+      "status": "assigned",
+      "notes": "依官方 AI人工智慧工具應用題組歸類。"
+    }
+  ]
+}

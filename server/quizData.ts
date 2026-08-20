@@ -8,6 +8,9 @@ export type QuizQuestion = {
   source_question_no: string;
   source_page: number;
   category: string;
+  subcategory: string;
+  subcategory_status: string;
+  subcategory_notes: string;
   question_text: string;
   option_a: string;
   option_b: string;
@@ -56,6 +59,9 @@ export function toClientQuestion(q: QuizQuestion) {
     number: q.source_question_no,
     page: q.source_page,
     category: q.category,
+    subcategory: q.subcategory,
+    subcategoryStatus: q.subcategory_status,
+    subcategoryNotes: q.subcategory_notes,
     text: q.question_text,
     options: { A: q.option_a, B: q.option_b, C: q.option_c, D: q.option_d },
     correctOption: q.correct_option,
@@ -68,7 +74,7 @@ export function toClientQuestion(q: QuizQuestion) {
 }
 
 export function cmsQuestionToQuizQuestion(q: {
-  questionId: string; sourceKey: string; sourceSection: string; sourceQuestionNo: string; sourcePage: number | null; category: string | null;
+  questionId: string; sourceKey: string; sourceSection: string; sourceQuestionNo: string; sourcePage: number | null; category: string | null; subcategory: string | null; subcategoryStatus: string; subcategoryNotes: string | null;
   questionText: string; optionA: string; optionB: string; optionC: string; optionD: string; correctOption: string; explanation: string | null;
   enabled: number; requiresMedia: number; sourceRaw: string | null; sourceUrl: string | null; importStatus: string; verified: number; notes: string | null;
 }): QuizQuestion {
@@ -79,6 +85,9 @@ export function cmsQuestionToQuizQuestion(q: {
     source_question_no: q.sourceQuestionNo,
     source_page: q.sourcePage ?? 0,
     category: q.category ?? "",
+    subcategory: q.subcategory ?? "待確認",
+    subcategory_status: q.subcategoryStatus ?? "pending",
+    subcategory_notes: q.subcategoryNotes ?? "",
     question_text: q.questionText,
     option_a: q.optionA,
     option_b: q.optionB,

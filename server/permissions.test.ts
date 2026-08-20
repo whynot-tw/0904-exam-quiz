@@ -25,4 +25,12 @@ describe("admin access rules", () => {
     expect(result.success).toBe(true);
     expect(result.persistedTo).toMatch(/cms-database/);
   });
+
+  it("allows admins to persist a known subcategory without changing official answer content", async () => {
+    const caller = appRouter.createCaller(context("admin"));
+    const knownQuestion = (await caller.quiz.adminList({ needsReviewOnly: false })).find(question => question.id === "HARDWARE-1");
+    expect(knownQuestion).toBeDefined();
+    const result = await caller.quiz.adminUpdate({ questionId: "HARDWARE-1", subcategory: knownQuestion!.subcategory, subcategoryStatus: knownQuestion!.subcategoryStatus, subcategoryNotes: knownQuestion!.subcategoryNotes });
+    expect(result.persistedTo).toBe("cms-database");
+  });
 });

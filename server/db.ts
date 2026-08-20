@@ -56,6 +56,20 @@ export async function updateCmsQuestion(questionId: string, patch: { explanation
   return true;
 }
 
+export async function updateCmsQuestionSubcategory(questionId: string, patch: { subcategory?: string; subcategoryStatus?: "assigned" | "needs_manual_review"; subcategoryNotes?: string }) {
+  const db = await getDb();
+  if (!db) return false;
+  const existing = await db.select({ id: questions.id }).from(questions).where(eq(questions.questionId, questionId)).limit(1);
+  if (!existing[0]) return false;
+  const update: { subcategory?: string; subcategoryStatus?: "assigned" | "needs_manual_review"; subcategoryNotes?: string } = {};
+  if (patch.subcategory !== undefined) update.subcategory = patch.subcategory;
+  if (patch.subcategoryStatus !== undefined) update.subcategoryStatus = patch.subcategoryStatus;
+  if (patch.subcategoryNotes !== undefined) update.subcategoryNotes = patch.subcategoryNotes;
+  if (!Object.keys(update).length) return true;
+  await db.update(questions).set(update).where(eq(questions.id, existing[0].id));
+  return true;
+}
+
 export async function getUserAttempts(userId: number) {
   const db = await getDb();
   return db ? db.select().from(attempts).where(eq(attempts.userId, userId)).orderBy(desc(attempts.startedAt)) : [];
