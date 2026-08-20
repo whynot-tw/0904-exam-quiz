@@ -1,6 +1,6 @@
 import { and, asc, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, questions, reviewNotes, settings, starredQuestions, users, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -64,6 +64,20 @@ export async function getUserAttempts(userId: number) {
 export async function getUserAnswerRows(userId: number) {
   const db = await getDb();
   return db ? db.select().from(attemptAnswers).where(eq(attemptAnswers.userId, userId)).orderBy(desc(attemptAnswers.answeredAt)) : [];
+}
+
+export async function getUserLearningGoal(userId: number) {
+  const db = await getDb();
+  if (!db) return { targetCompletion: 60 };
+  const rows = await db.select().from(userLearningSettings).where(eq(userLearningSettings.userId, userId)).limit(1);
+  return rows[0] ?? { targetCompletion: 60 };
+}
+
+export async function updateUserLearningGoal(userId: number, targetCompletion: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  await db.insert(userLearningSettings).values({ userId, targetCompletion }).onDuplicateKeyUpdate({ set: { targetCompletion, updatedAt: new Date() } });
+  return { targetCompletion };
 }
 
 export async function getWrongQuestions(userId: number) {

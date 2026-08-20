@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ALL_COURSE_TYPES, filterQuestionsByCourse, getCourseTypes } from "../client/src/lib/courseTypes";
+import { ALL_COURSE_TYPES, filterQuestionsByCourse, getCourseTypes, sortCourseTypes } from "../client/src/lib/courseTypes";
 
 const questions = [
   { id: "HARDWARE-1", source: "HARDWARE", category: "電腦硬體裝修" },
@@ -18,5 +18,15 @@ describe("course type filter", () => {
   it("limits the question pool to the selected course type and retains all questions for all courses", () => {
     expect(filterQuestionsByCourse(questions, "HARDWARE").map(question => question.id)).toEqual(["HARDWARE-1", "HARDWARE-2"]);
     expect(filterQuestionsByCourse(questions, ALL_COURSE_TYPES).map(question => question.id)).toEqual(["HARDWARE-1", "HARDWARE-2", "AI-1"]);
+  });
+
+  it("sorts courses by lowest accuracy or completion while preserving a stable default order", () => {
+    const types = getCourseTypes(questions);
+    const progress = [
+      { source: "AI", accuracy: 40, completion: 70 },
+      { source: "HARDWARE", accuracy: 60, completion: 20 },
+    ];
+    expect(sortCourseTypes(types, progress, "accuracy-asc").map(type => type.id)).toEqual(["AI", "HARDWARE"]);
+    expect(sortCourseTypes(types, progress, "completion-asc").map(type => type.id)).toEqual(["HARDWARE", "AI"]);
   });
 });

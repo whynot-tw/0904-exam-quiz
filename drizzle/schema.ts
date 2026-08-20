@@ -100,6 +100,12 @@ export const settings = mysqlTable("settings", {
   notes: text("notes"),
 });
 
+export const userLearningSettings = mysqlTable("userLearningSettings", {
+  userId: int("userId").primaryKey(),
+  targetCompletion: int("targetCompletion").default(60).notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Question = typeof questions.$inferSelect;

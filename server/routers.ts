@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { getCmsQuestions, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateCmsQuestion, updateStarredQuestionReminder, updateStarredQuestionTag } from "./db";
+import { getCmsQuestions, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateCmsQuestion, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal } from "./db";
 import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 
@@ -59,6 +59,8 @@ export const appRouter = router({
       }));
       return summarizeCourseProgress(catalog, answers);
     }),
+    learningGoal: protectedProcedure.query(({ ctx }) => getUserLearningGoal(ctx.user.id)),
+    updateLearningGoal: protectedProcedure.input(z.object({ targetCompletion: z.number().int().min(1).max(100) })).mutation(({ ctx, input }) => updateUserLearningGoal(ctx.user.id, input.targetCompletion)),
   }),
   wrongQuestions: router({ list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)) }),
   starredQuestions: router({
