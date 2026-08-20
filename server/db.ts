@@ -1,6 +1,6 @@
 import { and, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, reviewNotes, users, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, reviewNotes, starredQuestions, users, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -45,6 +45,23 @@ export async function getUserAnswerRows(userId: number) {
 export async function getWrongQuestions(userId: number) {
   const db = await getDb();
   return db ? db.select().from(wrongQuestions).where(eq(wrongQuestions.userId, userId)).orderBy(desc(wrongQuestions.updatedAt)) : [];
+}
+
+export async function getStarredQuestions(userId: number) {
+  const db = await getDb();
+  return db ? db.select().from(starredQuestions).where(eq(starredQuestions.userId, userId)).orderBy(desc(starredQuestions.createdAt)) : [];
+}
+
+export async function toggleStarredQuestion(userId: number, questionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(starredQuestions).where(and(eq(starredQuestions.userId, userId), eq(starredQuestions.questionId, questionId))).limit(1);
+  if (existing[0]) {
+    await db.delete(starredQuestions).where(eq(starredQuestions.id, existing[0].id));
+    return { questionId, starred: false };
+  }
+  await db.insert(starredQuestions).values({ userId, questionId });
+  return { questionId, starred: true };
 }
 
 export async function recordAttempt(userId: number, input: { mode: string; questionCount: number; answers: Array<{ questionId: string; sequenceNo: number; selectedOption: string; correctOption: string; isCorrect: boolean; markedReviewError?: string }> }) {

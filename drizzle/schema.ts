@@ -1,4 +1,4 @@
-import { int, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
   id: int("id").autoincrement().primaryKey(),
@@ -73,6 +73,15 @@ export const wrongQuestions = mysqlTable("wrongQuestions", {
   migrationStatus: varchar("migrationStatus", { length: 24 }).default("matched").notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
+
+export const starredQuestions = mysqlTable("starredQuestions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  questionId: varchar("questionId", { length: 100 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+}, table => ({
+  userQuestionUnique: uniqueIndex("starredQuestions_user_question_unique").on(table.userId, table.questionId),
+}));
 
 export const reviewNotes = mysqlTable("reviewNotes", {
   id: int("id").autoincrement().primaryKey(),
