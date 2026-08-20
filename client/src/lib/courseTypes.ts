@@ -13,6 +13,7 @@ export type CourseType = {
 
 export type CourseProgressForSort = {
   source: string;
+  label?: string;
   accuracy: number | null;
   completion: number;
 };
@@ -51,4 +52,10 @@ export function sortCourseTypes(courseTypes: CourseType[], progressRows: CourseP
     if (rightAccuracy === null || rightAccuracy === undefined) return -1;
     return leftAccuracy - rightAccuracy || a.id.localeCompare(b.id);
   });
+}
+
+export function getWeakestCourse<T extends CourseProgressForSort>(progressRows: T[] | undefined): T | null {
+  const eligible = (progressRows ?? []).filter(row => row.accuracy !== null && row.accuracy !== undefined);
+  if (!eligible.length) return null;
+  return [...eligible].sort((left, right) => (left.accuracy! - right.accuracy!) || (left.completion - right.completion) || left.source.localeCompare(right.source))[0];
 }

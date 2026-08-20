@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ALL_COURSE_TYPES, filterQuestionsByCourse, getCourseTypes, sortCourseTypes } from "../client/src/lib/courseTypes";
+import { ALL_COURSE_TYPES, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, sortCourseTypes } from "../client/src/lib/courseTypes";
 
 const questions = [
   { id: "HARDWARE-1", source: "HARDWARE", category: "電腦硬體裝修" },
@@ -28,5 +28,14 @@ describe("course type filter", () => {
     ];
     expect(sortCourseTypes(types, progress, "accuracy-asc").map(type => type.id)).toEqual(["AI", "HARDWARE"]);
     expect(sortCourseTypes(types, progress, "completion-asc").map(type => type.id)).toEqual(["HARDWARE", "AI"]);
+  });
+
+  it("chooses the lowest-accuracy course with answer history as the weakest course", () => {
+    expect(getWeakestCourse([
+      { source: "AI", accuracy: 40, completion: 70 },
+      { source: "HARDWARE", accuracy: 60, completion: 20 },
+      { source: "UNANSWERED", accuracy: null, completion: 0 },
+    ])).toMatchObject({ source: "AI", accuracy: 40 });
+    expect(getWeakestCourse([{ source: "UNANSWERED", accuracy: null, completion: 0 }])).toBeNull();
   });
 });

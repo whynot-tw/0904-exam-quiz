@@ -9,6 +9,7 @@ export type CourseCatalogQuestion = {
 export type CourseAnswer = {
   questionId: string;
   isCorrect: number | boolean;
+  answeredAt?: Date;
 };
 
 export type CourseProgress = {
@@ -19,6 +20,7 @@ export type CourseProgress = {
   correct: number;
   accuracy: number | null;
   completion: number;
+  lastAnsweredAt: Date | null;
 };
 
 export function summarizeCourseProgress(catalog: CourseCatalogQuestion[], answers: CourseAnswer[]): CourseProgress[] {
@@ -35,6 +37,7 @@ export function summarizeCourseProgress(catalog: CourseCatalogQuestion[], answer
       correct: 0,
       accuracy: null,
       completion: 0,
+      lastAnsweredAt: null,
     };
     current.available += 1;
     courses.set(question.source, current);
@@ -48,6 +51,7 @@ export function summarizeCourseProgress(catalog: CourseCatalogQuestion[], answer
     if (!progress) continue;
     progress.answered += 1;
     progress.correct += answer.isCorrect ? 1 : 0;
+    if (answer.answeredAt && (!progress.lastAnsweredAt || answer.answeredAt > progress.lastAnsweredAt)) progress.lastAnsweredAt = answer.answeredAt;
     const completedIds = completedQuestionIdsByCourse.get(question.source) ?? new Set<string>();
     completedIds.add(question.id);
     completedQuestionIdsByCourse.set(question.source, completedIds);
