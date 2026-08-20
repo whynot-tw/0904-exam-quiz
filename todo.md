@@ -216,9 +216,21 @@
 
 - [x] 為完成率與復原歷程提供頁面內可見的 loading、error 與 empty state，且錯誤時不顯示為 0% 完成率
 - [x] 完成已登入 admin 的桌面／手機實際互動 QA，保存完成率、復原操作及 CSV 匯出的可追溯證據
-- [ ] 保存本輪 checkpoint 並整理本輪分類審核管理流程的交付與 QA 證據
+- [x] 保存本輪 checkpoint 並整理本輪分類審核管理流程的交付與 QA 證據
 
 ## Publish-First Scope Change
 
-- [ ] 暫停管理員進階功能的後續驗證與擴充，先整理核心刷題 App v0.1 的可發布版本
-- [ ] 完成核心功能回歸驗證並保存可發布 checkpoint，交由使用者在介面執行 Publish
+- [x] 暫停管理員進階功能的後續驗證與擴充，先整理核心刷題 App v0.1 的可發布版本
+- [x] 完成核心功能回歸驗證並保存可發布 checkpoint，交由使用者在介面執行 Publish
+
+## Wrong Question Book Follow-up
+
+- [x] 盤點錯題自動記錄、錯題清單、狀態篩選與重新作答流程
+- [x] 補強錯題本中使用者辨識與回顧答錯紀錄的介面或資料流程缺口
+- [x] 驗證答錯寫入、錯題回顧、狀態篩選、重新作答及登入權限，保存 checkpoint 並交付結果
+
+## Wrong Question Book Verification Recovery
+
+- [x] 明確記錄錯題本既有功能是否有產品缺口，若無缺口則保存程式與流程依據
+- [x] 補齊錯題本匿名限制、登入讀取、狀態篩選與重新作答的可驗證測試
+- [ ] 保存本輪錯題本 follow-up checkpoint，並整理驗證結果供使用者查看
