@@ -56,4 +56,19 @@ describe("admin access rules", () => {
       await caller.quiz.adminUpdate({ questionId: candidate.id, subcategory: candidate.subcategory, subcategoryStatus: "needs_manual_review", subcategoryNotes: candidate.subcategoryNotes });
     }
   });
+
+  it("allows admins to batch classify pending questions without changing official content", async () => {
+    const caller = appRouter.createCaller(context("admin"));
+    const pending = await caller.quiz.adminList({ needsReviewOnly: false, subcategoryReviewOnly: true });
+    const candidates = pending.filter(question => question.source === "HARDWARE").slice(0, 2);
+    expect(candidates).toHaveLength(2);
+    try {
+      const saved = await caller.quiz.adminBatchUpdateSubcategory({ questionIds: candidates.map(question => question.id), subcategory: "電腦硬體與組裝", subcategoryStatus: "assigned", subcategoryNotes: "測試：批次人工審核" });
+      expect(saved).toMatchObject({ success: true, updatedCount: 2, persistedTo: "cms-database" });
+      const afterReview = await caller.quiz.adminList({ needsReviewOnly: false, subcategoryReviewOnly: true });
+      expect(candidates.every(question => !afterReview.some(row => row.id === question.id))).toBe(true);
+    } finally {
+      await Promise.all(candidates.map(question => caller.quiz.adminUpdate({ questionId: question.id, subcategory: question.subcategory, subcategoryStatus: "needs_manual_review", subcategoryNotes: question.subcategoryNotes })));
+    }
+  });
 });

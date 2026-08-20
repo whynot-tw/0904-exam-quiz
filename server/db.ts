@@ -1,4 +1,4 @@
-import { and, asc, desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, attempts, attemptAnswers, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -68,6 +68,18 @@ export async function updateCmsQuestionSubcategory(questionId: string, patch: { 
   if (!Object.keys(update).length) return true;
   await db.update(questions).set(update).where(eq(questions.id, existing[0].id));
   return true;
+}
+
+export async function batchUpdateCmsQuestionSubcategories(questionIds: string[], patch: { subcategory: string; subcategoryStatus: "assigned" | "needs_manual_review"; subcategoryNotes?: string }) {
+  const db = await getDb();
+  const uniqueIds = Array.from(new Set(questionIds));
+  if (!db || !uniqueIds.length) return 0;
+  const existing = await db.select({ questionId: questions.questionId }).from(questions).where(inArray(questions.questionId, uniqueIds));
+  if (existing.length !== uniqueIds.length) throw new Error("one or more questions not found");
+  const update: { subcategory: string; subcategoryStatus: "assigned" | "needs_manual_review"; subcategoryNotes?: string } = { subcategory: patch.subcategory, subcategoryStatus: patch.subcategoryStatus };
+  if (patch.subcategoryNotes !== undefined) update.subcategoryNotes = patch.subcategoryNotes;
+  await db.update(questions).set(update).where(inArray(questions.questionId, uniqueIds));
+  return uniqueIds.length;
 }
 
 export async function getUserAttempts(userId: number) {
