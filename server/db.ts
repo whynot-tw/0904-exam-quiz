@@ -73,17 +73,32 @@ export async function updateStarredQuestionTag(userId: number, questionId: strin
   return { questionId, tag };
 }
 
+export async function updateStarredQuestionReminder(userId: number, questionId: string, reminderDate: string | null) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(starredQuestions).where(and(eq(starredQuestions.userId, userId), eq(starredQuestions.questionId, questionId))).limit(1);
+  if (!existing[0]) throw new Error("Starred question not found");
+  await db.update(starredQuestions).set({ reminderDate }).where(eq(starredQuestions.id, existing[0].id));
+  return { questionId, reminderDate };
+}
+
 export async function getStarredQuestionStats(userId: number) {
   const [stars, answers] = await Promise.all([getStarredQuestions(userId), getUserAnswerRows(userId)]);
   const starIds = new Set(stars.map(star => star.questionId));
   const answerRows = answers.filter(answer => starIds.has(answer.questionId));
   const reviewedQuestionIds = new Set(answerRows.map(answer => answer.questionId));
   const recent = answerRows.reduce<Date | null>((latest, answer) => !latest || answer.answeredAt > latest ? answer.answeredAt : latest, null);
+  const today = new Date().toISOString().slice(0, 10);
+  const sevenDaysFromNow = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const dueCount = stars.filter(star => star.reminderDate && star.reminderDate <= today).length;
+  const upcomingCount = stars.filter(star => star.reminderDate && star.reminderDate > today && star.reminderDate <= sevenDaysFromNow).length;
   return {
     total: stars.length,
     reviewedCount: reviewedQuestionIds.size,
     completionRate: stars.length ? Math.round(reviewedQuestionIds.size / stars.length * 100) : 0,
     lastReviewedAt: recent,
+    dueCount,
+    upcomingCount,
   };
 }
 

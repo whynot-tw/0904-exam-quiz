@@ -1,0 +1,1 @@
+ALTER TABLE `starredQuestions` ADD `reminderDate` varchar(10);

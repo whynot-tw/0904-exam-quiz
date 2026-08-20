@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateStarredQuestionTag } from "./db";
+import { getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateStarredQuestionReminder, updateStarredQuestionTag } from "./db";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
@@ -46,6 +46,7 @@ export const appRouter = router({
     list: protectedProcedure.query(({ ctx }) => getStarredQuestions(ctx.user.id)),
     toggle: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(({ ctx, input }) => toggleStarredQuestion(ctx.user.id, input.questionId)),
     updateTag: protectedProcedure.input(z.object({ questionId: z.string().min(1), tag: z.string().trim().max(64).nullable() })).mutation(({ ctx, input }) => updateStarredQuestionTag(ctx.user.id, input.questionId, input.tag)),
+    updateReminder: protectedProcedure.input(z.object({ questionId: z.string().min(1), reminderDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable() })).mutation(({ ctx, input }) => updateStarredQuestionReminder(ctx.user.id, input.questionId, input.reminderDate)),
     stats: protectedProcedure.query(({ ctx }) => getStarredQuestionStats(ctx.user.id)),
   }),
 });

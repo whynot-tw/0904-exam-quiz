@@ -33,6 +33,7 @@ describe("starredQuestions access rules", () => {
   it("requires login to change a personal star marker", async () => {
     const caller = appRouter.createCaller(anonymousContext());
     await expect(caller.starredQuestions.toggle({ questionId: "HARDWARE-1" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.starredQuestions.updateReminder({ questionId: "HARDWARE-1", reminderDate: "2026-08-20" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
   });
 
   it("writes, reads, and removes a personal star marker", async () => {
@@ -52,7 +53,12 @@ describe("starredQuestions access rules", () => {
       await expect(caller.starredQuestions.list()).resolves.toEqual(expect.arrayContaining([
         expect.objectContaining({ questionId, tag: "考前必看" }),
       ]));
-      await expect(caller.starredQuestions.stats()).resolves.toMatchObject({ total: 1, reviewedCount: 0, completionRate: 0, lastReviewedAt: null });
+      const today = new Date().toISOString().slice(0, 10);
+      await expect(caller.starredQuestions.updateReminder({ questionId, reminderDate: today })).resolves.toEqual({ questionId, reminderDate: today });
+      await expect(caller.starredQuestions.list()).resolves.toEqual(expect.arrayContaining([
+        expect.objectContaining({ questionId, reminderDate: today }),
+      ]));
+      await expect(caller.starredQuestions.stats()).resolves.toMatchObject({ total: 1, reviewedCount: 0, completionRate: 0, lastReviewedAt: null, dueCount: 1, upcomingCount: 0 });
     } finally {
       const current = await caller.starredQuestions.list();
       if (current.some(row => row.questionId === questionId)) await caller.starredQuestions.toggle({ questionId });
