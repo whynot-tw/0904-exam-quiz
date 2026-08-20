@@ -5,6 +5,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
 import { getCmsQuestions, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getWrongQuestions, recordAttempt, toggleStarredQuestion, updateCmsQuestion, updateStarredQuestionReminder, updateStarredQuestionTag } from "./db";
+import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
@@ -46,6 +47,17 @@ export const appRouter = router({
       }
       for (const value of Object.values(bySubject)) value.accuracy = value.answered ? Math.round(value.correct / value.answered * 100) : 0;
       return { totalAnswered: rows.length, totalCorrect: rows.filter(row => row.isCorrect === 1).length, bySubject, answers: rows };
+    }),
+    courseProgress: protectedProcedure.query(async ({ ctx }) => {
+      const [answers, cmsRows] = await Promise.all([getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      const catalog = cmsRows.map(question => ({
+        id: question.questionId,
+        source: question.sourceKey,
+        label: question.category ?? question.sourceSection,
+        enabled: question.enabled === 1,
+        importStatus: question.importStatus,
+      }));
+      return summarizeCourseProgress(catalog, answers);
     }),
   }),
   wrongQuestions: router({ list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)) }),
