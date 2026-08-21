@@ -393,3 +393,10 @@
 - [x] 修正手機版個人精簡解析面板標題、狀態與展開按鈕被壓縮成直排的問題
 - [x] 將個人精簡解析批次面板及逐題精簡解析預設改為全部展開
 - [x] 完成手機驗證、完整回歸測試與 checkpoint
+
+## Account Learning-Data Consolidation
+
+- [x] 盤點 650205@gmail.com 與 whynot.studio.tw@gmail.com 的帳號識別與作答、錯題／AI 解析、星號／標籤資料筆數
+- [x] 定義來源資料併入目標帳號的去重、衝突處理與可追溯核對規則，不整合未指定資料
+- [x] 安全整合作答歷史、錯題本／AI 解析、星號標記與標籤至 whynot.studio.tw@gmail.com
+- [x] 核對合併後筆數與個人資料隔離，補齊測試、保存 checkpoint 並交付結果

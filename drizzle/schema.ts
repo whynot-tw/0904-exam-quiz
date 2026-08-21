@@ -125,6 +125,15 @@ export const userLearningSettings = mysqlTable("userLearningSettings", {
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
+export const accountDataMigrations = mysqlTable("accountDataMigrations", {
+  id: int("id").autoincrement().primaryKey(),
+  sourceUserId: int("sourceUserId").notNull(),
+  targetUserId: int("targetUserId").notNull(),
+  scopeJson: text("scopeJson").notNull(),
+  sourceCountsJson: text("sourceCountsJson").notNull(),
+  completedAt: timestamp("completedAt").defaultNow().notNull(),
+});
+
 export const classificationReviewBatches = mysqlTable("classificationReviewBatches", {
   id: int("id").autoincrement().primaryKey(),
   adminUserId: int("adminUserId").notNull(),
