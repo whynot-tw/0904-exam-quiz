@@ -77,6 +77,22 @@ export const wrongQuestions = mysqlTable("wrongQuestions", {
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
+export const wrongQuestionConciseExplanations = mysqlTable("wrongQuestionConciseExplanations", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  questionId: varchar("questionId", { length: 100 }).notNull(),
+  summary: text("summary").notNull(),
+  memoryTip: text("memoryTip").notNull(),
+  feedback: varchar("feedback", { length: 20 }),
+  feedbackAt: timestamp("feedbackAt"),
+  generationCount: int("generationCount").default(1).notNull(),
+  model: varchar("model", { length: 80 }).notNull(),
+  generatedAt: timestamp("generatedAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+}, table => ({
+  userQuestionUnique: uniqueIndex("wrongQuestionConciseExplanations_user_question_unique").on(table.userId, table.questionId),
+}));
+
 export const starredQuestions = mysqlTable("starredQuestions", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull(),

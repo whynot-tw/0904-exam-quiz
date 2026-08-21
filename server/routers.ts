@@ -4,12 +4,13 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { applyCmsQuestionSubcategoryBatch, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestions, recordAttempt, restoreCmsQuestionSubcategoryBatch, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal } from "./db";
+import { applyCmsQuestionSubcategoryBatch, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
 import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 import { invokeLLM } from "./_core/llm";
 import { buildWrongQuestionAiMessages, parseWrongQuestionAiExplanation } from "./wrongQuestionAi";
 import { buildPdfWeaknessAnalysisMessages, parsePdfWeaknessSummary } from "./wrongQuestionPdfAi";
+import { buildConciseWrongQuestionAiMessages, parseConciseWrongQuestionExplanation } from "./wrongQuestionConciseAi";
 import { TRPCError } from "@trpc/server";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
@@ -122,6 +123,50 @@ export const appRouter = router({
   }),
   wrongQuestions: router({
     list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)),
+    conciseList: protectedProcedure.query(({ ctx }) => getWrongQuestionConciseExplanations(ctx.user.id)),
+    generateConciseBatch: protectedProcedure.mutation(async ({ ctx }) => {
+      const [wrongRows, existingRows, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getWrongQuestionConciseExplanations(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      const existingIds = new Set(existingRows.map(row => row.questionId));
+      const pendingIds = wrongRows.map(row => row.questionId).filter(questionId => !existingIds.has(questionId)).slice(0, 20);
+      const latestAnswerByQuestion = new Map<string, (typeof answerRows)[number]>();
+      for (const row of answerRows) if (!latestAnswerByQuestion.has(row.questionId)) latestAnswerByQuestion.set(row.questionId, row);
+      const cmsByQuestionId = new Map(cmsRows.map(row => [row.questionId, row]));
+      const results = await Promise.all(pendingIds.map(async questionId => {
+        const official = cmsByQuestionId.get(questionId);
+        if (!official) return { questionId, status: "skipped" as const };
+        try {
+          const question = cmsQuestionToQuizQuestion(official);
+          const response = await invokeLLM({ model: "gpt-5-mini", messages: buildConciseWrongQuestionAiMessages(question, latestAnswerByQuestion.get(questionId)?.selectedOption), maxCompletionTokens: 1200, response_format: { type: "json_schema", json_schema: { name: "concise_wrong_question_note", strict: true, schema: { type: "object", properties: { summary: { type: "string" }, memoryTip: { type: "string" }, sourceNotice: { type: "string" } }, required: ["summary", "memoryTip", "sourceNotice"], additionalProperties: false } } } });
+          const content = response.choices[0]?.message.content;
+          if (typeof content !== "string") throw new Error("Concise explanation response is empty");
+          const concise = parseConciseWrongQuestionExplanation(content);
+          await upsertWrongQuestionConciseExplanation(ctx.user.id, { questionId, summary: concise.summary, memoryTip: concise.memoryTip, model: "gpt-5-mini" });
+          return { questionId, status: "generated" as const };
+        } catch (error) {
+          console.error("[ConciseWrongQuestionAI] batch generation failed", questionId, error);
+          return { questionId, status: "failed" as const };
+        }
+      }));
+      return { requestedCount: pendingIds.length, generatedCount: results.filter(row => row.status === "generated").length, failedCount: results.filter(row => row.status === "failed").length, skippedCount: results.filter(row => row.status === "skipped").length, remainingCount: Math.max(0, wrongRows.length - existingRows.length - pendingIds.length) };
+    }),
+    rateConcise: protectedProcedure.input(z.object({ questionId: z.string().min(1), feedback: z.enum(["helpful", "unclear"]) })).mutation(async ({ ctx, input }) => {
+      const [wrongRows, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      if (!wrongRows.some(row => row.questionId === input.questionId)) throw new TRPCError({ code: "FORBIDDEN", message: "Cannot rate a question outside this user's wrong question book" });
+      if (input.feedback === "helpful") return { explanation: await setWrongQuestionConciseFeedback(ctx.user.id, input.questionId, "helpful"), regenerated: false };
+      const official = cmsRows.find(row => row.questionId === input.questionId);
+      if (!official) throw new TRPCError({ code: "NOT_FOUND", message: "Official question not found" });
+      const latestAnswer = answerRows.find(row => row.questionId === input.questionId);
+      try {
+        const response = await invokeLLM({ model: "gpt-5-mini", messages: buildConciseWrongQuestionAiMessages(cmsQuestionToQuizQuestion(official), latestAnswer?.selectedOption, true), maxCompletionTokens: 1200, response_format: { type: "json_schema", json_schema: { name: "concise_wrong_question_note_regenerated", strict: true, schema: { type: "object", properties: { summary: { type: "string" }, memoryTip: { type: "string" }, sourceNotice: { type: "string" } }, required: ["summary", "memoryTip", "sourceNotice"], additionalProperties: false } } } });
+        const content = response.choices[0]?.message.content;
+        if (typeof content !== "string") throw new Error("Concise regenerated explanation response is empty");
+        const concise = parseConciseWrongQuestionExplanation(content);
+        return { explanation: await upsertWrongQuestionConciseExplanation(ctx.user.id, { questionId: input.questionId, summary: concise.summary, memoryTip: concise.memoryTip, model: "gpt-5-mini", feedback: "unclear", incrementGeneration: true }), regenerated: true };
+      } catch (error) {
+        console.error("[ConciseWrongQuestionAI] regeneration failed", input.questionId, error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Concise AI explanation is temporarily unavailable" });
+      }
+    }),
     exportPdfData: protectedProcedure.query(async ({ ctx }) => {
       const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
       const latestAnswerByQuestion = new Map<string, (typeof answerRows)[number]>();

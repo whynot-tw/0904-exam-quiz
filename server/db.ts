@@ -1,6 +1,6 @@
 import { and, asc, count, desc, eq, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -174,6 +174,33 @@ export async function updateUserLearningGoal(userId: number, targetCompletion: n
 export async function getWrongQuestions(userId: number) {
   const db = await getDb();
   return db ? db.select().from(wrongQuestions).where(eq(wrongQuestions.userId, userId)).orderBy(desc(wrongQuestions.updatedAt)) : [];
+}
+
+export async function getWrongQuestionConciseExplanations(userId: number) {
+  const db = await getDb();
+  return db ? db.select().from(wrongQuestionConciseExplanations).where(eq(wrongQuestionConciseExplanations.userId, userId)).orderBy(desc(wrongQuestionConciseExplanations.updatedAt)) : [];
+}
+
+export async function upsertWrongQuestionConciseExplanation(userId: number, input: { questionId: string; summary: string; memoryTip: string; model: string; feedback?: "helpful" | "unclear" | null; incrementGeneration?: boolean }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(wrongQuestionConciseExplanations).where(and(eq(wrongQuestionConciseExplanations.userId, userId), eq(wrongQuestionConciseExplanations.questionId, input.questionId))).limit(1);
+  const now = new Date();
+  if (existing[0]) {
+    await db.update(wrongQuestionConciseExplanations).set({ summary: input.summary, memoryTip: input.memoryTip, model: input.model, feedback: input.feedback ?? existing[0].feedback, feedbackAt: input.feedback === undefined ? existing[0].feedbackAt : now, generationCount: input.incrementGeneration ? existing[0].generationCount + 1 : existing[0].generationCount, generatedAt: now, updatedAt: now }).where(eq(wrongQuestionConciseExplanations.id, existing[0].id));
+  } else {
+    await db.insert(wrongQuestionConciseExplanations).values({ userId, questionId: input.questionId, summary: input.summary, memoryTip: input.memoryTip, model: input.model, feedback: input.feedback ?? null, feedbackAt: input.feedback ? now : null, generationCount: 1, generatedAt: now });
+  }
+  return (await getWrongQuestionConciseExplanations(userId)).find(row => row.questionId === input.questionId)!;
+}
+
+export async function setWrongQuestionConciseFeedback(userId: number, questionId: string, feedback: "helpful" | "unclear") {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(wrongQuestionConciseExplanations).where(and(eq(wrongQuestionConciseExplanations.userId, userId), eq(wrongQuestionConciseExplanations.questionId, questionId))).limit(1);
+  if (!existing[0]) throw new Error("Concise explanation not found");
+  await db.update(wrongQuestionConciseExplanations).set({ feedback, feedbackAt: new Date(), updatedAt: new Date() }).where(eq(wrongQuestionConciseExplanations.id, existing[0].id));
+  return (await getWrongQuestionConciseExplanations(userId)).find(row => row.questionId === questionId)!;
 }
 
 export async function getStarredQuestions(userId: number) {
