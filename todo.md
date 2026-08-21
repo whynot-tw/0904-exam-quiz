@@ -254,3 +254,59 @@
 - [x] 將各頁 Hero 主標統一調整為 32px、字重 400，並依明亮主題調整次標視覺層級
 - [x] 驗證桌面／手機首頁、測驗、錯題與統計頁的名稱與 Hero 排版，保存 checkpoint 並交付結果
 - [x] 保留 AI 錯題解析，等待使用者日後以登入且有錯題資料的帳號完成實機測試
+
+## Vercel Production Domain
+
+- [ ] 核對三個現有 Vercel Production 專案與 exam-quiz.vercel.app 網址可用性
+- [ ] 確認應承接正式網址的刷題 App 專案，避免修改或覆蓋不相關的既有部署
+- [ ] 在使用者確認切換後設定 exam-quiz.vercel.app 並驗證公開 Production 路由
+
+## Vercel Deployment Discovery Recovery
+
+- [ ] 從專案設定、GitHub 遠端與公開 Vercel 網址自行辨識刷題 App 的實際 Production 專案
+- [ ] 核對 exam-quiz.vercel.app 是否可安全由識別出的刷題 App 專案承接，避免影響其他既有網站
+
+## Vercel URL Selection Update
+
+- [ ] 核對 whynot-examquiz.vercel.app 可用性，並確認可由目前明亮版刷題 App 安全承接
+- [ ] 建立或連結目前刷題 App 的 Production 專案，設定 whynot-examquiz.vercel.app 並驗證公開頁面
+
+## Production Wrong Question and AI Check
+
+- [ ] 檢查 whynot-examquiz.vercel.app 的錯題本公開載入、登入前置條件與 AI 解析入口
+- [ ] 回報錯題記錄、重新作答與 AI 解析在公開部署的可驗證狀態及後續限制
+
+## Production URL Blocking Finding
+
+- [ ] 修復 whynot-examquiz.vercel.app 的 Vercel DEPLOYMENT_NOT_FOUND，完成 Production 專案與網域綁定後重新檢查錯題本及 AI 解析
+
+## Vercel Redeployment Request
+
+- [ ] 將目前已驗證版本重新部署至 Vercel Production，保留三個既有舊部署不受影響
+- [ ] 將新版 Production 正確對應至 whynot-examquiz.vercel.app，驗證首頁、錯題本與 AI 解析前置條件
+
+## External Vercel Compatibility
+
+- [ ] 確認全端刷題 App 的資料庫、Manus OAuth、S3 與 AI 服務在外部 Vercel 的可用設定與必要環境變數
+- [ ] 在不遺失目前功能的前提下，選擇可運作的公開部署方案並重新驗證 whynot-examquiz.vercel.app
+
+## New Isolated Vercel Project
+
+- [ ] 建立全新隔離的 Vercel 專案 whynot-examquiz，連結 whynot-tw/0904-exam-quiz 的 build/v0.1 分支且不修改舊部署
+- [ ] 建立 Production 部署並對應 whynot-examquiz.vercel.app，核對資料庫、OAuth 與 AI 服務設定
+
+## Vercel Deployment Permission Blocker
+
+- [ ] 解除 Vercel 團隊對 whynot-examquiz 的 Production Deployment 403 權限限制後，重新建立部署與綁定網址
+
+## Manus Publish First
+
+- [ ] 以目前已驗證的核心刷題版本透過 Manus 系統隨機網域發布，供使用者先完整刷題
+- [ ] 暫緩 Vercel 專案權限與網址綁定工作，待使用者有時間再續作
+
+## Wrong Question PDF Export
+
+- [x] 定義錯題本 PDF 匯出格式，包含題號、題幹、選項、使用者作答、官方答案、官方解析與複習狀態
+- [x] 建立登入使用者專屬的錯題匯出資料流程，禁止匿名或跨使用者資料讀取
+- [x] 在錯題本新增 PDF 匯出按鈕、下載狀態與空清單提示
+- [x] 補齊 PDF 內容、中文排版、權限、下載與手機／桌面 QA，保存 checkpoint 並交付結果

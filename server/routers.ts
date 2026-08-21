@@ -89,6 +89,28 @@ export const appRouter = router({
   }),
   wrongQuestions: router({
     list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)),
+    exportPdfData: protectedProcedure.query(async ({ ctx }) => {
+      const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      const latestAnswerByQuestion = new Map<string, (typeof answerRows)[number]>();
+      for (const answer of answerRows) if (!latestAnswerByQuestion.has(answer.questionId)) latestAnswerByQuestion.set(answer.questionId, answer);
+      const officialByQuestionId = new Map(cmsRows.map(row => [row.questionId, toClientQuestion(cmsQuestionToQuizQuestion(row))]));
+      return userWrongQuestions.flatMap(row => {
+        const question = officialByQuestionId.get(row.questionId);
+        if (!question) return [];
+        return [{
+          questionId: row.questionId,
+          text: question.text,
+          options: question.options,
+          selectedOption: (latestAnswerByQuestion.get(row.questionId)?.selectedOption ?? null) as "A" | "B" | "C" | "D" | null,
+          officialAnswer: question.correctOption as "A" | "B" | "C" | "D",
+          officialExplanation: question.explanation ?? null,
+          status: row.status as "待複習" | "已熟悉",
+          wrongCount: row.wrongCount,
+          consecutiveCorrect: row.consecutiveCorrect,
+          updatedAt: row.updatedAt,
+        }];
+      });
+    }),
     explain: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(async ({ ctx, input }) => {
       const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
       if (!userWrongQuestions.some(row => row.questionId === input.questionId)) throw new TRPCError({ code: "NOT_FOUND", message: "Wrong question not found for this user" });
