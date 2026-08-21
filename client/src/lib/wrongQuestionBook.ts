@@ -7,3 +7,7 @@ export function filterWrongQuestions<T extends { status: string }>(rows: T[], st
 export function getWrongQuestionForReplay<T extends { id: string }>(questions: T[], questionId: string) {
   return questions.find(question => question.id === questionId);
 }
+
+export function getMostRecentWrongQuestion<T extends { updatedAt: Date | string }>(rows: T[]) {
+  return [...rows].sort((left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime())[0];
+}
