@@ -60,6 +60,7 @@ describe("錯題本", () => {
         expect(answerAi.officialAnswer).toBe(official?.correctOption);
         expect(answerAi.explanation.reviewTip).toBe("先背官方關鍵字");
         expect(String(fetchMock.mock.calls[2]?.[1]?.body)).toContain("使用者最近選擇：A");
+        expect(String(fetchMock.mock.calls[2]?.[1]?.body)).toContain("max_completion_tokens");
       } finally {
         vi.stubGlobal("fetch", originalFetch);
       }

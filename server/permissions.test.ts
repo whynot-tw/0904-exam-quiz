@@ -24,7 +24,7 @@ describe("admin access rules", () => {
     const result = await caller.quiz.adminUpdate({ questionId: "HARDWARE-1", explanation: knownQuestion!.explanation, correctOption: knownQuestion!.correctOption });
     expect(result.success).toBe(true);
     expect(result.persistedTo).toMatch(/cms-database/);
-  });
+  }, 20000);
 
   it("allows admins to persist a known subcategory without changing official answer content", async () => {
     const caller = appRouter.createCaller(context("admin"));

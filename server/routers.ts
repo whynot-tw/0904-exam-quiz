@@ -43,7 +43,7 @@ export const appRouter = router({
         const response = await invokeLLM({
           model: "gpt-5-mini",
           messages: buildWrongQuestionAiMessages(question, input.selectedOption),
-          maxTokens: 900,
+          maxCompletionTokens: 2200,
           response_format: {
             type: "json_schema",
             json_schema: {
@@ -163,7 +163,7 @@ export const appRouter = router({
         const response = await invokeLLM({
           model: "gpt-5-mini",
           messages: buildPdfWeaknessAnalysisMessages(analysisQuestions),
-          maxTokens: 1400,
+          maxCompletionTokens: 2400,
           response_format: {
             type: "json_schema",
             json_schema: {
@@ -203,7 +203,7 @@ export const appRouter = router({
         const response = await invokeLLM({
           model: "gpt-5-mini",
           messages: buildWrongQuestionAiMessages(question, latestAnswer?.selectedOption),
-          maxTokens: 900,
+          maxCompletionTokens: 2200,
           response_format: {
             type: "json_schema",
             json_schema: {
