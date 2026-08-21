@@ -18,6 +18,7 @@ describe("錯題本", () => {
     await expect(caller.wrongQuestions.list()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.conciseList()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.generateConciseBatch()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.wrongQuestions.regenerateUnclearConciseBatch()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.rateConcise({ questionId: "HARDWARE-1", feedback: "helpful" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.exportPdfData()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.analyzePdfWeakness({ questionIds: ["HARDWARE-1"] })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
@@ -60,6 +61,10 @@ describe("錯題本", () => {
         expect(helpful).toMatchObject({ regenerated: false, explanation: { feedback: "helpful", generationCount: 1 } });
         const regenerated = await caller.wrongQuestions.rateConcise({ questionId, feedback: "unclear" });
         expect(regenerated).toMatchObject({ regenerated: true, explanation: { feedback: "unclear", generationCount: 2, summary: "先找出官方正解的關鍵條件。" } });
+        const regeneratedBatch = await caller.wrongQuestions.regenerateUnclearConciseBatch();
+        expect(regeneratedBatch).toMatchObject({ requestedCount: 1, regeneratedCount: 1, failedCount: 0, remainingUnclearCount: 0 });
+        const pdfRowsWithConcise = await caller.wrongQuestions.exportPdfData();
+        expect(pdfRowsWithConcise.find(row => row.questionId === questionId)?.conciseExplanation).toMatchObject({ summary: "先找出官方正解的關鍵條件。", memoryTip: "先背官方關鍵字，再排除不符選項。", generationCount: 3, feedback: "unclear" });
         const weakness = await appRouter.createCaller(learnerContext()).wrongQuestions.analyzePdfWeakness({ questionIds: [questionId] });
         expect(weakness.headline).toBe("優先複習此範圍");
         expect(weakness.priorityTopics[0]?.advice).toBe("依官方解析重做。");

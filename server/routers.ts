@@ -149,6 +149,30 @@ export const appRouter = router({
       }));
       return { requestedCount: pendingIds.length, generatedCount: results.filter(row => row.status === "generated").length, failedCount: results.filter(row => row.status === "failed").length, skippedCount: results.filter(row => row.status === "skipped").length, remainingCount: Math.max(0, wrongRows.length - existingRows.length - pendingIds.length) };
     }),
+    regenerateUnclearConciseBatch: protectedProcedure.mutation(async ({ ctx }) => {
+      const [wrongRows, conciseRows, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getWrongQuestionConciseExplanations(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      const ownedQuestionIds = new Set(wrongRows.map(row => row.questionId));
+      const unclearIds = conciseRows.filter(row => row.feedback === "unclear" && ownedQuestionIds.has(row.questionId)).map(row => row.questionId).slice(0, 20);
+      const latestAnswerByQuestion = new Map<string, (typeof answerRows)[number]>();
+      for (const row of answerRows) if (!latestAnswerByQuestion.has(row.questionId)) latestAnswerByQuestion.set(row.questionId, row);
+      const cmsByQuestionId = new Map(cmsRows.map(row => [row.questionId, row]));
+      const results = await Promise.all(unclearIds.map(async questionId => {
+        const official = cmsByQuestionId.get(questionId);
+        if (!official) return { questionId, status: "skipped" as const };
+        try {
+          const response = await invokeLLM({ model: "gpt-5-mini", messages: buildConciseWrongQuestionAiMessages(cmsQuestionToQuizQuestion(official), latestAnswerByQuestion.get(questionId)?.selectedOption, true), maxCompletionTokens: 1200, response_format: { type: "json_schema", json_schema: { name: "concise_wrong_question_note_batch_regenerated", strict: true, schema: { type: "object", properties: { summary: { type: "string" }, memoryTip: { type: "string" }, sourceNotice: { type: "string" } }, required: ["summary", "memoryTip", "sourceNotice"], additionalProperties: false } } } });
+          const content = response.choices[0]?.message.content;
+          if (typeof content !== "string") throw new Error("Concise batch regeneration response is empty");
+          const concise = parseConciseWrongQuestionExplanation(content);
+          await upsertWrongQuestionConciseExplanation(ctx.user.id, { questionId, summary: concise.summary, memoryTip: concise.memoryTip, model: "gpt-5-mini", feedback: "unclear", incrementGeneration: true });
+          return { questionId, status: "generated" as const };
+        } catch (error) {
+          console.error("[ConciseWrongQuestionAI] batch regeneration failed", questionId, error);
+          return { questionId, status: "failed" as const };
+        }
+      }));
+      return { requestedCount: unclearIds.length, regeneratedCount: results.filter(row => row.status === "generated").length, failedCount: results.filter(row => row.status === "failed").length, skippedCount: results.filter(row => row.status === "skipped").length, remainingUnclearCount: Math.max(0, conciseRows.filter(row => row.feedback === "unclear" && ownedQuestionIds.has(row.questionId)).length - unclearIds.length) };
+    }),
     rateConcise: protectedProcedure.input(z.object({ questionId: z.string().min(1), feedback: z.enum(["helpful", "unclear"]) })).mutation(async ({ ctx, input }) => {
       const [wrongRows, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
       if (!wrongRows.some(row => row.questionId === input.questionId)) throw new TRPCError({ code: "FORBIDDEN", message: "Cannot rate a question outside this user's wrong question book" });
@@ -168,13 +192,15 @@ export const appRouter = router({
       }
     }),
     exportPdfData: protectedProcedure.query(async ({ ctx }) => {
-      const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      const [userWrongQuestions, answerRows, cmsRows, conciseRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions(), getWrongQuestionConciseExplanations(ctx.user.id)]);
       const latestAnswerByQuestion = new Map<string, (typeof answerRows)[number]>();
       for (const answer of answerRows) if (!latestAnswerByQuestion.has(answer.questionId)) latestAnswerByQuestion.set(answer.questionId, answer);
       const officialByQuestionId = new Map(cmsRows.map(row => [row.questionId, toClientQuestion(cmsQuestionToQuizQuestion(row))]));
+      const conciseByQuestionId = new Map(conciseRows.map(row => [row.questionId, row]));
       return userWrongQuestions.flatMap(row => {
         const question = officialByQuestionId.get(row.questionId);
         if (!question) return [];
+        const concise = conciseByQuestionId.get(row.questionId);
         return [{
           questionId: row.questionId,
           text: question.text,
@@ -186,6 +212,7 @@ export const appRouter = router({
           wrongCount: row.wrongCount,
           consecutiveCorrect: row.consecutiveCorrect,
           updatedAt: row.updatedAt,
+          conciseExplanation: concise ? { summary: concise.summary, memoryTip: concise.memoryTip, generatedAt: concise.generatedAt, generationCount: concise.generationCount, feedback: concise.feedback } : null,
         }];
       });
     }),

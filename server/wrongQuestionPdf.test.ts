@@ -14,6 +14,7 @@ const sample = {
   wrongCount: 2,
   consecutiveCorrect: 0,
   updatedAt: new Date("2026-08-21T00:00:00.000Z"),
+  conciseExplanation: { summary: "先找出官方正解的關鍵條件。", memoryTip: "先背官方關鍵字，再排除不符選項。", generatedAt: new Date("2026-08-21T01:02:03.000Z"), generationCount: 3, feedback: "unclear" },
 };
 
 describe("錯題本 PDF 匯出", () => {
@@ -22,6 +23,8 @@ describe("錯題本 PDF 匯出", () => {
     expect(outline.join("\n")).toContain("你的最近作答：A：錯誤選項");
     expect(outline.join("\n")).toContain("官方正解：B：官方正解");
     expect(outline.join("\n")).toContain("官方解析：此題依官方題庫解析。");
+    expect(outline.join("\n")).toContain("精簡解析（第 3 版");
+    expect(outline.join("\n")).toContain("記憶口訣：先背官方關鍵字，再排除不符選項。");
     expect(getWrongQuestionPdfFilename(new Date("2026-08-21T00:00:00.000Z"))).toBe("錯題本離線複習_20260821.pdf");
 
     const fontBytes = await readFile("/home/ubuntu/webdev-static-assets/wrong-question-pdf-cjk.ttf");

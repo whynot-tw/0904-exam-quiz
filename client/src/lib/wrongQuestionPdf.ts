@@ -13,6 +13,7 @@ export type WrongQuestionPdfItem = {
   wrongCount: number;
   consecutiveCorrect: number;
   updatedAt: Date | string;
+  conciseExplanation?: { summary: string; memoryTip: string; generatedAt: Date | string; generationCount: number; feedback: string | null } | null;
 };
 
 export type PdfWeaknessSummary = {
@@ -45,6 +46,7 @@ export function buildWrongQuestionPdfOutline(item: WrongQuestionPdfItem) {
     `你的最近作答：${selected}`,
     `官方正解：${answer}`,
     `官方解析：${item.officialExplanation?.trim() || "官方題庫未提供解析。"}`,
+    ...(item.conciseExplanation ? [`精簡解析（第 ${item.conciseExplanation.generationCount} 版｜最近產生 ${new Date(item.conciseExplanation.generatedAt).toLocaleString("zh-TW")}）：${item.conciseExplanation.summary}`, `記憶口訣：${item.conciseExplanation.memoryTip}`] : []),
   ];
 }
 
@@ -125,6 +127,12 @@ export async function buildWrongQuestionPdfBytes(items: WrongQuestionPdfItem[], 
     drawLines(`你的最近作答：${selected}`, { color: rgb(0.58, 0.18, 0.16), gapAfter: 2 });
     drawLines(`官方正解：${item.officialAnswer}：${item.options[item.officialAnswer]}`, { color: rgb(0.06, 0.38, 0.23), gapAfter: 2 });
     drawLines(`官方解析：${item.officialExplanation?.trim() || "官方題庫未提供解析。"}`, { color: rgb(0.18, 0.25, 0.22), gapAfter: 14 });
+    if (item.conciseExplanation) {
+      const concise = item.conciseExplanation;
+      drawLines(`精簡記憶解析｜第 ${concise.generationCount} 版｜最近產生 ${new Date(concise.generatedAt).toLocaleString("zh-TW")}`, { size: 10, color: rgb(0.28, 0.32, 0.62), gapAfter: 2 });
+      drawLines(`判斷重點：${concise.summary}`, { color: rgb(0.2, 0.24, 0.48), gapAfter: 2 });
+      drawLines(`記憶口訣：${concise.memoryTip}`, { color: rgb(0.2, 0.24, 0.48), gapAfter: 14 });
+    }
   });
 
   return pdf.save();
