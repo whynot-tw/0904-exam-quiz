@@ -16,6 +16,7 @@ describe("錯題本", () => {
   it("拒絕未登入使用者讀取個人錯題清單", async () => {
     const caller = appRouter.createCaller({ user: null, req: { protocol: "https", headers: {} } as TrpcContext["req"], res: { clearCookie: () => undefined } as TrpcContext["res"] });
     await expect(caller.wrongQuestions.list()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.wrongQuestions.markMastered({ questionId: "HARDWARE-1" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.conciseList()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.generateConciseBatch()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.regenerateUnclearConciseBatch()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
@@ -39,8 +40,11 @@ describe("錯題本", () => {
       await recordAttempt(learnerId, { mode: "practice", questionCount: 1, answers: [{ questionId, sequenceNo: 0, selectedOption: "A", correctOption: "B", isCorrect: false }] });
       const afterWrong = await getWrongQuestions(learnerId);
       expect(afterWrong).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, wrongCount: 1, consecutiveCorrect: 0, status: "待複習" })]));
+      const markedMastered = await appRouter.createCaller(learnerContext()).wrongQuestions.markMastered({ questionId });
+      expect(markedMastered).toEqual({ questionId, status: "已熟悉", consecutiveCorrect: 2 });
+      expect(await getWrongQuestions(learnerId)).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, status: "已熟悉", consecutiveCorrect: 2 })]));
       const exportRows = await appRouter.createCaller(learnerContext()).wrongQuestions.exportPdfData();
-      expect(exportRows).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, selectedOption: "A", status: "待複習" })]));
+      expect(exportRows).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, selectedOption: "A", status: "已熟悉" })]));
       expect(exportRows.find(row => row.questionId === questionId)?.officialAnswer).toBe((await getCmsQuestions()).find(question => question.questionId === questionId)?.correctOption);
 
       await recordAttempt(learnerId, { mode: "wrong", questionCount: 1, answers: [{ questionId, sequenceNo: 0, selectedOption: "A", correctOption: "A", isCorrect: true }] });

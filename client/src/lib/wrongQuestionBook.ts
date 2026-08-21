@@ -25,3 +25,7 @@ export function getQuestionTextSummary(questionText: string | null | undefined, 
   if (!normalized) return "官方題幹暫時無法顯示。";
   return normalized.length > limit ? `${normalized.slice(0, limit)}…` : normalized;
 }
+
+export function filterWrongQuestionsMissingConcise<T extends { questionId: string }>(rows: T[], conciseQuestionIds: Set<string>) {
+  return rows.filter(row => !conciseQuestionIds.has(row.questionId));
+}

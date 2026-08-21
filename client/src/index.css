@@ -2,6 +2,21 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+.wrong-panel .wrong-question-summary { width:100%; border:0; border-left:3px solid #8599ce; border-radius:0 10px 10px 0; background:#f5f7ff; color:#576986; display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px; padding:10px 12px; text-align:left; font-size:.83rem; line-height:1.55; }
+.wrong-panel .wrong-question-summary > span { display:grid; gap:4px; min-width:0; }
+.wrong-panel .wrong-question-summary b { color:#425784; font-size:.73rem; letter-spacing:.04em; }
+.wrong-panel .wrong-question-summary svg { flex:0 0 auto; color:#526795; transition:transform .18s ease; }
+.wrong-panel .wrong-question-summary.is-expanded { border-left-color:#48698a; background:#edf4ff; }
+.wrong-panel .wrong-question-summary.is-expanded svg { transform:rotate(180deg); }
+.wrong-panel .wrong-card-actions { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.wrong-panel .wrong-card-actions button:last-child { color:#3e6e51; border-color:#b4cfbd; background:#f8fcf9; }
+@media (max-width:560px) {
+  .wrong-panel .filter-pills button { flex:1 1 calc(50% - 4px); }
+  .wrong-panel .wrong-card-actions { grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+  .wrong-panel .wrong-card-actions button { min-width:0; min-height:54px; padding:7px 5px; font-size:.72rem; flex-direction:column; gap:3px; }
+  .wrong-panel .wrong-question-summary { font-size:.82rem; }
+}
+
 :root { font-family: 'DM Sans','Noto Sans TC',sans-serif; color: #26332f; background: #f6f8f4; font-synthesis: none; }
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; background: radial-gradient(circle at top right, #e7f0ea 0, #f7f8f5 42rem); color: #26332f; }

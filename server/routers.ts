@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { applyCmsQuestionSubcategoryBatch, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
+import { applyCmsQuestionSubcategoryBatch, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, markWrongQuestionMastered, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
 import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 import { invokeLLM } from "./_core/llm";
@@ -123,6 +123,11 @@ export const appRouter = router({
   }),
   wrongQuestions: router({
     list: protectedProcedure.query(({ ctx }) => getWrongQuestions(ctx.user.id)),
+    markMastered: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(async ({ ctx, input }) => {
+      const marked = await markWrongQuestionMastered(ctx.user.id, input.questionId);
+      if (!marked) throw new TRPCError({ code: "NOT_FOUND", message: "Wrong question not found for this user" });
+      return marked;
+    }),
     conciseList: protectedProcedure.query(({ ctx }) => getWrongQuestionConciseExplanations(ctx.user.id)),
     generateConciseBatch: protectedProcedure.mutation(async ({ ctx }) => {
       const [wrongRows, existingRows, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getWrongQuestionConciseExplanations(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);

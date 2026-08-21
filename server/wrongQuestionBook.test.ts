@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterWrongQuestions, getMostRecentWrongQuestion, getPreviousQuestionCursor, getQuestionTextSummary, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
+import { filterWrongQuestions, filterWrongQuestionsMissingConcise, getMostRecentWrongQuestion, getPreviousQuestionCursor, getQuestionTextSummary, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
 
 describe("錯題本介面流程", () => {
   const rows = [{ questionId: "HARDWARE-1", status: "待複習" }, { questionId: "AI-1", status: "已熟悉" }];
@@ -31,5 +31,9 @@ describe("錯題本介面流程", () => {
     expect(getQuestionTextSummary("  題幹\n內容  ")).toBe("題幹 內容");
     expect(getQuestionTextSummary("ABCDEFGHIJ", 6)).toBe("ABCDEF…");
     expect(getQuestionTextSummary("")).toBe("官方題幹暫時無法顯示。");
+  });
+
+  it("可只保留尚未具有精簡解析的錯題", () => {
+    expect(filterWrongQuestionsMissingConcise(rows, new Set(["AI-1"]))).toEqual([rows[0]]);
   });
 });

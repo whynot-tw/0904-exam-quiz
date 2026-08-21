@@ -176,6 +176,15 @@ export async function getWrongQuestions(userId: number) {
   return db ? db.select().from(wrongQuestions).where(eq(wrongQuestions.userId, userId)).orderBy(desc(wrongQuestions.updatedAt)) : [];
 }
 
+export async function markWrongQuestionMastered(userId: number, questionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const [row] = await db.select().from(wrongQuestions).where(and(eq(wrongQuestions.userId, userId), eq(wrongQuestions.questionId, questionId))).limit(1);
+  if (!row) return null;
+  await db.update(wrongQuestions).set({ status: "已熟悉", consecutiveCorrect: Math.max(2, row.consecutiveCorrect), updatedAt: new Date() }).where(eq(wrongQuestions.id, row.id));
+  return { questionId, status: "已熟悉" as const, consecutiveCorrect: Math.max(2, row.consecutiveCorrect) };
+}
+
 export async function getWrongQuestionConciseExplanations(userId: number) {
   const db = await getDb();
   return db ? db.select().from(wrongQuestionConciseExplanations).where(eq(wrongQuestionConciseExplanations.userId, userId)).orderBy(desc(wrongQuestionConciseExplanations.updatedAt)) : [];
