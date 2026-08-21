@@ -17,4 +17,11 @@ describe("quiz data rules", () => {
     expect(client.text).toBe(question.question_text);
     expect(client).toHaveProperty("needsReview");
   });
+
+  it("recovers an empty question stem only from official raw text and removes embedded explanation from an option", () => {
+    const source = getQuizQuestions()[0];
+    const client = toClientQuestion({ ...source, question_text: "", source_raw: "(B)10.官方題幹在這裡?(A)選項 A(B)選項 B(C)選項 C(D)選項 D 【解析】官方解析", option_d: "選項 D 【解析】官方解析" });
+    expect(client.text).toBe("官方題幹在這裡?");
+    expect(client.options.D).toBe("選項 D");
+  });
 });

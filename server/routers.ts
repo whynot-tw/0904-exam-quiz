@@ -34,6 +34,38 @@ export const appRouter = router({
       const questions = remote?.questions?.length ? remote.questions : getEnabledQuestions();
       return { settings: remote?.settings ?? { examDate: "2026-09-04", targetScore: 80, mockQuestionCount: 20, maxWrong: 4 }, questions: questions.map(toClientQuestion), qa: { total: remote?.questions?.length ?? local.length, enabled: questions.length, needsReview: local.filter(q => q.import_status === "needs_review").length }, source: remote ? "google-sheet" : "official-pdf-snapshot" };
     }),
+    explainAnswer: protectedProcedure.input(z.object({ questionId: z.string().min(1), selectedOption: z.enum(["A", "B", "C", "D"]) })).mutation(async ({ input }) => {
+      const cmsRows = await getCmsQuestions();
+      const cmsQuestion = cmsRows.find(row => row.questionId === input.questionId);
+      const question = cmsQuestion ? cmsQuestionToQuizQuestion(cmsQuestion) : getQuizQuestions().find(row => row.question_id === input.questionId);
+      if (!question) throw new TRPCError({ code: "NOT_FOUND", message: "Official question not found" });
+      try {
+        const response = await invokeLLM({
+          model: "gpt-5-mini",
+          messages: buildWrongQuestionAiMessages(question, input.selectedOption),
+          maxTokens: 900,
+          response_format: {
+            type: "json_schema",
+            json_schema: {
+              name: "answer_feedback_explanation",
+              strict: true,
+              schema: {
+                type: "object",
+                properties: { errorReason: { type: "string" }, whyItMatters: { type: "string" }, correctThinking: { type: "string" }, reviewTip: { type: "string" }, sourceNotice: { type: "string" } },
+                required: ["errorReason", "whyItMatters", "correctThinking", "reviewTip", "sourceNotice"],
+                additionalProperties: false,
+              },
+            },
+          },
+        });
+        const content = response.choices[0]?.message.content;
+        if (typeof content !== "string") throw new Error("AI answer explanation response is empty");
+        return { questionId: input.questionId, explanation: parseWrongQuestionAiExplanation(content), officialAnswer: question.correct_option, officialExplanation: question.explanation };
+      } catch (error) {
+        console.error("[QuizAnswerAI] explanation failed", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "AI answer explanation is temporarily unavailable" });
+      }
+    }),
     adminList: adminProcedure.input(z.object({ needsReviewOnly: z.boolean().default(false), subcategoryReviewOnly: z.boolean().default(false) })).query(async ({ input }) => { const cmsRows = await getCmsQuestionsForAdmin(); const list = cmsRows.length ? cmsRows.map(row => cmsQuestionToQuizQuestion({ ...row, sourceRaw: null, sourceUrl: null })) : getQuizQuestions(); const filtered = input.needsReviewOnly ? list.filter(question => question.import_status === "needs_review") : input.subcategoryReviewOnly ? list.filter(question => question.subcategory_status === "needs_manual_review") : list; return filtered.map(toClientQuestion); }),
     adminUpdate: adminProcedure.input(z.object({ questionId: z.string(), explanation: z.string().optional(), correctOption: z.enum(["A", "B", "C", "D"]).optional(), subcategory: z.string().trim().max(80).optional(), subcategoryStatus: z.enum(["assigned", "needs_manual_review"]).optional(), subcategoryNotes: z.string().trim().max(500).optional() })).mutation(async ({ input }) => { const hasOfficialContentPatch = input.explanation !== undefined || input.correctOption !== undefined; const hasSubcategoryPatch = input.subcategory !== undefined || input.subcategoryStatus !== undefined || input.subcategoryNotes !== undefined; const cmsContentUpdated = hasOfficialContentPatch ? await updateCmsQuestion(input.questionId, input) : false; const cmsSubcategoryUpdated = hasSubcategoryPatch ? await updateCmsQuestionSubcategory(input.questionId, input) : false; const localUpdated = hasOfficialContentPatch ? updateLocalQuestion(input.questionId, input) : false; if (!cmsContentUpdated && !cmsSubcategoryUpdated && !localUpdated) throw new Error("question not found"); const sheet = hasOfficialContentPatch ? await updateSheetQuestion(input.questionId, { explanation: input.explanation, correctOption: input.correctOption }) : null; return { success: true, questionId: input.questionId, persistedTo: sheet ? "cms-database+google-sheet" : cmsContentUpdated || cmsSubcategoryUpdated ? "cms-database" : "preview-memory" }; }),
     adminBatchUpdateSubcategory: adminProcedure.input(z.object({ questionIds: z.array(z.string().min(1)).min(1).max(234), subcategory: z.string().trim().min(1).max(80), subcategoryStatus: z.enum(["assigned", "needs_manual_review"]), subcategoryNotes: z.string().trim().max(500).optional() })).mutation(async ({ ctx, input }) => {

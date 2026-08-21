@@ -1,0 +1,23 @@
+.answer-ai-help {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.answer-ai-help > button {
+  justify-self: start;
+  color: #4f3b70;
+  border-color: #c9b8dc;
+  background: #fbf8ff;
+}
+
+.answer-ai-help .ai-explanation-card {
+  margin-top: 0;
+}
+
+@media (max-width: 560px) {
+  .answer-ai-help > button {
+    width: 100%;
+    min-height: 44px;
+  }
+}

@@ -19,6 +19,7 @@ describe("錯題本", () => {
     await expect(caller.wrongQuestions.exportPdfData()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.analyzePdfWeakness({ questionIds: ["HARDWARE-1"] })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.explain({ questionId: "HARDWARE-1" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.quiz.explainAnswer({ questionId: "HARDWARE-1", selectedOption: "A" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
   });
 
   it("自動記錄答錯題目、提供個人清單，並在連續答對兩次後標記為已熟悉", async () => {
@@ -55,6 +56,10 @@ describe("錯題本", () => {
         expect(ai.explanation.errorReason).toBe("最近選項與官方正解不同");
         expect(ai.explanation.correctThinking).toBe("依官方答案逐項排除");
         expect(String(fetchMock.mock.calls[0]?.[1]?.body)).toContain("官方正解");
+        const answerAi = await appRouter.createCaller(learnerContext()).quiz.explainAnswer({ questionId, selectedOption: "A" });
+        expect(answerAi.officialAnswer).toBe(official?.correctOption);
+        expect(answerAi.explanation.reviewTip).toBe("先背官方關鍵字");
+        expect(String(fetchMock.mock.calls[2]?.[1]?.body)).toContain("使用者最近選擇：A");
       } finally {
         vi.stubGlobal("fetch", originalFetch);
       }

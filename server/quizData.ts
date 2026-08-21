@@ -29,6 +29,18 @@ export type QuizQuestion = {
 
 let cache: QuizQuestion[] | undefined;
 
+function recoverQuestionText(question: QuizQuestion) {
+  if (question.question_text.trim()) return question.question_text;
+  const raw = question.source_raw ?? "";
+  const firstOption = raw.indexOf("(A)", 4);
+  if (firstOption <= 0) return "";
+  return raw.slice(0, firstOption).replace(/^\([A-D]\)\d+\./, "").trim();
+}
+
+function stripEmbeddedExplanation(option: string) {
+  return option.replace(/\s*【解析】[\s\S]*$/, "").trim();
+}
+
 export function getQuizQuestions(): QuizQuestion[] {
   if (!cache) {
     const file = join(process.cwd(), "server/data/questions-parsed.json");
@@ -62,8 +74,8 @@ export function toClientQuestion(q: QuizQuestion) {
     subcategory: q.subcategory,
     subcategoryStatus: q.subcategory_status,
     subcategoryNotes: q.subcategory_notes,
-    text: q.question_text,
-    options: { A: q.option_a, B: q.option_b, C: q.option_c, D: q.option_d },
+    text: recoverQuestionText(q),
+    options: { A: stripEmbeddedExplanation(q.option_a), B: stripEmbeddedExplanation(q.option_b), C: stripEmbeddedExplanation(q.option_c), D: stripEmbeddedExplanation(q.option_d) },
     correctOption: q.correct_option,
     explanation: q.explanation,
     needsReview: q.import_status === "needs_review",
