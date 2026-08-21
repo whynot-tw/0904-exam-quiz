@@ -15,6 +15,14 @@ export type WrongQuestionPdfItem = {
   updatedAt: Date | string;
 };
 
+export type PdfWeaknessSummary = {
+  headline: string;
+  overallAssessment: string;
+  priorityTopics: Array<{ topic: string; evidence: string; advice: string }>;
+  reviewPlan: string[];
+  sourceNotice: string;
+};
+
 const CJK_FONT_URL = "/manus-storage/wrong-question-pdf-cjk_84f8834c.ttf";
 const PAGE_WIDTH = 595.28;
 const PAGE_HEIGHT = 841.89;
@@ -61,7 +69,7 @@ function drawPageFrame(page: PDFPage, font: PDFFont, pageNumber: number) {
   page.drawText(`第 ${pageNumber} 頁`, { x: PAGE_WIDTH - MARGIN - 34, y: 25, size: 8, font, color: rgb(0.42, 0.48, 0.45) });
 }
 
-export async function buildWrongQuestionPdfBytes(items: WrongQuestionPdfItem[], fontBytes: ArrayBuffer) {
+export async function buildWrongQuestionPdfBytes(items: WrongQuestionPdfItem[], fontBytes: ArrayBuffer, weaknessSummary?: PdfWeaknessSummary) {
   const pdf = await PDFDocument.create();
   pdf.registerFontkit(fontkit);
   const font = await pdf.embedFont(fontBytes, { subset: true });
@@ -94,6 +102,19 @@ export async function buildWrongQuestionPdfBytes(items: WrongQuestionPdfItem[], 
   y -= 32;
   drawLines(`匯出日期：${new Date().toLocaleDateString("zh-TW")}　共 ${items.length} 題`, { size: 10, color: rgb(0.32, 0.43, 0.38), gapAfter: 12 });
   drawLines("本檔案僅整理你個人的錯題紀錄；題幹、選項、官方正解與官方解析均維持題庫原文。", { size: 9, color: rgb(0.42, 0.48, 0.45), gapAfter: 16 });
+  if (weaknessSummary) {
+    drawLines("AI 弱點分析總結", { size: 15, color: rgb(0.38, 0.22, 0.52), gapAfter: 5 });
+    drawLines(weaknessSummary.headline, { size: 12, color: rgb(0.19, 0.14, 0.29), gapAfter: 5 });
+    drawLines(weaknessSummary.overallAssessment, { gapAfter: 9 });
+    weaknessSummary.priorityTopics.forEach((topic, index) => {
+      drawLines(`${index + 1}. 優先主題：${topic.topic}`, { size: 11, color: rgb(0.32, 0.2, 0.45), gapAfter: 2 });
+      drawLines(`資料依據：${topic.evidence}`, { size: 9, color: rgb(0.28, 0.31, 0.29), gapAfter: 1 });
+      drawLines(`複習建議：${topic.advice}`, { size: 9, color: rgb(0.14, 0.35, 0.24), gapAfter: 5 });
+    });
+    drawLines("建議複習計畫", { size: 11, color: rgb(0.32, 0.2, 0.45), gapAfter: 2 });
+    weaknessSummary.reviewPlan.forEach((plan, index) => drawLines(`${index + 1}. ${plan}`, { size: 9, gapAfter: 1 }));
+    drawLines(weaknessSummary.sourceNotice, { size: 8.5, color: rgb(0.42, 0.48, 0.45), gapAfter: 14 });
+  }
 
   items.forEach((item, index) => {
     if (y < 150) nextPage();
@@ -109,11 +130,11 @@ export async function buildWrongQuestionPdfBytes(items: WrongQuestionPdfItem[], 
   return pdf.save();
 }
 
-export async function downloadWrongQuestionPdf(items: WrongQuestionPdfItem[]) {
+export async function downloadWrongQuestionPdf(items: WrongQuestionPdfItem[], weaknessSummary?: PdfWeaknessSummary) {
   if (!items.length) throw new Error("目前沒有可匯出的錯題");
   const response = await fetch(CJK_FONT_URL);
   if (!response.ok) throw new Error("PDF 中文字型載入失敗");
-  const pdfBytes = await buildWrongQuestionPdfBytes(items, await response.arrayBuffer());
+  const pdfBytes = await buildWrongQuestionPdfBytes(items, await response.arrayBuffer(), weaknessSummary);
   const blob = new Blob([pdfBytes as unknown as BlobPart], { type: "application/pdf" });
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");

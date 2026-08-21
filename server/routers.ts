@@ -9,6 +9,7 @@ import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 import { invokeLLM } from "./_core/llm";
 import { buildWrongQuestionAiMessages, parseWrongQuestionAiExplanation } from "./wrongQuestionAi";
+import { buildPdfWeaknessAnalysisMessages, parsePdfWeaknessSummary } from "./wrongQuestionPdfAi";
 import { TRPCError } from "@trpc/server";
 
 const answerSchema = z.object({ questionId: z.string(), sequenceNo: z.number().int().nonnegative(), selectedOption: z.enum(["A", "B", "C", "D"]), correctOption: z.enum(["A", "B", "C", "D"]), isCorrect: z.boolean(), markedReviewError: z.string().optional() });
@@ -110,6 +111,54 @@ export const appRouter = router({
           updatedAt: row.updatedAt,
         }];
       });
+    }),
+    analyzePdfWeakness: protectedProcedure.input(z.object({ questionIds: z.array(z.string().min(1)).min(1).max(649) })).mutation(async ({ ctx, input }) => {
+      const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);
+      const ownedByQuestionId = new Map(userWrongQuestions.map(row => [row.questionId, row]));
+      const selectedQuestionIds = Array.from(new Set(input.questionIds));
+      if (selectedQuestionIds.some(questionId => !ownedByQuestionId.has(questionId))) throw new TRPCError({ code: "FORBIDDEN", message: "Cannot analyze questions outside this user's wrong question book" });
+      const latestAnswerByQuestion = new Map<string, (typeof answerRows)[number]>();
+      for (const answer of answerRows) if (!latestAnswerByQuestion.has(answer.questionId)) latestAnswerByQuestion.set(answer.questionId, answer);
+      const cmsByQuestionId = new Map(cmsRows.map(row => [row.questionId, row]));
+      const analysisQuestions = selectedQuestionIds.flatMap(questionId => {
+        const official = cmsByQuestionId.get(questionId);
+        const wrong = ownedByQuestionId.get(questionId);
+        if (!official || !wrong) return [];
+        return [{ questionId, category: official.category ?? "", subcategory: official.subcategory ?? "待確認", questionText: official.questionText, officialAnswer: official.correctOption, officialExplanation: official.explanation ?? "", selectedOption: latestAnswerByQuestion.get(questionId)?.selectedOption ?? null, wrongCount: wrong.wrongCount, consecutiveCorrect: wrong.consecutiveCorrect, status: wrong.status }];
+      }).sort((a, b) => b.wrongCount - a.wrongCount);
+      if (!analysisQuestions.length) throw new TRPCError({ code: "NOT_FOUND", message: "No official wrong-question content found" });
+      try {
+        const response = await invokeLLM({
+          model: "gpt-5-mini",
+          messages: buildPdfWeaknessAnalysisMessages(analysisQuestions),
+          maxTokens: 1400,
+          response_format: {
+            type: "json_schema",
+            json_schema: {
+              name: "pdf_weakness_summary",
+              strict: true,
+              schema: {
+                type: "object",
+                properties: {
+                  headline: { type: "string" },
+                  overallAssessment: { type: "string" },
+                  priorityTopics: { type: "array", items: { type: "object", properties: { topic: { type: "string" }, evidence: { type: "string" }, advice: { type: "string" } }, required: ["topic", "evidence", "advice"], additionalProperties: false } },
+                  reviewPlan: { type: "array", items: { type: "string" } },
+                  sourceNotice: { type: "string" },
+                },
+                required: ["headline", "overallAssessment", "priorityTopics", "reviewPlan", "sourceNotice"],
+                additionalProperties: false,
+              },
+            },
+          },
+        });
+        const content = response.choices[0]?.message.content;
+        if (typeof content !== "string") throw new Error("PDF weakness analysis response is empty");
+        return parsePdfWeaknessSummary(content);
+      } catch (error) {
+        console.error("[WrongQuestionPDF] weakness analysis failed", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "AI weakness analysis is temporarily unavailable" });
+      }
     }),
     explain: protectedProcedure.input(z.object({ questionId: z.string().min(1) })).mutation(async ({ ctx, input }) => {
       const [userWrongQuestions, answerRows, cmsRows] = await Promise.all([getWrongQuestions(ctx.user.id), getUserAnswerRows(ctx.user.id), getCmsQuestions()]);

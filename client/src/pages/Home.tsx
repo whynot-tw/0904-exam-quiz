@@ -80,6 +80,7 @@ export default function Home() {
   const updateStarReminder = trpc.starredQuestions.updateReminder.useMutation({ onSuccess: () => { starred.refetch(); starredStats.refetch(); } });
   const updateLearningGoal = trpc.attempts.updateLearningGoal.useMutation({ onSuccess: () => learningGoal.refetch() });
   const explainWrongQuestion = trpc.wrongQuestions.explain.useMutation({ onSuccess: value => { setAiExplanationByQuestion(current => ({ ...current, [value.questionId]: value })); setAiExplanationTarget(null); }, onError: () => { setAiExplanationTarget(null); toast.error("AI 解析暫時無法取得", { description: "請稍後再試；官方答案與解析仍可直接查看。" }); } });
+  const analyzePdfWeakness = trpc.wrongQuestions.analyzePdfWeakness.useMutation();
   const exportWrongQuestionPdf = async () => {
     if (!user) { startLogin(); return; }
     setIsExportingWrongPdf(true);
@@ -87,8 +88,10 @@ export default function Home() {
       const result = await wrongPdfData.refetch();
       if (result.error) throw result.error;
       const rows = (result.data ?? []).filter(row => wrongFilter === "全部" || row.status === wrongFilter);
-      await downloadWrongQuestionPdf(rows);
-      toast.success("錯題本 PDF 已開始下載", { description: `已匯出 ${rows.length} 題${wrongFilter === "全部" ? "錯題" : wrongFilter}紀錄。` });
+      if (!rows.length) throw new Error("目前沒有可匯出的錯題");
+      const weaknessSummary = await analyzePdfWeakness.mutateAsync({ questionIds: rows.map(row => row.questionId) });
+      await downloadWrongQuestionPdf(rows, weaknessSummary);
+      toast.success("錯題本 PDF 已開始下載", { description: `已匯出 ${rows.length} 題${wrongFilter === "全部" ? "錯題" : wrongFilter}紀錄，並加入 AI 弱點分析總結。` });
     } catch (error) {
       toast.error("錯題本 PDF 匯出失敗", { description: error instanceof Error ? error.message : "請稍後再試。" });
     } finally { setIsExportingWrongPdf(false); }
