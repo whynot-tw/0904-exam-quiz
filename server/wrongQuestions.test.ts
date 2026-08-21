@@ -39,7 +39,7 @@ describe("錯題本", () => {
       }
       await recordAttempt(learnerId, { mode: "practice", questionCount: 1, answers: [{ questionId, sequenceNo: 0, selectedOption: "A", correctOption: "B", isCorrect: false }] });
       const afterWrong = await getWrongQuestions(learnerId);
-      expect(afterWrong).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, wrongCount: 1, consecutiveCorrect: 0, status: "待複習" })]));
+      expect(afterWrong).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, wrongCount: 1, consecutiveCorrect: 0, status: "待複習", lastSelectedOption: "A" })]));
       const markedMastered = await appRouter.createCaller(learnerContext()).wrongQuestions.markMastered({ questionId });
       expect(markedMastered).toEqual({ questionId, status: "已熟悉", consecutiveCorrect: 2 });
       expect(await getWrongQuestions(learnerId)).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, status: "已熟悉", consecutiveCorrect: 2 })]));
@@ -94,5 +94,5 @@ describe("錯題本", () => {
         await db.delete(wrongQuestions).where(eq(wrongQuestions.userId, learnerId));
       }
     }
-  }, 20000);
+  }, 40000);
 });

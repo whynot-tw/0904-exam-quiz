@@ -38,10 +38,10 @@ describe("錯題本介面流程", () => {
   });
 
   it("保留官方選項原文並只標示既有官方正解", () => {
-    expect(getOfficialOptionPreview({ A: "官方選項 A", B: "官方選項 B", C: "", D: "官方選項 D" }, "B")).toEqual([
-      { label: "A", text: "官方選項 A", isCorrect: false },
-      { label: "B", text: "官方選項 B", isCorrect: true },
-      { label: "D", text: "官方選項 D", isCorrect: false },
+    expect(getOfficialOptionPreview({ A: "官方選項 A", B: "官方選項 B", C: "", D: "官方選項 D" }, "B", "D")).toEqual([
+      { label: "A", text: "官方選項 A", isCorrect: false, isSelected: false },
+      { label: "B", text: "官方選項 B", isCorrect: true, isSelected: false },
+      { label: "D", text: "官方選項 D", isCorrect: false, isSelected: true },
     ]);
   });
 });

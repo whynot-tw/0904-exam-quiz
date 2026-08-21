@@ -1,4 +1,4 @@
-import { and, asc, count, desc, eq, inArray } from "drizzle-orm";
+import { and, asc, count, desc, eq, inArray, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -173,7 +173,14 @@ export async function updateUserLearningGoal(userId: number, targetCompletion: n
 
 export async function getWrongQuestions(userId: number) {
   const db = await getDb();
-  return db ? db.select().from(wrongQuestions).where(eq(wrongQuestions.userId, userId)).orderBy(desc(wrongQuestions.updatedAt)) : [];
+  if (!db) return [];
+  const [rows, answerRows] = await Promise.all([
+    db.select().from(wrongQuestions).where(eq(wrongQuestions.userId, userId)).orderBy(desc(wrongQuestions.updatedAt)),
+    db.select().from(attemptAnswers).where(and(eq(attemptAnswers.userId, userId), eq(attemptAnswers.isCorrect, 0), isNull(attemptAnswers.markedReviewError))).orderBy(desc(attemptAnswers.answeredAt)),
+  ]);
+  const latestWrongOptionByQuestion = new Map<string, string>();
+  for (const answer of answerRows) if (!latestWrongOptionByQuestion.has(answer.questionId)) latestWrongOptionByQuestion.set(answer.questionId, answer.selectedOption);
+  return rows.map(row => ({ ...row, lastSelectedOption: latestWrongOptionByQuestion.get(row.questionId) ?? null }));
 }
 
 export async function markWrongQuestionMastered(userId: number, questionId: string) {

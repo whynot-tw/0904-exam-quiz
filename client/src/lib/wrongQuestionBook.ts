@@ -30,7 +30,7 @@ export function filterWrongQuestionsMissingConcise<T extends { questionId: strin
   return rows.filter(row => !conciseQuestionIds.has(row.questionId));
 }
 
-export function getOfficialOptionPreview(options: unknown, correctOption?: string | null) {
+export function getOfficialOptionPreview(options: unknown, correctOption?: string | null, selectedOption?: string | null) {
   const labels = ["A", "B", "C", "D"];
   const normalized = Array.isArray(options)
     ? Object.fromEntries(options.map((option, index) => [labels[index], option]))
@@ -41,5 +41,6 @@ export function getOfficialOptionPreview(options: unknown, correctOption?: strin
     label,
     text: typeof normalized[label] === "string" ? normalized[label].trim() : "",
     isCorrect: label === correctOption,
+    isSelected: label === selectedOption,
   })).filter(option => option.text);
 }

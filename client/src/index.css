@@ -78,6 +78,13 @@ button { cursor: pointer; }
 .official-options-preview li > b { display:grid; place-items:center; width:24px; height:24px; border-radius:7px; background:#e6edf5; color:#476084; font-size:.75rem; }
 .official-options-preview li.is-correct { border-color:#9bc8aa; background:#edf8ef; color:#335a42; }
 .official-options-preview li.is-correct > b { background:#467b58; color:#fff; }
-.official-options-preview li small { align-self:center; color:#39704a; font-size:.7rem; font-weight:700; white-space:nowrap; }
+.official-options-preview li.is-selected { border-color:#d7ae65; background:#fff8e8; color:#735c2a; }
+.official-options-preview li.is-selected > b { background:#b37c22; color:#fff; }
+.official-options-preview li.is-correct.is-selected { border-color:#a5b77a; background:linear-gradient(135deg,#edf8ef 0%,#fff8e8 100%); }
+.option-comparison-legend { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.option-comparison-legend span,.option-comparison-labels small { display:inline-flex; align-items:center; width:max-content; padding:2px 6px; border-radius:999px; font-size:.68rem; font-weight:700; white-space:nowrap; }
+.option-comparison-legend .is-selected,.option-comparison-labels .is-selected { background:#fff1cb; color:#875812; }
+.option-comparison-legend .is-correct,.option-comparison-labels .is-correct { background:#def2e3; color:#2f6e45; }
+.option-comparison-labels { display:flex; align-self:center; justify-content:flex-end; gap:4px; flex-wrap:wrap; }
 .official-options-preview > p { margin:0; color:#71809a; font-size:.8rem; }
 @media (max-width:560px) { .official-options-heading { align-items:flex-start; flex-direction:column; }.official-options-preview li { grid-template-columns:24px minmax(0,1fr); }.official-options-preview li small { grid-column:2; justify-self:start; } }
