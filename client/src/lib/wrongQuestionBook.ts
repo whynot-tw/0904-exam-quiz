@@ -11,3 +11,11 @@ export function getWrongQuestionForReplay<T extends { id: string }>(questions: T
 export function getMostRecentWrongQuestion<T extends { updatedAt: Date | string }>(rows: T[]) {
   return [...rows].sort((left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime())[0];
 }
+
+export function getPreviousQuestionCursor(cursor: number) {
+  return Math.max(0, cursor - 1);
+}
+
+export function getSelectedOptionForQuestion<T extends { questionId: string; selectedOption: string }>(answers: T[], questionId: string) {
+  return answers.find(answer => answer.questionId === questionId)?.selectedOption;
+}

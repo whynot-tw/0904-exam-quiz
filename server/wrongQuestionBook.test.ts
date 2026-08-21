@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterWrongQuestions, getMostRecentWrongQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
+import { filterWrongQuestions, getMostRecentWrongQuestion, getPreviousQuestionCursor, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
 
 describe("錯題本介面流程", () => {
   const rows = [{ questionId: "HARDWARE-1", status: "待複習" }, { questionId: "AI-1", status: "已熟悉" }];
@@ -19,5 +19,11 @@ describe("錯題本介面流程", () => {
   it("以個人錯題最後更新時間挑選最近一題作為續練入口", () => {
     const recent = getMostRecentWrongQuestion([{ questionId: "HARDWARE-1", updatedAt: "2026-08-20T09:00:00.000Z" }, { questionId: "AI-1", updatedAt: "2026-08-21T10:00:00.000Z" }]);
     expect(recent?.questionId).toBe("AI-1");
+  });
+
+  it("回到上一題時不會低於第一題，且能復原該題既有作答", () => {
+    expect(getPreviousQuestionCursor(0)).toBe(0);
+    expect(getPreviousQuestionCursor(3)).toBe(2);
+    expect(getSelectedOptionForQuestion([{ questionId: "AI-1", selectedOption: "C" }, { questionId: "HARDWARE-1", selectedOption: "B" }], "AI-1")).toBe("C");
   });
 });
