@@ -24,6 +24,13 @@ export type PdfWeaknessSummary = {
   sourceNotice: string;
 };
 
+export type ConcisePdfSummary = {
+  exportedCount: number;
+  conciseCount: number;
+  unclearCount: number;
+  versionCounts: Array<{ generationCount: number; count: number }>;
+};
+
 const CJK_FONT_URL = "/manus-storage/wrong-question-pdf-cjk_84f8834c.ttf";
 const PAGE_WIDTH = 595.28;
 const PAGE_HEIGHT = 841.89;
@@ -34,6 +41,13 @@ const LINE_HEIGHT = 16;
 export function getWrongQuestionPdfFilename(date = new Date()) {
   const stamp = date.toISOString().slice(0, 10).replaceAll("-", "");
   return `錯題本離線複習_${stamp}.pdf`;
+}
+
+export function summarizeConcisePdfItems(items: WrongQuestionPdfItem[]): ConcisePdfSummary {
+  const conciseItems = items.flatMap(item => item.conciseExplanation ? [item.conciseExplanation] : []);
+  const versionCounts = new Map<number, number>();
+  conciseItems.forEach(item => versionCounts.set(item.generationCount, (versionCounts.get(item.generationCount) ?? 0) + 1));
+  return { exportedCount: items.length, conciseCount: conciseItems.length, unclearCount: conciseItems.filter(item => item.feedback === "unclear").length, versionCounts: Array.from(versionCounts.entries()).sort(([left], [right]) => left - right).map(([generationCount, count]) => ({ generationCount, count })) };
 }
 
 export function buildWrongQuestionPdfOutline(item: WrongQuestionPdfItem) {
@@ -104,6 +118,15 @@ export async function buildWrongQuestionPdfBytes(items: WrongQuestionPdfItem[], 
   y -= 32;
   drawLines(`匯出日期：${new Date().toLocaleDateString("zh-TW")}　共 ${items.length} 題`, { size: 10, color: rgb(0.32, 0.43, 0.38), gapAfter: 12 });
   drawLines("本檔案僅整理你個人的錯題紀錄；題幹、選項、官方正解與官方解析均維持題庫原文。", { size: 9, color: rgb(0.42, 0.48, 0.45), gapAfter: 16 });
+  const conciseSummary = summarizeConcisePdfItems(items);
+  drawLines("精簡解析摘要", { size: 15, color: rgb(0.28, 0.32, 0.62), gapAfter: 4 });
+  if (conciseSummary.conciseCount) {
+    drawLines(`本次匯出 ${conciseSummary.exportedCount} 題，其中 ${conciseSummary.conciseCount} 題含精簡解析。`, { size: 9.5, color: rgb(0.24, 0.3, 0.5), gapAfter: 2 });
+    drawLines(`版本分布：${conciseSummary.versionCounts.map(item => `第 ${item.generationCount} 版 ${item.count} 題`).join("｜")}`, { size: 9.5, color: rgb(0.24, 0.3, 0.5), gapAfter: 2 });
+    drawLines(`標記「不夠清楚」：${conciseSummary.unclearCount} 題`, { size: 9.5, color: rgb(0.52, 0.3, 0.18), gapAfter: 16 });
+  } else {
+    drawLines("本次匯出範圍尚無已儲存的精簡解析。", { size: 9.5, color: rgb(0.42, 0.48, 0.45), gapAfter: 16 });
+  }
   if (weaknessSummary) {
     drawLines("AI 弱點分析總結", { size: 15, color: rgb(0.38, 0.22, 0.52), gapAfter: 5 });
     drawLines(weaknessSummary.headline, { size: 12, color: rgb(0.19, 0.14, 0.29), gapAfter: 5 });

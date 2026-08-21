@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 import { PDFDocument } from "pdf-lib";
-import { buildWrongQuestionPdfBytes, buildWrongQuestionPdfOutline, getWrongQuestionPdfFilename } from "../client/src/lib/wrongQuestionPdf";
+import { buildWrongQuestionPdfBytes, buildWrongQuestionPdfOutline, getWrongQuestionPdfFilename, summarizeConcisePdfItems } from "../client/src/lib/wrongQuestionPdf";
 
 const sample = {
   questionId: "HARDWARE-1",
@@ -25,6 +25,7 @@ describe("錯題本 PDF 匯出", () => {
     expect(outline.join("\n")).toContain("官方解析：此題依官方題庫解析。");
     expect(outline.join("\n")).toContain("精簡解析（第 3 版");
     expect(outline.join("\n")).toContain("記憶口訣：先背官方關鍵字，再排除不符選項。");
+    expect(summarizeConcisePdfItems([sample, { ...sample, questionId: "HARDWARE-2", conciseExplanation: null }])).toEqual({ exportedCount: 2, conciseCount: 1, unclearCount: 1, versionCounts: [{ generationCount: 3, count: 1 }] });
     expect(getWrongQuestionPdfFilename(new Date("2026-08-21T00:00:00.000Z"))).toBe("錯題本離線複習_20260821.pdf");
 
     const fontBytes = await readFile("/home/ubuntu/webdev-static-assets/wrong-question-pdf-cjk.ttf");
