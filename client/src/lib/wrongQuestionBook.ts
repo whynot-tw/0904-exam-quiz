@@ -29,3 +29,17 @@ export function getQuestionTextSummary(questionText: string | null | undefined, 
 export function filterWrongQuestionsMissingConcise<T extends { questionId: string }>(rows: T[], conciseQuestionIds: Set<string>) {
   return rows.filter(row => !conciseQuestionIds.has(row.questionId));
 }
+
+export function getOfficialOptionPreview(options: unknown, correctOption?: string | null) {
+  const labels = ["A", "B", "C", "D"];
+  const normalized = Array.isArray(options)
+    ? Object.fromEntries(options.map((option, index) => [labels[index], option]))
+    : options && typeof options === "object"
+      ? options as Record<string, unknown>
+      : {};
+  return labels.map(label => ({
+    label,
+    text: typeof normalized[label] === "string" ? normalized[label].trim() : "",
+    isCorrect: label === correctOption,
+  })).filter(option => option.text);
+}

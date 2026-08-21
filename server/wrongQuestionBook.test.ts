@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterWrongQuestions, filterWrongQuestionsMissingConcise, getMostRecentWrongQuestion, getPreviousQuestionCursor, getQuestionTextSummary, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
+import { filterWrongQuestions, filterWrongQuestionsMissingConcise, getMostRecentWrongQuestion, getOfficialOptionPreview, getPreviousQuestionCursor, getQuestionTextSummary, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
 
 describe("錯題本介面流程", () => {
   const rows = [{ questionId: "HARDWARE-1", status: "待複習" }, { questionId: "AI-1", status: "已熟悉" }];
@@ -35,5 +35,13 @@ describe("錯題本介面流程", () => {
 
   it("可只保留尚未具有精簡解析的錯題", () => {
     expect(filterWrongQuestionsMissingConcise(rows, new Set(["AI-1"]))).toEqual([rows[0]]);
+  });
+
+  it("保留官方選項原文並只標示既有官方正解", () => {
+    expect(getOfficialOptionPreview({ A: "官方選項 A", B: "官方選項 B", C: "", D: "官方選項 D" }, "B")).toEqual([
+      { label: "A", text: "官方選項 A", isCorrect: false },
+      { label: "B", text: "官方選項 B", isCorrect: true },
+      { label: "D", text: "官方選項 D", isCorrect: false },
+    ]);
   });
 });
