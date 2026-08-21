@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterWrongQuestions, getMostRecentWrongQuestion, getPreviousQuestionCursor, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
+import { filterWrongQuestions, getMostRecentWrongQuestion, getPreviousQuestionCursor, getQuestionTextSummary, getSelectedOptionForQuestion, getWrongQuestionForReplay } from "../client/src/lib/wrongQuestionBook";
 
 describe("錯題本介面流程", () => {
   const rows = [{ questionId: "HARDWARE-1", status: "待複習" }, { questionId: "AI-1", status: "已熟悉" }];
@@ -25,5 +25,11 @@ describe("錯題本介面流程", () => {
     expect(getPreviousQuestionCursor(0)).toBe(0);
     expect(getPreviousQuestionCursor(3)).toBe(2);
     expect(getSelectedOptionForQuestion([{ questionId: "AI-1", selectedOption: "C" }, { questionId: "HARDWARE-1", selectedOption: "B" }], "AI-1")).toBe("C");
+  });
+
+  it("以不改寫官方題幹的方式產生可讀摘要", () => {
+    expect(getQuestionTextSummary("  題幹\n內容  ")).toBe("題幹 內容");
+    expect(getQuestionTextSummary("ABCDEFGHIJ", 6)).toBe("ABCDEF…");
+    expect(getQuestionTextSummary("")).toBe("官方題幹暫時無法顯示。");
   });
 });

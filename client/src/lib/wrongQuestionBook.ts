@@ -19,3 +19,9 @@ export function getPreviousQuestionCursor(cursor: number) {
 export function getSelectedOptionForQuestion<T extends { questionId: string; selectedOption: string }>(answers: T[], questionId: string) {
   return answers.find(answer => answer.questionId === questionId)?.selectedOption;
 }
+
+export function getQuestionTextSummary(questionText: string | null | undefined, limit = 112) {
+  const normalized = questionText?.replace(/\s+/g, " ").trim() ?? "";
+  if (!normalized) return "官方題幹暫時無法顯示。";
+  return normalized.length > limit ? `${normalized.slice(0, limit)}…` : normalized;
+}
