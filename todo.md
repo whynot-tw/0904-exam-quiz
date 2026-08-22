@@ -438,3 +438,9 @@
 - [x] 在官方選項快速預覽加入使用者當時作答與官方正解的差異高亮
 - [x] 以文字與可及性標示清楚區分「你的作答」、「官方正解」與未選選項
 - [x] 補齊對照資料、手機／桌面 QA、完整回歸驗證與 checkpoint
+
+## Open Graph Preview Audit
+
+- [x] 檢視網站的 Open Graph／Twitter metadata 與目前預覽圖片來源
+- [x] 驗證公開網域回傳的 metadata、預覽圖片尺寸與可存取性
+- [x] 視結果修正設定、完成公開分享預覽驗證與 checkpoint
