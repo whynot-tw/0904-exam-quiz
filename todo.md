@@ -444,3 +444,9 @@
 - [x] 檢視網站的 Open Graph／Twitter metadata 與目前預覽圖片來源
 - [x] 驗證公開網域回傳的 metadata、預覽圖片尺寸與可存取性
 - [x] 視結果修正設定、完成公開分享預覽驗證與 checkpoint
+
+## GitHub Latest Code Push
+
+- [x] 確認原本隔離 GitHub repository 與目標分支，不觸及其他 repository
+- [x] 將目前最新 checkpoint 的程式碼安全推送至 GitHub
+- [x] 核對 GitHub 遠端提交 SHA、分支與工作樹同步狀態
