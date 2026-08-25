@@ -468,3 +468,9 @@
 - [x] 盤點 CSV 個人設定保存方式、錯題匯出資料中的課程類型與次分類對照，定義隔離與預覽規則
 - [x] 建立可保存／套用欄位組合、匯出題數預覽、課程類型與次分類篩選控制
 - [x] 補齊欄位組合、分類篩選、題數預覽、個人資料隔離、手機／桌面 QA、完整回歸驗證與 checkpoint
+
+## GitHub Delivery Governance
+
+- [x] 盤點隔離儲存庫的預設分支、現有 Actions 設定與分支保護可用權限
+- [x] 建立在 build/v0.1 推送與 Pull Request 時自動執行測試及 production build 的 CI
+- [ ] 啟用 build/v0.1 分支保護、建立可回復 release tag、驗證 GitHub 同步與治理設定
