@@ -450,3 +450,9 @@
 - [x] 確認原本隔離 GitHub repository 與目標分支，不觸及其他 repository
 - [x] 將目前最新 checkpoint 的程式碼安全推送至 GitHub
 - [x] 核對 GitHub 遠端提交 SHA、分支與工作樹同步狀態
+
+## Wrong-Question CSV Export
+
+- [x] 盤點既有 PDF 匯出資料映射與錯題篩選條件，定義 CSV 欄位與下載範圍
+- [x] 建立登入使用者專屬的 CSV 錯題匯出，支援目前篩選條件與 CSV 安全轉義
+- [x] 在錯題本提供 PDF／CSV 明確下載入口，補齊內容、權限、手機／桌面 QA、回歸測試與 checkpoint
