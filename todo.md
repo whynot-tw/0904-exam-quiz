@@ -473,4 +473,4 @@
 
 - [x] 盤點隔離儲存庫的預設分支、現有 Actions 設定與分支保護可用權限
 - [x] 建立在 build/v0.1 推送與 Pull Request 時自動執行測試及 production build 的 CI
-- [ ] 啟用 build/v0.1 分支保護、建立可回復 release tag、驗證 GitHub 同步與治理設定
+- [x] 依使用者明確指示將儲存庫改為公開，啟用 build/v0.1 分支保護、核對 CI 與 release tag 治理設定
