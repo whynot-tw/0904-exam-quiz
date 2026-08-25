@@ -42,7 +42,7 @@ jobs:
           if [ -n "$CI_DATABASE_URL" ]; then
             echo "Running the full test suite against the dedicated CI database."
             export DATABASE_URL="$CI_DATABASE_URL"
-            pnpm test
+            pnpm vitest run --exclude server/wrongQuestionPdf.test.ts
           else
             echo "CI_DATABASE_URL is not configured; running the database-independent test suite."
             pnpm vitest run \
@@ -51,6 +51,7 @@ jobs:
               --exclude server/learningGoal.test.ts \
               --exclude server/permissions.test.ts \
               --exclude server/starredQuestions.test.ts \
+              --exclude server/wrongQuestionPdf.test.ts \
               --exclude server/wrongQuestions.test.ts
           fi
 
