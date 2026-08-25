@@ -44,7 +44,7 @@ describe("錯題本", () => {
       expect(markedMastered).toEqual({ questionId, status: "已熟悉", consecutiveCorrect: 2 });
       expect(await getWrongQuestions(learnerId)).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, status: "已熟悉", consecutiveCorrect: 2 })]));
       const exportRows = await appRouter.createCaller(learnerContext()).wrongQuestions.exportPdfData();
-      expect(exportRows).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, selectedOption: "A", status: "已熟悉" })]));
+      expect(exportRows).toEqual(expect.arrayContaining([expect.objectContaining({ questionId, selectedOption: "A", status: "已熟悉", courseType: "HARDWARE", courseLabel: "電腦硬體裝修", subcategory: "電腦硬體與組裝" })]));
       expect(exportRows.find(row => row.questionId === questionId)?.officialAnswer).toBe((await getCmsQuestions()).find(question => question.questionId === questionId)?.correctOption);
 
       await recordAttempt(learnerId, { mode: "wrong", questionCount: 1, answers: [{ questionId, sequenceNo: 0, selectedOption: "A", correctOption: "A", isCorrect: true }] });

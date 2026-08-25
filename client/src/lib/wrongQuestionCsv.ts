@@ -2,6 +2,8 @@ import type { WrongQuestionPdfItem } from "./wrongQuestionPdf";
 
 export const WRONG_QUESTION_CSV_COLUMNS = [
   { key: "questionId", label: "題號" },
+  { key: "courseLabel", label: "課程類型" },
+  { key: "subcategory", label: "次分類" },
   { key: "status", label: "狀態" },
   { key: "wrongCount", label: "累計答錯次數" },
   { key: "consecutiveCorrect", label: "連續答對次數" },
@@ -22,9 +24,30 @@ export const WRONG_QUESTION_CSV_COLUMNS = [
 
 export type WrongQuestionCsvColumnKey = (typeof WRONG_QUESTION_CSV_COLUMNS)[number]["key"];
 export type WrongQuestionCsvStatus = "待複習" | "已熟悉" | "未解析" | "全部";
+export type WrongQuestionCsvPreset = { id: string; name: string; columnKeys: WrongQuestionCsvColumnKey[] };
 
 export function getDefaultWrongQuestionCsvColumns() {
   return WRONG_QUESTION_CSV_COLUMNS.map(column => column.key);
+}
+
+export function readWrongQuestionCsvPresets(value: string | null): WrongQuestionCsvPreset[] {
+  if (!value) return [];
+  try {
+    const validKeys = new Set<WrongQuestionCsvColumnKey>(getDefaultWrongQuestionCsvColumns());
+    const parsed = JSON.parse(value);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.flatMap((item): WrongQuestionCsvPreset[] => {
+      if (!item || typeof item.id !== "string" || typeof item.name !== "string") return [];
+      const columnKeys = Array.isArray(item.columnKeys) ? item.columnKeys.filter((key: unknown): key is WrongQuestionCsvColumnKey => typeof key === "string" && validKeys.has(key as WrongQuestionCsvColumnKey)) : [];
+      return columnKeys.length && item.name.trim() ? [{ id: item.id, name: item.name.trim().slice(0, 32), columnKeys }] : [];
+    }).slice(0, 8);
+  } catch {
+    return [];
+  }
+}
+
+export function serializeWrongQuestionCsvPresets(presets: WrongQuestionCsvPreset[]) {
+  return JSON.stringify(presets.slice(0, 8).map(preset => ({ id: preset.id, name: preset.name.trim().slice(0, 32), columnKeys: preset.columnKeys })));
 }
 
 export function getWrongQuestionCsvFilename(date = new Date()) {
@@ -41,6 +64,8 @@ export function escapeCsvValue(value: unknown) {
 function getCsvValues(item: WrongQuestionPdfItem): Record<WrongQuestionCsvColumnKey, string | number> {
   return {
     questionId: item.questionId,
+    courseLabel: item.courseLabel || item.courseType || "未分類",
+    subcategory: item.subcategory || "待確認",
     status: item.status,
     wrongCount: item.wrongCount,
     consecutiveCorrect: item.consecutiveCorrect,
@@ -71,14 +96,16 @@ export function buildWrongQuestionCsv(items: WrongQuestionPdfItem[], columnKeys 
   return [selectedColumns.map(column => escapeCsvValue(column.label)).join(","), ...rows].join("\r\n");
 }
 
-export function filterWrongQuestionCsvItems(items: WrongQuestionPdfItem[], options: { status: WrongQuestionCsvStatus; startDate?: string; endDate?: string }) {
+export function filterWrongQuestionCsvItems(items: WrongQuestionPdfItem[], options: { status: WrongQuestionCsvStatus; startDate?: string; endDate?: string; courseType?: string; subcategory?: string }) {
   const start = options.startDate ? new Date(`${options.startDate}T00:00:00`).getTime() : Number.NEGATIVE_INFINITY;
   const end = options.endDate ? new Date(`${options.endDate}T23:59:59.999`).getTime() : Number.POSITIVE_INFINITY;
   if (start > end) throw new Error("起始日期不可晚於結束日期");
   return items.filter(item => {
     const statusMatches = options.status === "全部" || (options.status === "未解析" ? !item.conciseExplanation : item.status === options.status);
     const updatedAt = new Date(item.updatedAt).getTime();
-    return statusMatches && updatedAt >= start && updatedAt <= end;
+    const courseMatches = !options.courseType || item.courseType === options.courseType;
+    const subcategoryMatches = !options.subcategory || (item.subcategory || "待確認") === options.subcategory;
+    return statusMatches && courseMatches && subcategoryMatches && updatedAt >= start && updatedAt <= end;
   });
 }
 

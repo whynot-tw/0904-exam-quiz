@@ -13,6 +13,9 @@ export type WrongQuestionPdfItem = {
   wrongCount: number;
   consecutiveCorrect: number;
   updatedAt: Date | string;
+  courseType?: string;
+  courseLabel?: string;
+  subcategory?: string;
   conciseExplanation?: { summary: string; memoryTip: string; generatedAt: Date | string; generationCount: number; feedback: string | null } | null;
 };
 

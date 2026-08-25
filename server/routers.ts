@@ -217,6 +217,9 @@ export const appRouter = router({
           wrongCount: row.wrongCount,
           consecutiveCorrect: row.consecutiveCorrect,
           updatedAt: row.updatedAt,
+          courseType: question.source,
+          courseLabel: question.category || question.section || question.source,
+          subcategory: question.subcategory || "待確認",
           conciseExplanation: concise ? { summary: concise.summary, memoryTip: concise.memoryTip, generatedAt: concise.generatedAt, generationCount: concise.generationCount, feedback: concise.feedback } : null,
         }];
       });

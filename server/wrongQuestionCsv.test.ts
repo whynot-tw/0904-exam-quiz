@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWrongQuestionCsv, escapeCsvValue, filterWrongQuestionCsvItems, getWrongQuestionCsvFilename } from "../client/src/lib/wrongQuestionCsv";
+import { buildWrongQuestionCsv, escapeCsvValue, filterWrongQuestionCsvItems, getWrongQuestionCsvFilename, readWrongQuestionCsvPresets, serializeWrongQuestionCsvPresets } from "../client/src/lib/wrongQuestionCsv";
 
 const sample = {
   questionId: "HARDWARE-1",
@@ -34,5 +34,14 @@ describe("錯題本 CSV 匯出", () => {
     expect(filtered).toEqual([sample]);
     expect(buildWrongQuestionCsv(filtered, ["questionId", "officialAnswer"])).toBe('"題號","官方正解"\r\n"HARDWARE-1","B：官方正解"');
     expect(() => filterWrongQuestionCsvItems([sample], { status: "全部", startDate: "2026-08-22", endDate: "2026-08-21" })).toThrow("起始日期不可晚於結束日期");
+  });
+
+  it("保存欄位組合時會保留可用欄位、排除損毀設定，並可依官方分類篩選", () => {
+    const classified = { ...sample, courseType: "HARDWARE", courseLabel: "電腦硬體裝修", subcategory: "電腦硬體與組裝" };
+    const otherCourse = { ...sample, questionId: "AI-1", courseType: "AI", courseLabel: "AI人工智慧工具應用", subcategory: "AI 工具與生成式 AI" };
+    expect(filterWrongQuestionCsvItems([classified, otherCourse], { status: "全部", courseType: "AI", subcategory: "AI 工具與生成式 AI" })).toEqual([otherCourse]);
+    const presets = readWrongQuestionCsvPresets(JSON.stringify([{ id: "core", name: "重點欄位", columnKeys: ["questionId", "courseLabel", "unknown"] }, { id: 1, name: "無效", columnKeys: ["questionId"] }]));
+    expect(presets).toEqual([{ id: "core", name: "重點欄位", columnKeys: ["questionId", "courseLabel"] }]);
+    expect(readWrongQuestionCsvPresets(serializeWrongQuestionCsvPresets(presets))).toEqual(presets);
   });
 });
