@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWrongQuestionCsv, escapeCsvValue, filterWrongQuestionCsvItems, getWrongQuestionCsvFilename, readWrongQuestionCsvPresets, renameWrongQuestionCsvPreset, serializeWrongQuestionCsvPresets } from "../client/src/lib/wrongQuestionCsv";
+import { buildWrongQuestionCsv, escapeCsvValue, estimateWrongQuestionCsv, filterWrongQuestionCsvItems, formatWrongQuestionCsvSize, getWrongQuestionCsvFilename, readWrongQuestionCsvPresets, renameWrongQuestionCsvPreset, serializeWrongQuestionCsvPresets } from "../client/src/lib/wrongQuestionCsv";
 
 const sample = {
   questionId: "HARDWARE-1",
@@ -50,5 +50,14 @@ describe("錯題本 CSV 匯出", () => {
     expect(renameWrongQuestionCsvPreset(presets, "core", "  考前精簡版  ")).toEqual([{ ...presets[0], name: "考前精簡版" }, presets[1]]);
     expect(() => renameWrongQuestionCsvPreset(presets, "core", "")).toThrow("請輸入欄位組合名稱");
     expect(() => renameWrongQuestionCsvPreset(presets, "core", "考前複習")).toThrow("已有相同名稱的欄位組合");
+  });
+
+  it("會保存篩選範圍並以實際 CSV 資料預估筆數與大小", () => {
+    const preset = { id: "review", name: "硬體待複習", columnKeys: ["questionId", "text"] as const, startDate: "2026-08-01", endDate: "2026-08-31", courseType: "HARDWARE", subcategory: "電腦硬體與組裝" };
+    expect(readWrongQuestionCsvPresets(serializeWrongQuestionCsvPresets([preset]))).toEqual([preset]);
+    const estimate = estimateWrongQuestionCsv([sample], ["questionId", "text"]);
+    expect(estimate.questionCount).toBe(1);
+    expect(estimate.estimatedBytes).toBeGreaterThan(20);
+    expect(formatWrongQuestionCsvSize(1024)).toBe("1.0 KB");
   });
 });

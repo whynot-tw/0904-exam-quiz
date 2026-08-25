@@ -24,7 +24,8 @@ export const WRONG_QUESTION_CSV_COLUMNS = [
 
 export type WrongQuestionCsvColumnKey = (typeof WRONG_QUESTION_CSV_COLUMNS)[number]["key"];
 export type WrongQuestionCsvStatus = "待複習" | "已熟悉" | "未解析" | "全部";
-export type WrongQuestionCsvPreset = { id: string; name: string; columnKeys: WrongQuestionCsvColumnKey[] };
+export type WrongQuestionCsvScope = { startDate?: string; endDate?: string; courseType?: string; subcategory?: string };
+export type WrongQuestionCsvPreset = { id: string; name: string; columnKeys: WrongQuestionCsvColumnKey[] } & WrongQuestionCsvScope;
 
 export function getDefaultWrongQuestionCsvColumns() {
   return WRONG_QUESTION_CSV_COLUMNS.map(column => column.key);
@@ -39,7 +40,13 @@ export function readWrongQuestionCsvPresets(value: string | null): WrongQuestion
     return parsed.flatMap((item): WrongQuestionCsvPreset[] => {
       if (!item || typeof item.id !== "string" || typeof item.name !== "string") return [];
       const columnKeys = Array.isArray(item.columnKeys) ? item.columnKeys.filter((key: unknown): key is WrongQuestionCsvColumnKey => typeof key === "string" && validKeys.has(key as WrongQuestionCsvColumnKey)) : [];
-      return columnKeys.length && item.name.trim() ? [{ id: item.id, name: item.name.trim().slice(0, 32), columnKeys }] : [];
+      const scope = {
+        startDate: typeof item.startDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(item.startDate) ? item.startDate : undefined,
+        endDate: typeof item.endDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(item.endDate) ? item.endDate : undefined,
+        courseType: typeof item.courseType === "string" && item.courseType.trim() ? item.courseType.slice(0, 32) : undefined,
+        subcategory: typeof item.subcategory === "string" && item.subcategory.trim() ? item.subcategory.slice(0, 80) : undefined,
+      };
+      return columnKeys.length && item.name.trim() ? [{ id: item.id, name: item.name.trim().slice(0, 32), columnKeys, ...scope }] : [];
     }).slice(0, 8);
   } catch {
     return [];
@@ -47,7 +54,7 @@ export function readWrongQuestionCsvPresets(value: string | null): WrongQuestion
 }
 
 export function serializeWrongQuestionCsvPresets(presets: WrongQuestionCsvPreset[]) {
-  return JSON.stringify(presets.slice(0, 8).map(preset => ({ id: preset.id, name: preset.name.trim().slice(0, 32), columnKeys: preset.columnKeys })));
+  return JSON.stringify(presets.slice(0, 8).map(preset => ({ id: preset.id, name: preset.name.trim().slice(0, 32), columnKeys: preset.columnKeys, startDate: preset.startDate, endDate: preset.endDate, courseType: preset.courseType, subcategory: preset.subcategory })));
 }
 
 export function renameWrongQuestionCsvPreset(presets: WrongQuestionCsvPreset[], presetId: string, nextName: string) {
@@ -103,6 +110,17 @@ export function buildWrongQuestionCsv(items: WrongQuestionPdfItem[], columnKeys 
   });
 
   return [selectedColumns.map(column => escapeCsvValue(column.label)).join(","), ...rows].join("\r\n");
+}
+
+export function estimateWrongQuestionCsv(items: WrongQuestionPdfItem[], columnKeys = getDefaultWrongQuestionCsvColumns()) {
+  const csv = buildWrongQuestionCsv(items, columnKeys);
+  return { questionCount: items.length, estimatedBytes: new TextEncoder().encode(`\uFEFF${csv}`).byteLength };
+}
+
+export function formatWrongQuestionCsvSize(estimatedBytes: number) {
+  if (estimatedBytes < 1024) return `${estimatedBytes} B`;
+  if (estimatedBytes < 1024 * 1024) return `${(estimatedBytes / 1024).toFixed(1)} KB`;
+  return `${(estimatedBytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 export function filterWrongQuestionCsvItems(items: WrongQuestionPdfItem[], options: { status: WrongQuestionCsvStatus; startDate?: string; endDate?: string; courseType?: string; subcategory?: string }) {

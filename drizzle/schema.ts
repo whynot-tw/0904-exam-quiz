@@ -1,4 +1,4 @@
-import { int, mysqlTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
+import { index, int, mysqlTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
   id: int("id").autoincrement().primaryKey(),
@@ -145,6 +145,22 @@ export const classificationReviewBatches = mysqlTable("classificationReviewBatch
   restoredAt: timestamp("restoredAt"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
+
+export const csvExportHistory = mysqlTable("csvExportHistory", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  status: varchar("status", { length: 20 }).notNull(),
+  columnKeysJson: text("columnKeysJson").notNull(),
+  startDate: varchar("startDate", { length: 10 }),
+  endDate: varchar("endDate", { length: 10 }),
+  courseType: varchar("courseType", { length: 32 }),
+  subcategory: varchar("subcategory", { length: 80 }),
+  questionCount: int("questionCount").notNull(),
+  estimatedBytes: int("estimatedBytes").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+}, table => ({
+  userCreatedAtIndex: index("csvExportHistory_user_created_idx").on(table.userId, table.createdAt),
+}));
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
