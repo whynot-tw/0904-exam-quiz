@@ -1,6 +1,6 @@
 import { and, asc, count, desc, eq, inArray, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, csvExportHistory, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -181,6 +181,39 @@ export async function getWrongQuestions(userId: number) {
   const latestWrongOptionByQuestion = new Map<string, string>();
   for (const answer of answerRows) if (!latestWrongOptionByQuestion.has(answer.questionId)) latestWrongOptionByQuestion.set(answer.questionId, answer.selectedOption);
   return rows.map(row => ({ ...row, lastSelectedOption: latestWrongOptionByQuestion.get(row.questionId) ?? null }));
+}
+
+export type CsvExportHistoryInput = {
+  status: string;
+  columnKeys: string[];
+  startDate?: string;
+  endDate?: string;
+  courseType?: string;
+  subcategory?: string;
+  questionCount: number;
+  estimatedBytes: number;
+};
+
+export async function getCsvExportHistory(userId: number, limit = 8) {
+  const db = await getDb();
+  return db ? db.select().from(csvExportHistory).where(eq(csvExportHistory.userId, userId)).orderBy(desc(csvExportHistory.createdAt)).limit(limit) : [];
+}
+
+export async function createCsvExportHistory(userId: number, input: CsvExportHistoryInput) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  await db.insert(csvExportHistory).values({
+    userId,
+    status: input.status,
+    columnKeysJson: JSON.stringify(input.columnKeys),
+    startDate: input.startDate ?? null,
+    endDate: input.endDate ?? null,
+    courseType: input.courseType ?? null,
+    subcategory: input.subcategory ?? null,
+    questionCount: input.questionCount,
+    estimatedBytes: input.estimatedBytes,
+  });
+  return (await getCsvExportHistory(userId, 1))[0]!;
 }
 
 export async function markWrongQuestionMastered(userId: number, questionId: string) {

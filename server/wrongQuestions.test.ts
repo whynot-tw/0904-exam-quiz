@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { describe, expect, it, vi } from "vitest";
-import { attemptAnswers, attempts, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
+import { attemptAnswers, attempts, csvExportHistory, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
 import { getCmsQuestions, getDb, getWrongQuestions, recordAttempt } from "./db";
 import { appRouter } from "./routers";
 import type { TrpcContext } from "./_core/context";
@@ -22,6 +22,8 @@ describe("錯題本", () => {
     await expect(caller.wrongQuestions.regenerateUnclearConciseBatch()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.rateConcise({ questionId: "HARDWARE-1", feedback: "helpful" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.exportPdfData()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.wrongQuestions.csvExportHistory()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.wrongQuestions.recordCsvExport({ status: "待複習", columnKeys: ["questionId"], questionCount: 1, estimatedBytes: 128 })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.analyzePdfWeakness({ questionIds: ["HARDWARE-1"] })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.wrongQuestions.explain({ questionId: "HARDWARE-1" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.quiz.explainAnswer({ questionId: "HARDWARE-1", selectedOption: "A" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
@@ -93,6 +95,24 @@ describe("錯題本", () => {
         await db.delete(attempts).where(eq(attempts.userId, learnerId));
         await db.delete(wrongQuestions).where(eq(wrongQuestions.userId, learnerId));
       }
+    }
+  }, 40000);
+
+  it("只保存並回傳登入使用者自己的 CSV 匯出歷程與重新下載範圍", async () => {
+    const db = await getDb();
+    if (!db) throw new Error("Test database unavailable");
+    const otherUserId = learnerId + 1;
+    try {
+      await db.delete(csvExportHistory).where(eq(csvExportHistory.userId, learnerId));
+      await db.delete(csvExportHistory).where(eq(csvExportHistory.userId, otherUserId));
+      const caller = appRouter.createCaller(learnerContext());
+      await caller.wrongQuestions.recordCsvExport({ status: "待複習", columnKeys: ["questionId", "text"], startDate: "2026-08-01", endDate: "2026-08-31", courseType: "HARDWARE", subcategory: "電腦硬體與組裝", questionCount: 3, estimatedBytes: 2048 });
+      await db.insert(csvExportHistory).values({ userId: otherUserId, status: "全部", columnKeysJson: JSON.stringify(["questionId"]), questionCount: 99, estimatedBytes: 512 });
+      await expect(caller.wrongQuestions.csvExportHistory()).resolves.toEqual(expect.arrayContaining([expect.objectContaining({ userId: learnerId, status: "待複習", columnKeys: ["questionId", "text"], startDate: "2026-08-01", courseType: "HARDWARE", questionCount: 3, estimatedBytes: 2048 })]));
+      expect((await caller.wrongQuestions.csvExportHistory()).some(row => row.userId === otherUserId)).toBe(false);
+    } finally {
+      await db.delete(csvExportHistory).where(eq(csvExportHistory.userId, learnerId));
+      await db.delete(csvExportHistory).where(eq(csvExportHistory.userId, otherUserId));
     }
   }, 40000);
 });
