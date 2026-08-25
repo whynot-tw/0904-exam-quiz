@@ -88,3 +88,21 @@ button { cursor: pointer; }
 .option-comparison-labels { display:flex; align-self:center; justify-content:flex-end; gap:4px; flex-wrap:wrap; }
 .official-options-preview > p { margin:0; color:#71809a; font-size:.8rem; }
 @media (max-width:560px) { .official-options-heading { align-items:flex-start; flex-direction:column; }.official-options-preview li { grid-template-columns:24px minmax(0,1fr); }.official-options-preview li small { grid-column:2; justify-self:start; } }
+
+.csv-export-controls { display:grid; gap:8px; flex:0 1 auto; }
+.csv-export-buttons { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.csv-export-settings { border:1px solid #cfd9ed; border-radius:12px; background:#fbfcff; color:#4c5d88; overflow:hidden; }
+.csv-export-settings summary { cursor:pointer; padding:9px 12px; color:#4a5d8b; font-size:.78rem; font-weight:700; list-style-position:inside; }
+.csv-export-settings[open] summary { border-bottom:1px solid #d9e1f1; background:#f4f6ff; }
+.csv-export-settings-body { display:grid; gap:12px; padding:12px; }
+.csv-export-settings fieldset { min-width:0; margin:0; padding:0; border:0; }
+.csv-export-settings legend { margin-bottom:8px; color:#62739a; font-size:.74rem; font-weight:700; }
+.csv-column-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+.csv-column-grid label { display:flex; align-items:center; gap:6px; min-width:0; color:#516286; font-size:.75rem; line-height:1.3; }
+.csv-column-grid input { accent-color:#4f668e; }
+.csv-date-range { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+.csv-date-range label { display:grid; gap:5px; color:#62739a; font-size:.74rem; font-weight:700; }
+.csv-date-range input { min-width:0; min-height:36px; border:1px solid #cbd6ea; border-radius:9px; background:#fff; color:#374a72; padding:6px 8px; font:inherit; }
+.csv-setting-actions { display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
+.csv-setting-actions button { color:#566a94; border-color:#c7d2e8; background:#fff; }
+@media (max-width:560px) { .csv-export-controls { width:100%; }.csv-export-buttons { width:100%; }.csv-export-buttons button { flex:1 1 100% !important; }.csv-export-settings { width:100%; }.csv-column-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.csv-date-range { grid-template-columns:1fr; }.csv-setting-actions { justify-content:stretch; }.csv-setting-actions button { flex:1 1 0 !important; min-width:0; } }

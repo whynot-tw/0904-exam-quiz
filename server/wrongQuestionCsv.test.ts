@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWrongQuestionCsv, escapeCsvValue, getWrongQuestionCsvFilename } from "../client/src/lib/wrongQuestionCsv";
+import { buildWrongQuestionCsv, escapeCsvValue, filterWrongQuestionCsvItems, getWrongQuestionCsvFilename } from "../client/src/lib/wrongQuestionCsv";
 
 const sample = {
   questionId: "HARDWARE-1",
@@ -26,5 +26,13 @@ describe("錯題本 CSV 匯出", () => {
     expect(csv).toContain('"\'=公式開頭的官方選項"');
     expect(escapeCsvValue('含有"引號"')).toBe('"含有""引號"""');
     expect(getWrongQuestionCsvFilename(new Date("2026-08-21T00:00:00.000Z"))).toBe("錯題本離線複習_20260821.csv");
+  });
+
+  it("依勾選欄位、待複習狀態與含邊界的日期區間過濾個人錯題", () => {
+    const later = { ...sample, questionId: "HARDWARE-2", status: "已熟悉" as const, updatedAt: new Date("2026-08-22T00:00:00.000Z"), conciseExplanation: null };
+    const filtered = filterWrongQuestionCsvItems([sample, later], { status: "待複習", startDate: "2026-08-21", endDate: "2026-08-21" });
+    expect(filtered).toEqual([sample]);
+    expect(buildWrongQuestionCsv(filtered, ["questionId", "officialAnswer"])).toBe('"題號","官方正解"\r\n"HARDWARE-1","B：官方正解"');
+    expect(() => filterWrongQuestionCsvItems([sample], { status: "全部", startDate: "2026-08-22", endDate: "2026-08-21" })).toThrow("起始日期不可晚於結束日期");
   });
 });
