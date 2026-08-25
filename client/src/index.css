@@ -116,4 +116,13 @@ button { cursor: pointer; }
 .csv-export-buttons button[aria-busy="true"] { cursor:wait; }
 .csv-export-buttons button[aria-busy="true"] svg { color:#2f7656; }
 .csv-preset-empty { margin:0; color:#71809f; font-size:.76rem; line-height:1.5; }
+.csv-export-estimate,.csv-export-history { display:grid; gap:7px; border:1px solid #d6dfef; border-radius:10px; background:#f6f9ff; padding:10px; }
+.csv-export-estimate > div,.csv-export-history > div { display:flex; align-items:center; gap:6px; color:#42577f; }
+.csv-export-estimate span { color:#245e47; font-size:.82rem; font-weight:700; }
+.csv-export-estimate small,.csv-export-history > p { margin:0; color:#7281a0; font-size:.73rem; line-height:1.45; }
+.csv-export-history ul { display:grid; gap:6px; margin:0; padding:0; list-style:none; }
+.csv-export-history li { display:flex; align-items:center; justify-content:space-between; gap:8px; border-top:1px solid #e0e7f4; padding-top:7px; color:#61739a; font-size:.73rem; }
+.csv-export-history li span { min-width:0; line-height:1.4; }
+.csv-export-history button { flex:0 0 auto; color:#46658e; }
 @media (max-width:560px) { .csv-classification-range { grid-template-columns:1fr; }.csv-preset-save,.csv-preset-apply,.csv-preset-rename { align-items:stretch; }.csv-preset-save input,.csv-preset-apply select,.csv-preset-rename input { width:100%; flex-basis:100%; }.csv-preset-save button,.csv-preset-apply button,.csv-preset-rename button { flex:1 1 0 !important; } }
+@media (max-width:560px) { .csv-export-history li { align-items:stretch; flex-direction:column; }.csv-export-history li button { width:100%; } }
