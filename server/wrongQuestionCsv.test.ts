@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWrongQuestionCsv, escapeCsvValue, filterWrongQuestionCsvItems, getWrongQuestionCsvFilename, readWrongQuestionCsvPresets, serializeWrongQuestionCsvPresets } from "../client/src/lib/wrongQuestionCsv";
+import { buildWrongQuestionCsv, escapeCsvValue, filterWrongQuestionCsvItems, getWrongQuestionCsvFilename, readWrongQuestionCsvPresets, renameWrongQuestionCsvPreset, serializeWrongQuestionCsvPresets } from "../client/src/lib/wrongQuestionCsv";
 
 const sample = {
   questionId: "HARDWARE-1",
@@ -43,5 +43,12 @@ describe("錯題本 CSV 匯出", () => {
     const presets = readWrongQuestionCsvPresets(JSON.stringify([{ id: "core", name: "重點欄位", columnKeys: ["questionId", "courseLabel", "unknown"] }, { id: 1, name: "無效", columnKeys: ["questionId"] }]));
     expect(presets).toEqual([{ id: "core", name: "重點欄位", columnKeys: ["questionId", "courseLabel"] }]);
     expect(readWrongQuestionCsvPresets(serializeWrongQuestionCsvPresets(presets))).toEqual(presets);
+  });
+
+  it("可重新命名已保存欄位組合，並拒絕空白或重複名稱", () => {
+    const presets = [{ id: "core", name: "重點欄位", columnKeys: ["questionId", "courseLabel"] as const }, { id: "review", name: "考前複習", columnKeys: ["questionId"] as const }];
+    expect(renameWrongQuestionCsvPreset(presets, "core", "  考前精簡版  ")).toEqual([{ ...presets[0], name: "考前精簡版" }, presets[1]]);
+    expect(() => renameWrongQuestionCsvPreset(presets, "core", "")).toThrow("請輸入欄位組合名稱");
+    expect(() => renameWrongQuestionCsvPreset(presets, "core", "考前複習")).toThrow("已有相同名稱的欄位組合");
   });
 });

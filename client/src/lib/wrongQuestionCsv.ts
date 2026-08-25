@@ -50,6 +50,15 @@ export function serializeWrongQuestionCsvPresets(presets: WrongQuestionCsvPreset
   return JSON.stringify(presets.slice(0, 8).map(preset => ({ id: preset.id, name: preset.name.trim().slice(0, 32), columnKeys: preset.columnKeys })));
 }
 
+export function renameWrongQuestionCsvPreset(presets: WrongQuestionCsvPreset[], presetId: string, nextName: string) {
+  const normalizedName = nextName.trim().slice(0, 32);
+  if (!normalizedName) throw new Error("請輸入欄位組合名稱");
+  const preset = presets.find(item => item.id === presetId);
+  if (!preset) throw new Error("找不到要重新命名的欄位組合");
+  if (presets.some(item => item.id !== presetId && item.name === normalizedName)) throw new Error("已有相同名稱的欄位組合");
+  return presets.map(item => item.id === presetId ? { ...item, name: normalizedName } : item);
+}
+
 export function getWrongQuestionCsvFilename(date = new Date()) {
   const stamp = date.toISOString().slice(0, 10).replaceAll("-", "");
   return `錯題本離線複習_${stamp}.csv`;
