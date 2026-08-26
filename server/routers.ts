@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { applyCmsQuestionSubcategoryBatch, createCsvExportHistory, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getCsvExportHistory, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, markWrongQuestionMastered, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
+import { applyCmsQuestionSubcategoryBatch, createCsvExportHistory, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getCsvExportHistory, getOfficialQuestionConciseExplanations, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, markWrongQuestionMastered, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
 import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 import { invokeLLM } from "./_core/llm";
@@ -35,6 +35,7 @@ export const appRouter = router({
       const questions = remote?.questions?.length ? remote.questions : getEnabledQuestions();
       return { settings: remote?.settings ?? { examDate: "2026-09-04", targetScore: 80, mockQuestionCount: 20, maxWrong: 4 }, questions: questions.map(toClientQuestion), qa: { total: remote?.questions?.length ?? local.length, enabled: questions.length, needsReview: local.filter(q => q.import_status === "needs_review").length }, source: remote ? "google-sheet" : "official-pdf-snapshot" };
     }),
+    officialConciseList: publicProcedure.query(() => getOfficialQuestionConciseExplanations()),
     explainAnswer: protectedProcedure.input(z.object({ questionId: z.string().min(1), selectedOption: z.enum(["A", "B", "C", "D"]) })).mutation(async ({ input }) => {
       const cmsRows = await getCmsQuestions();
       const cmsQuestion = cmsRows.find(row => row.questionId === input.questionId);
