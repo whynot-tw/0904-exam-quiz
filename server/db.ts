@@ -1,6 +1,6 @@
 import { and, asc, count, desc, eq, inArray, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, csvExportHistory, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, csvExportHistory, officialQuestionConciseExplanations, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -228,6 +228,24 @@ export async function markWrongQuestionMastered(userId: number, questionId: stri
 export async function getWrongQuestionConciseExplanations(userId: number) {
   const db = await getDb();
   return db ? db.select().from(wrongQuestionConciseExplanations).where(eq(wrongQuestionConciseExplanations.userId, userId)).orderBy(desc(wrongQuestionConciseExplanations.updatedAt)) : [];
+}
+
+export async function getOfficialQuestionConciseExplanations() {
+  const db = await getDb();
+  return db ? db.select().from(officialQuestionConciseExplanations).orderBy(asc(officialQuestionConciseExplanations.questionId)) : [];
+}
+
+export async function upsertOfficialQuestionConciseExplanation(input: { questionId: string; summary: string; memoryTip: string; sourceNotice: string; model: string; incrementGeneration?: boolean }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(officialQuestionConciseExplanations).where(eq(officialQuestionConciseExplanations.questionId, input.questionId)).limit(1);
+  const now = new Date();
+  if (existing[0]) {
+    await db.update(officialQuestionConciseExplanations).set({ summary: input.summary, memoryTip: input.memoryTip, sourceNotice: input.sourceNotice, model: input.model, generationCount: input.incrementGeneration ? existing[0].generationCount + 1 : existing[0].generationCount, generatedAt: now, updatedAt: now }).where(eq(officialQuestionConciseExplanations.id, existing[0].id));
+  } else {
+    await db.insert(officialQuestionConciseExplanations).values({ questionId: input.questionId, summary: input.summary, memoryTip: input.memoryTip, sourceNotice: input.sourceNotice, model: input.model, generationCount: 1, generatedAt: now });
+  }
+  return (await getOfficialQuestionConciseExplanations()).find(row => row.questionId === input.questionId)!;
 }
 
 export async function upsertWrongQuestionConciseExplanation(userId: number, input: { questionId: string; summary: string; memoryTip: string; model: string; feedback?: "helpful" | "unclear" | null; incrementGeneration?: boolean }) {
