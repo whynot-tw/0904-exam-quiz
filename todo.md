@@ -577,3 +577,26 @@
 - [x] 重新產生 dry-run，驗證 657 total／656 enabled／1 disabled 與 correctOption 差異 0
 - [x] 依 A2 裁決正式同步七題狀態、選項、requiresMedia、媒體 mapping 與 V2 解析至 CMS
 - [x] 完成 657 題資料完整性、A2 七題逐題、網站 QA、GitHub 與既有部署驗證；登入後個人題目頁仍建議再做人工驗收
+
+## Explanation Display Audit
+
+- [ ] 盤點 CMS V2 解析、原個人 AI 解析與錯題頁解析的資料表、API、前端讀取路徑
+- [ ] 驗證題庫答題頁 V2 解析、錯題頁 67 題精簡解析與逐題 AI 解析的實際顯示狀態
+- [ ] 修正必要的解析欄位映射或顯示缺口，保留官方答案與個人資料隔離
+- [ ] 完成 TypeScript、Vitest、登入後桌面／手機 QA、GitHub 同步與 checkpoint
+
+## Official Answer and V2 Explanation Display
+
+- [ ] 盤點題庫答題頁、錯題頁與統計／匯出頁目前三種解析資料路徑
+- [ ] 統一主要顯示為官方答案＋V2 解析，避免舊解析覆蓋或混淆
+- [ ] 隱藏原個人 AI 解析與 67 題舊版精簡解析的預設顯示，但保留資料與權限隔離
+- [ ] 完成解析顯示、空值 fallback、測試、桌面／手機 QA 與 checkpoint
+
+## Explanation Display Audit
+
+- [x] 錯題頁預設只顯示官方答案與 V2 explanation，隱藏舊版個人 AI 解析與精簡解析卡片
+- [x] 移除錯題頁舊版精簡解析批次／匯出入口與「未解析」預設篩選，保留後端歷史資料
+- [x] 建立共用官方答案＋V2 解析顯示 helper，補齊 fallback 與回歸測試
+- [x] 完成 TypeScript check、Vitest 70 項測試與 production build
+- [x] 完成桌面／手機瀏覽器畫面 QA
+- [ ] 保存 unified explanation display checkpoint 並同步 GitHub PR
