@@ -292,7 +292,11 @@ export async function updateQuestionIssueReport(userId: number, questionId: stri
   if (!db) throw new Error("Database unavailable");
   const existing = await db.select().from(questionIssueReports).where(and(eq(questionIssueReports.userId, userId), eq(questionIssueReports.questionId, questionId))).limit(1);
   if (!existing[0]) throw new Error("Question issue report not found");
-  await db.update(questionIssueReports).set(patch).where(eq(questionIssueReports.id, existing[0].id));
+  const update: { issueType?: string; note?: string | null; reviewStatus?: string } = {};
+  if (patch.issueType !== undefined) update.issueType = patch.issueType;
+  if (patch.note !== undefined) update.note = patch.note;
+  if (patch.reviewStatus !== undefined) update.reviewStatus = patch.reviewStatus;
+  if (Object.keys(update).length) await db.update(questionIssueReports).set(update).where(eq(questionIssueReports.id, existing[0].id));
   return (await getQuestionIssueReports(userId)).find(row => row.questionId === questionId)!;
 }
 
