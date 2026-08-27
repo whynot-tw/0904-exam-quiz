@@ -618,3 +618,20 @@
 - [x] 確保「查看解析」按鈕在模擬考模式下隱藏，僅在練習模式顯示
 - [x] 完成桌面／手機視覺 QA、TypeScript check、production build
 - [x] 保存答題解析入口 checkpoint 並同步 GitHub PR
+
+## AI-24 Attempt Count Investigation
+
+- [x] 盤點 AI-24 的 18 筆作答紀錄、attemptId、時間與來源測驗回合
+- [x] 比對 attempts 與 attemptAnswers，確認 18 筆為不同 practice 回合，未發現同一 attemptId 內重複寫入
+- [x] 檢查帳號與測驗模式來源，確認均為同一登入帳號的 practice 紀錄；調查期間未刪除任何資料
+- [x] 完成調查結論：本輪不刪除原始作答資料；防重複提交列為後續獨立改善，不影響本輪題號順序功能
+
+## Sequential Question Practice
+
+- [x] 盤點題庫題號欄位、目前隨機抽題邏輯與 answeredQuestionIds 使用方式
+- [x] 新增依題號排序／隨機排序的出題順序選項
+- [x] 新增依題號順序從未刷題接續的選取 helper，並處理未刷題不足與範圍循環
+- [x] 將出題順序與接續設定保存至本回合狀態，保留 5／10／20 題選擇
+- [x] 補齊順序選取、未刷題接續與模式相容性測試
+- [x] 完成桌面／手機視覺 QA、TypeScript check、production build
+- [ ] 保存題號順序刷題 checkpoint 並同步 GitHub PR

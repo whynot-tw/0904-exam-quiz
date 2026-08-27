@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, selectSmartPracticeQuestions, sortCourseTypes } from "../client/src/lib/courseTypes";
+import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, selectSequentialPracticeQuestions, selectSmartPracticeQuestions, sortCourseTypes, sortQuestionsById } from "../client/src/lib/courseTypes";
 
 const questions = [
   { id: "HARDWARE-1", source: "HARDWARE", category: "電腦硬體裝修" },
@@ -38,6 +38,39 @@ describe("course type filter", () => {
     const selection = selectSmartPracticeQuestions(questions, questions.map(question => question.id), 2);
     expect(selection.questions).toHaveLength(2);
     expect(selection.untestedCount).toBe(0);
+    expect(selection.usedFallback).toBe(true);
+  });
+
+  it("sorts question ids naturally instead of lexicographically", () => {
+    expect(sortQuestionsById([
+      { id: "AI-10" },
+      { id: "AI-2" },
+      { id: "AI-1" },
+      { id: "HARDWARE-131-2" },
+    ]).map(question => question.id)).toEqual(["AI-1", "AI-2", "AI-10", "HARDWARE-131-2"]);
+  });
+
+  it("starts at the first untested question and continues in question-number order", () => {
+    const selection = selectSequentialPracticeQuestions([
+      { id: "AI-10" },
+      { id: "AI-2" },
+      { id: "AI-1" },
+      { id: "AI-3" },
+    ], ["AI-1", "AI-2"], 2);
+    expect(selection.questions.map(question => question.id)).toEqual(["AI-3", "AI-10"]);
+    expect(selection.untestedCount).toBe(2);
+    expect(selection.usedFallback).toBe(false);
+  });
+
+  it("fills from the beginning when fewer untested questions remain", () => {
+    const selection = selectSequentialPracticeQuestions([
+      { id: "AI-1" },
+      { id: "AI-2" },
+      { id: "AI-3" },
+      { id: "AI-4" },
+    ], ["AI-1", "AI-2", "AI-3"], 3);
+    expect(selection.questions.map(question => question.id)).toEqual(["AI-4", "AI-1", "AI-2"]);
+    expect(selection.untestedCount).toBe(1);
     expect(selection.usedFallback).toBe(true);
   });
 

@@ -50,6 +50,19 @@ export function selectSmartPracticeQuestions<T extends { id: string }>(questions
   return { questions: [...selectedUntested, ...fallback], usedFallback: fallback.length > 0, untestedCount: untested.length };
 }
 
+export function sortQuestionsById<T extends { id: string }>(questions: T[]): T[] {
+  return [...questions].sort((left, right) => left.id.localeCompare(right.id, undefined, { numeric: true, sensitivity: "base" }));
+}
+
+export function selectSequentialPracticeQuestions<T extends { id: string }>(questions: T[], answeredQuestionIds: Iterable<string>, count: number): { questions: T[]; usedFallback: boolean; untestedCount: number } {
+  const sorted = sortQuestionsById(questions);
+  const untested = excludeAnsweredQuestions(sorted, answeredQuestionIds);
+  const selectedUntested = untested.slice(0, Math.min(count, untested.length));
+  const selectedIds = new Set(selectedUntested.map(question => question.id));
+  const fallback = sorted.filter(question => !selectedIds.has(question.id)).slice(0, Math.max(count - selectedUntested.length, 0));
+  return { questions: [...selectedUntested, ...fallback], usedFallback: fallback.length > 0, untestedCount: untested.length };
+}
+
 export function sortCourseTypes(courseTypes: CourseType[], progressRows: CourseProgressForSort[] | undefined, sort: CourseSort): CourseType[] {
   const progressBySource = new Map((progressRows ?? []).map(row => [row.source, row]));
   return [...courseTypes].sort((a, b) => {
