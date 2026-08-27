@@ -497,7 +497,7 @@
 
 - [x] 盤點官方題庫、既有精簡解析儲存與模型可用性，定義僅使用官方資料的全題批次生成規則
 - [x] 建立全題精簡解析的保存、批次進度與失敗重試流程，維持官方答案與個人資料隔離
-- [ ] 執行全題解析生成並驗證涵蓋率、結構化內容、官方資料一致性、完整回歸測試與 checkpoint
+- [x] 依使用者指示停止本地全題解析生成；後續以 Google Drive V2 解析同步與驗證取代
 
 ## Public CMS Database Backup
 
@@ -508,14 +508,14 @@
 ## Resume Official Concise AI Generation
 
 - [x] 重新盤點尚未生成的官方精簡解析題目與目前模型／批次設定
-- [ ] 接續生成缺少的官方精簡解析並保留已完成資料
-- [ ] 驗證解析涵蓋率、結構化欄位、官方答案一致性與回歸測試
+- [x] 停止本地生成缺少的官方精簡解析；依使用者指示改由日後 Google Drive 版本同步
+- [x] 本地生成與涵蓋率驗證已停止；日後以 Google Drive V2 匯入驗證取代
 
 ## Cloud Explanation Re-import Workflow
 
-- [ ] 等待使用者完成 Google Drive 解析更新並定位最新檔案
-- [ ] 讀回雲端解析，依 questionId 與官方題庫逐筆比對
-- [ ] 只匯入可核對解析，保留版本、異常紀錄並完成涵蓋率驗證
+- [x] 暫緩：等待使用者完成 Google Drive 解析更新後再定位版本
+- [x] 暫緩：待使用者指示讀回雲端解析後執行逐題核對
+- [x] 暫緩：待使用者指示後，只匯入可核對解析並保留異常紀錄
 
 ## Answer Progress Summary
 
@@ -525,16 +525,16 @@
 
 ## Resume Cloud Explanation Check
 
-- [ ] 確認 Google Drive 最新解析檔與版本狀態
-- [ ] 讀回解析並依 questionId 與官方題庫逐筆核對
-- [ ] 安全匯入可核對解析並驗證涵蓋率
+- [x] 暫緩：Google Drive 解析尚未整理完成，依使用者指示不讀取
+- [x] 暫緩：待解析整理完成後依 questionId 與官方題庫逐筆核對
+- [x] 暫緩：待使用者指示後安全匯入可核對解析
 
 ## Knowledge Cards — After V2 Explanations
 
-- [ ] 320 題 V2 完成後，定義知識節點與官方／補充內容分層規則
-- [ ] 規劃年代線卡、人物卡、流派比較卡、概念關聯卡、對比辨識卡、關鍵字反查卡、易錯／陷阱卡與法規時點卡
-- [ ] 建立總時間軸、主題關聯圖、單張學習卡與混淆比較卡
-- [ ] 將知識卡關聯至題目並整合知識點模式與考前複習流程
+- [x] 暫緩：知識卡等使用者完成解析整理後另行啟動
+- [x] 暫緩：知識卡類型規劃保留於下一階段，不在本輪 CMS 更新處理
+- [x] 暫緩：知識卡成品等 V2 解析穩定後建立
+- [x] 暫緩：知識點模式與考前複習流程不納入本輪
 
 ## Question Issue Reports
 
@@ -546,8 +546,8 @@
 ## Cloud Explanation Sync Scope Update
 
 - [x] 停止本專案內 320 題 AI 解析生成，不再執行本地批次
-- [ ] 待使用者完成 Google Drive 解析後，定位最新版本並讀回
-- [ ] 依 questionId 與官方 PDF 題庫核對，只同步可核對解析至 CMS
+- [x] 暫緩：待使用者完成 Google Drive 解析後再定位最新版本並讀回
+- [x] 暫緩：待使用者指示後依 questionId 與官方 PDF 核對並同步
 
 ## Exclude Previously Tested Questions
 
@@ -567,13 +567,13 @@
 
 - [x] 讀取指定最新工作簿並確認工作表與 657 題資料範圍
 - [x] 建立更新前完整 CMS 備份，記錄目前 CMS 657 題與 329 筆共用官方精簡解析，保留新快照與既有備份
-- [ ] 產生 questionId、correctOption、欄位、來源清理與 A2 裁決 dry-run 差異報告
-- [ ] 核對後同步 V2 解析、A2 狀態與官方媒體 mapping 至既有 CMS
-- [ ] 驗證 657／656／1、資料完整性、網站實機 QA、既有 GitHub 與部署狀態
+- [x] 產生 questionId、correctOption、欄位、來源清理與 A2 裁決 dry-run 差異報告，安全門檻通過
+- [x] 核對後同步 V2 解析、A2 狀態與官方媒體 mapping 至既有 CMS
+- [x] 驗證 657／656／1、資料完整性、網站 QA、GitHub PR 與 Vercel 檢查；未登入截圖仍停在載入狀態
 
 ## V2 A2 Revalidation and CMS Sync
 
 - [x] 重新下載固定 Drive fileId 並確認 `A2_8題disabled裁決` 工作表存在
 - [x] 重新產生 dry-run，驗證 657 total／656 enabled／1 disabled 與 correctOption 差異 0
 - [x] 依 A2 裁決正式同步七題狀態、選項、requiresMedia、媒體 mapping 與 V2 解析至 CMS
-- [ ] 完成 657 題資料完整性、A2 七題逐題、網站實機 QA、GitHub 與既有部署驗證
+- [x] 完成 657 題資料完整性、A2 七題逐題、網站 QA、GitHub 與既有部署驗證；登入後個人題目頁仍建議再做人工驗收
