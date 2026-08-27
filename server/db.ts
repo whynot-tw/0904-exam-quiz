@@ -1,6 +1,6 @@
 import { and, asc, count, desc, eq, inArray, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, csvExportHistory, officialQuestionConciseExplanations, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
+import { InsertUser, attempts, attemptAnswers, classificationReviewBatches, csvExportHistory, officialQuestionConciseExplanations, questionIssueReports, questions, reviewNotes, settings, starredQuestions, userLearningSettings, users, wrongQuestionConciseExplanations, wrongQuestions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -268,6 +268,32 @@ export async function setWrongQuestionConciseFeedback(userId: number, questionId
   if (!existing[0]) throw new Error("Concise explanation not found");
   await db.update(wrongQuestionConciseExplanations).set({ feedback, feedbackAt: new Date(), updatedAt: new Date() }).where(eq(wrongQuestionConciseExplanations.id, existing[0].id));
   return (await getWrongQuestionConciseExplanations(userId)).find(row => row.questionId === questionId)!;
+}
+
+export async function getQuestionIssueReports(userId: number) {
+  const db = await getDb();
+  return db ? db.select().from(questionIssueReports).where(eq(questionIssueReports.userId, userId)).orderBy(desc(questionIssueReports.updatedAt)) : [];
+}
+
+export async function toggleQuestionIssueReport(userId: number, questionId: string, issueType = "內容疑似有誤", note?: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(questionIssueReports).where(and(eq(questionIssueReports.userId, userId), eq(questionIssueReports.questionId, questionId))).limit(1);
+  if (existing[0]) {
+    await db.delete(questionIssueReports).where(eq(questionIssueReports.id, existing[0].id));
+    return { questionId, reported: false };
+  }
+  await db.insert(questionIssueReports).values({ userId, questionId, issueType, note: note ?? null, reviewStatus: "待核對" });
+  return { questionId, reported: true };
+}
+
+export async function updateQuestionIssueReport(userId: number, questionId: string, patch: { issueType?: string; note?: string | null; reviewStatus?: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const existing = await db.select().from(questionIssueReports).where(and(eq(questionIssueReports.userId, userId), eq(questionIssueReports.questionId, questionId))).limit(1);
+  if (!existing[0]) throw new Error("Question issue report not found");
+  await db.update(questionIssueReports).set(patch).where(eq(questionIssueReports.id, existing[0].id));
+  return (await getQuestionIssueReports(userId)).find(row => row.questionId === questionId)!;
 }
 
 export async function getStarredQuestions(userId: number) {

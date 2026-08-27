@@ -12,6 +12,11 @@ function context(role: "user" | "admin"): TrpcContext {
 }
 
 describe("admin access rules", () => {
+  it("rejects unauthenticated users from question issue reports", async () => {
+    const caller = appRouter.createCaller({ user: null, req: { protocol: "https", headers: {} } as TrpcContext["req"], res: { clearCookie: () => undefined } as TrpcContext["res"] });
+    await expect(caller.questionIssues.list()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.questionIssues.toggle({ questionId: "HARDWARE-1" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+  });
   it("rejects normal users from admin question list", async () => {
     const caller = appRouter.createCaller(context("user"));
     await expect(caller.quiz.adminList({ needsReviewOnly: true })).rejects.toMatchObject({ code: "FORBIDDEN" });

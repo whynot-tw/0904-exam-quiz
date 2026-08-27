@@ -118,6 +118,20 @@ export const starredQuestions = mysqlTable("starredQuestions", {
   userQuestionUnique: uniqueIndex("starredQuestions_user_question_unique").on(table.userId, table.questionId),
 }));
 
+export const questionIssueReports = mysqlTable("questionIssueReports", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  questionId: varchar("questionId", { length: 100 }).notNull(),
+  issueType: varchar("issueType", { length: 32 }).default("內容疑似有誤").notNull(),
+  note: text("note"),
+  reviewStatus: varchar("reviewStatus", { length: 24 }).default("待核對").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+}, table => ({
+  userQuestionUnique: uniqueIndex("questionIssueReports_user_question_unique").on(table.userId, table.questionId),
+  userStatusIndex: index("questionIssueReports_user_status_idx").on(table.userId, table.reviewStatus),
+}));
+
 export const reviewNotes = mysqlTable("reviewNotes", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull(),
