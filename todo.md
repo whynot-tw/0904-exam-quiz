@@ -562,3 +562,18 @@
 - [x] 讓兩個首頁快速入口自動優先抽取登入者未測驗題目，不需進入設定勾選
 - [x] 題目不足 5 題時自動以該範圍全部題目補足，並顯示回退提示
 - [x] 驗證模擬考、星號與錯題重刷規則不受影響，完成測試、QA 與 checkpoint
+
+## V2 CMS Update from Latest Google Drive Workbook
+
+- [x] 讀取指定最新工作簿並確認工作表與 657 題資料範圍
+- [x] 建立更新前完整 CMS 備份，記錄目前 CMS 657 題與 329 筆共用官方精簡解析，保留新快照與既有備份
+- [ ] 產生 questionId、correctOption、欄位、來源清理與 A2 裁決 dry-run 差異報告
+- [ ] 核對後同步 V2 解析、A2 狀態與官方媒體 mapping 至既有 CMS
+- [ ] 驗證 657／656／1、資料完整性、網站實機 QA、既有 GitHub 與部署狀態
+
+## V2 A2 Revalidation and CMS Sync
+
+- [x] 重新下載固定 Drive fileId 並確認 `A2_8題disabled裁決` 工作表存在
+- [x] 重新產生 dry-run，驗證 657 total／656 enabled／1 disabled 與 correctOption 差異 0
+- [x] 依 A2 裁決正式同步七題狀態、選項、requiresMedia、媒體 mapping 與 V2 解析至 CMS
+- [ ] 完成 657 題資料完整性、A2 七題逐題、網站實機 QA、GitHub 與既有部署驗證

@@ -56,6 +56,7 @@ const adminQuestionFields = {
   explanation: questions.explanation,
   enabled: questions.enabled,
   requiresMedia: questions.requiresMedia,
+  mediaUrl: questions.mediaUrl,
   importStatus: questions.importStatus,
   verified: questions.verified,
   notes: questions.notes,

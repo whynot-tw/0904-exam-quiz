@@ -20,6 +20,7 @@ export type QuizQuestion = {
   explanation: string;
   enabled: boolean;
   requires_media: boolean;
+  media_url: string;
   source_raw: string;
   source_url: string;
   import_status: string;
@@ -79,7 +80,10 @@ export function toClientQuestion(q: QuizQuestion) {
     correctOption: q.correct_option,
     explanation: q.explanation,
     needsReview: q.import_status === "needs_review",
+    requires_media: q.requires_media,
     requiresMedia: q.requires_media,
+    media_url: q.media_url,
+    mediaUrl: q.media_url,
     enabled: q.enabled,
     notes: q.notes,
   };
@@ -88,7 +92,7 @@ export function toClientQuestion(q: QuizQuestion) {
 export function cmsQuestionToQuizQuestion(q: {
   questionId: string; sourceKey: string; sourceSection: string; sourceQuestionNo: string; sourcePage: number | null; category: string | null; subcategory: string | null; subcategoryStatus: string; subcategoryNotes: string | null;
   questionText: string; optionA: string; optionB: string; optionC: string; optionD: string; correctOption: string; explanation: string | null;
-  enabled: number; requiresMedia: number; sourceRaw: string | null; sourceUrl: string | null; importStatus: string; verified: number; notes: string | null;
+  enabled: number; requiresMedia: number; mediaUrl: string | null; sourceRaw: string | null; sourceUrl: string | null; importStatus: string; verified: number; notes: string | null;
 }): QuizQuestion {
   return {
     question_id: q.questionId,
@@ -109,6 +113,7 @@ export function cmsQuestionToQuizQuestion(q: {
     explanation: q.explanation ?? "",
     enabled: q.enabled === 1,
     requires_media: q.requiresMedia === 1,
+    media_url: q.mediaUrl ?? "",
     source_raw: q.sourceRaw ?? "",
     source_url: q.sourceUrl ?? "",
     import_status: q.importStatus,

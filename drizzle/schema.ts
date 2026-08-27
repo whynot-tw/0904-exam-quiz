@@ -32,6 +32,7 @@ export const questions = mysqlTable("questions", {
   explanation: text("explanation"),
   enabled: int("enabled").default(1).notNull(),
   requiresMedia: int("requiresMedia").default(0).notNull(),
+  mediaUrl: text("mediaUrl"),
   sourceRaw: text("sourceRaw"),
   sourceUrl: text("sourceUrl"),
   importStatus: varchar("importStatus", { length: 32 }).default("imported").notNull(),
