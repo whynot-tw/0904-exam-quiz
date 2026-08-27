@@ -41,6 +41,15 @@ export function excludeAnsweredQuestions<T extends { id: string }>(questions: T[
   return questions.filter(question => !answered.has(question.id));
 }
 
+export function selectSmartPracticeQuestions<T extends { id: string }>(questions: T[], answeredQuestionIds: Iterable<string>, count: number): { questions: T[]; usedFallback: boolean; untestedCount: number } {
+  const untested = excludeAnsweredQuestions(questions, answeredQuestionIds);
+  const shuffle = (items: T[]) => [...items].sort(() => Math.random() - 0.5);
+  const selectedUntested = shuffle(untested).slice(0, Math.min(count, untested.length));
+  const selectedIds = new Set(selectedUntested.map(question => question.id));
+  const fallback = shuffle(questions.filter(question => !selectedIds.has(question.id))).slice(0, Math.max(count - selectedUntested.length, 0));
+  return { questions: [...selectedUntested, ...fallback], usedFallback: fallback.length > 0, untestedCount: untested.length };
+}
+
 export function sortCourseTypes(courseTypes: CourseType[], progressRows: CourseProgressForSort[] | undefined, sort: CourseSort): CourseType[] {
   const progressBySource = new Map((progressRows ?? []).map(row => [row.source, row]));
   return [...courseTypes].sort((a, b) => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, sortCourseTypes } from "../client/src/lib/courseTypes";
+import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, selectSmartPracticeQuestions, sortCourseTypes } from "../client/src/lib/courseTypes";
 
 const questions = [
   { id: "HARDWARE-1", source: "HARDWARE", category: "電腦硬體裝修" },
@@ -24,6 +24,21 @@ describe("course type filter", () => {
     const source = [...questions];
     expect(excludeAnsweredQuestions(source, ["HARDWARE-1", "UNKNOWN"])).toEqual([questions[1], questions[2]]);
     expect(source).toEqual(questions);
+  });
+
+  it("prioritizes untested questions and fills the requested count from the same pool when needed", () => {
+    const selection = selectSmartPracticeQuestions(questions, ["HARDWARE-1"], 3);
+    expect(selection.questions).toHaveLength(3);
+    expect(selection.questions.slice(0, 2).map(question => question.id).sort()).toEqual(["AI-1", "HARDWARE-2"]);
+    expect(selection.untestedCount).toBe(2);
+    expect(selection.usedFallback).toBe(true);
+  });
+
+  it("falls back to the full course pool after every question has been tested", () => {
+    const selection = selectSmartPracticeQuestions(questions, questions.map(question => question.id), 2);
+    expect(selection.questions).toHaveLength(2);
+    expect(selection.untestedCount).toBe(0);
+    expect(selection.usedFallback).toBe(true);
   });
 
   it("sorts courses by lowest accuracy or completion while preserving a stable default order", () => {

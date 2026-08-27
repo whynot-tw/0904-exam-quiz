@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { trpc } from "@/lib/trpc";
 import { getStarredQuestionIds } from "@/lib/starred";
-import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, sortCourseTypes, type CourseSort } from "@/lib/courseTypes";
+import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, selectSmartPracticeQuestions, sortCourseTypes, type CourseSort } from "@/lib/courseTypes";
 import { ALL_SUBCATEGORIES, filterQuestionsBySubcategory, getSubcategories, getWeakestSubcategory } from "@/lib/subcategories";
 import { ADMIN_PENDING_QUICK_FILTERS, filterAdminPendingQuestions, getAdminPendingQuickFilterCounts, type AdminPendingQuickFilter } from "@/lib/adminPendingFilters";
 import { buildPendingQuestionsCsv } from "@/lib/adminPendingExport";
@@ -148,10 +148,14 @@ export default function Home() {
     localStorage.setItem("sep4-active-attempt", JSON.stringify({ mode, count, courseType, subcategory, starTagFilter, excludeTested, questionIds: selectedQuestions.map((q: any) => q.id), answers: [] }));
   };
   const startCoursePractice = (nextCourseType: string) => {
-    const selectedQuestions = filterQuestionsByCourse(questions, nextCourseType).sort(() => Math.random() - 0.5).slice(0, 5);
-    if (!selectedQuestions.length) return;
-    setCourseType(nextCourseType); setSubcategory(ALL_SUBCATEGORIES); setMode("practice"); setCount(5); setActiveQuestions(selectedQuestions); setCursor(0); setAnswers([]); setSelected(null); setFinished(false); setResult(null); setSection("quiz");
-    localStorage.setItem("sep4-active-attempt", JSON.stringify({ mode: "practice", count: 5, courseType: nextCourseType, subcategory: ALL_SUBCATEGORIES, starTagFilter, questionIds: selectedQuestions.map((q: any) => q.id), answers: [] }));
+    const coursePool = filterQuestionsByCourse(questions, nextCourseType);
+    const selection = selectSmartPracticeQuestions(coursePool, answeredQuestionIds.data ?? [], 5);
+    if (!selection.questions.length) return;
+    if (selection.usedFallback) toast.info("本課程未測驗題目不足 5 題", { description: `已優先安排 ${selection.untestedCount} 題未測驗題，並以本課程其他題目補足。` });
+    if (!selection.untestedCount) toast.info("本課程已完成首輪測驗", { description: "本次將從本課程全部題目重新抽題。" });
+    const selectedQuestions = selection.questions;
+    setCourseType(nextCourseType); setSubcategory(ALL_SUBCATEGORIES); setMode("practice"); setCount(5); setExcludeTested(true); setActiveQuestions(selectedQuestions); setCursor(0); setAnswers([]); setSelected(null); setFinished(false); setResult(null); setSection("quiz");
+    localStorage.setItem("sep4-active-attempt", JSON.stringify({ mode: "practice", count: 5, courseType: nextCourseType, subcategory: ALL_SUBCATEGORIES, starTagFilter, excludeTested: true, questionIds: selectedQuestions.map((q: any) => q.id), answers: [] }));
   };
 
   const submitAnswer = (option: keyof typeof optionLabels) => {
