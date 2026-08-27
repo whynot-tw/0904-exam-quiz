@@ -617,4 +617,4 @@
 - [x] 在答題選項下方新增「查看解析」按鈕，點擊後觸發顯示
 - [x] 確保「查看解析」按鈕在模擬考模式下隱藏，僅在練習模式顯示
 - [x] 完成桌面／手機視覺 QA、TypeScript check、production build
-- [ ] 保存答題解析入口 checkpoint 並同步 GitHub PR
+- [x] 保存答題解析入口 checkpoint 並同步 GitHub PR
