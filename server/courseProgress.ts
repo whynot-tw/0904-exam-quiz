@@ -17,6 +17,7 @@ export type CourseProgress = {
   label: string;
   available: number;
   answered: number;
+  answeredQuestions: number;
   correct: number;
   accuracy: number | null;
   completion: number;
@@ -34,6 +35,7 @@ export function summarizeCourseProgress(catalog: CourseCatalogQuestion[], answer
       label: question.label,
       available: 0,
       answered: 0,
+      answeredQuestions: 0,
       correct: 0,
       accuracy: null,
       completion: 0,
@@ -54,6 +56,7 @@ export function summarizeCourseProgress(catalog: CourseCatalogQuestion[], answer
     if (answer.answeredAt && (!progress.lastAnsweredAt || answer.answeredAt > progress.lastAnsweredAt)) progress.lastAnsweredAt = answer.answeredAt;
     const completedIds = completedQuestionIdsByCourse.get(question.source) ?? new Set<string>();
     completedIds.add(question.id);
+    progress.answeredQuestions = completedIds.size;
     completedQuestionIdsByCourse.set(question.source, completedIds);
   }
 

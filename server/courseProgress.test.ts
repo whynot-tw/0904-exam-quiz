@@ -17,8 +17,8 @@ describe("course progress summary", () => {
       { questionId: "HARDWARE-1", isCorrect: true },
       { questionId: "HARDWARE-9", isCorrect: true },
     ])).toEqual([
-      { source: "AI", label: "AI人工智慧工具應用", available: 2, answered: 2, correct: 1, accuracy: 50, completion: 50, lastAnsweredAt: null },
-      { source: "HARDWARE", label: "電腦硬體裝修", available: 2, answered: 1, correct: 1, accuracy: 100, completion: 50, lastAnsweredAt: null },
+      { source: "AI", label: "AI人工智慧工具應用", available: 2, answered: 2, answeredQuestions: 1, correct: 1, accuracy: 50, completion: 50, lastAnsweredAt: null },
+      { source: "HARDWARE", label: "電腦硬體裝修", available: 2, answered: 1, answeredQuestions: 1, correct: 1, accuracy: 100, completion: 50, lastAnsweredAt: null },
     ]);
   });
 
@@ -27,6 +27,15 @@ describe("course progress summary", () => {
       { source: "AI", accuracy: null, completion: 0 },
       { source: "HARDWARE", accuracy: null, completion: 0 },
     ]);
+  });
+
+  it("reports unique answered question counts separately from answer attempts", () => {
+    const summary = summarizeCourseProgress(catalog, [
+      { questionId: "AI-1", isCorrect: true },
+      { questionId: "AI-1", isCorrect: true },
+      { questionId: "AI-2", isCorrect: false },
+    ]);
+    expect(summary.find(course => course.source === "AI")).toMatchObject({ answered: 3, answeredQuestions: 2 });
   });
 
   it("keeps the most recent answer date for each course", () => {
