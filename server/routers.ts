@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { cmsQuestionToQuizQuestion, getEnabledQuestions, getQuizQuestions, toClientQuestion, updateLocalQuestion } from "./quizData";
-import { applyCmsQuestionSubcategoryBatch, createCsvExportHistory, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getCsvExportHistory, getOfficialQuestionConciseExplanations, getQuestionIssueReports, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, markWrongQuestionMastered, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleQuestionIssueReport, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateQuestionIssueReport, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
+import { applyCmsQuestionSubcategoryBatch, createCsvExportHistory, getClassificationReviewBatches, getClassificationReviewSummary, getCmsQuestions, getCmsQuestionsForAdmin, getCmsSettings, getCsvExportHistory, getOfficialQuestionConciseExplanations, getQuestionIssueReports, getStarredQuestions, getStarredQuestionStats, getUserAnswerRows, getUserAnsweredQuestionIds, getUserAttempts, getUserLearningGoal, getWrongQuestionConciseExplanations, getWrongQuestions, markWrongQuestionMastered, recordAttempt, restoreCmsQuestionSubcategoryBatch, setWrongQuestionConciseFeedback, toggleQuestionIssueReport, toggleStarredQuestion, updateCmsQuestion, updateCmsQuestionSubcategory, updateQuestionIssueReport, updateStarredQuestionReminder, updateStarredQuestionTag, updateUserLearningGoal, upsertWrongQuestionConciseExplanation } from "./db";
 import { summarizeCourseProgress } from "./courseProgress";
 import { fetchSheetBootstrap, postSheetAttempt, updateSheetQuestion } from "./sheetSync";
 import { invokeLLM } from "./_core/llm";
@@ -90,6 +90,7 @@ export const appRouter = router({
   attempts: router({
     complete: protectedProcedure.input(z.object({ mode: z.enum(["practice", "mock", "wrong", "starred"]), questionCount: z.number().int().positive(), answers: z.array(answerSchema).min(1) })).mutation(async ({ ctx, input }) => { const result = await recordAttempt(ctx.user.id, input); await postSheetAttempt({ attempt: { mode: input.mode, question_count: input.questionCount }, answers: input.answers }).catch(error => console.warn("[Sheet] attempt write fallback:", error)); return result; }),
     history: protectedProcedure.query(({ ctx }) => getUserAttempts(ctx.user.id)),
+    answeredQuestionIds: protectedProcedure.query(({ ctx }) => getUserAnsweredQuestionIds(ctx.user.id)),
     stats: protectedProcedure.query(async ({ ctx }) => {
       const rows = await getUserAnswerRows(ctx.user.id);
       const bySubject: Record<string, { answered: number; correct: number; accuracy: number }> = {};

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ALL_COURSE_TYPES, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, sortCourseTypes } from "../client/src/lib/courseTypes";
+import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, sortCourseTypes } from "../client/src/lib/courseTypes";
 
 const questions = [
   { id: "HARDWARE-1", source: "HARDWARE", category: "電腦硬體裝修" },
@@ -18,6 +18,12 @@ describe("course type filter", () => {
   it("limits the question pool to the selected course type and retains all questions for all courses", () => {
     expect(filterQuestionsByCourse(questions, "HARDWARE").map(question => question.id)).toEqual(["HARDWARE-1", "HARDWARE-2"]);
     expect(filterQuestionsByCourse(questions, ALL_COURSE_TYPES).map(question => question.id)).toEqual(["HARDWARE-1", "HARDWARE-2", "AI-1"]);
+  });
+
+  it("excludes only previously answered question ids for a practice pool", () => {
+    const source = [...questions];
+    expect(excludeAnsweredQuestions(source, ["HARDWARE-1", "UNKNOWN"])).toEqual([questions[1], questions[2]]);
+    expect(source).toEqual(questions);
   });
 
   it("sorts courses by lowest accuracy or completion while preserving a stable default order", () => {

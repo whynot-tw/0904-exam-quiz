@@ -157,6 +157,13 @@ export async function getUserAnswerRows(userId: number) {
   return db ? db.select().from(attemptAnswers).where(eq(attemptAnswers.userId, userId)).orderBy(desc(attemptAnswers.answeredAt)) : [];
 }
 
+export async function getUserAnsweredQuestionIds(userId: number) {
+  const db = await getDb();
+  if (!db) return [] as string[];
+  const rows = await db.select({ questionId: attemptAnswers.questionId }).from(attemptAnswers).where(eq(attemptAnswers.userId, userId));
+  return Array.from(new Set(rows.map(row => row.questionId)));
+}
+
 export async function getUserLearningGoal(userId: number) {
   const db = await getDb();
   if (!db) return { targetCompletion: 60 };

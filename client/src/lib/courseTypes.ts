@@ -36,6 +36,11 @@ export function filterQuestionsByCourse<T extends CourseQuestion>(questions: T[]
   return courseType === ALL_COURSE_TYPES ? questions : questions.filter(question => question.source === courseType);
 }
 
+export function excludeAnsweredQuestions<T extends { id: string }>(questions: T[], answeredQuestionIds: Iterable<string>): T[] {
+  const answered = new Set(answeredQuestionIds);
+  return questions.filter(question => !answered.has(question.id));
+}
+
 export function sortCourseTypes(courseTypes: CourseType[], progressRows: CourseProgressForSort[] | undefined, sort: CourseSort): CourseType[] {
   const progressBySource = new Map((progressRows ?? []).map(row => [row.source, row]));
   return [...courseTypes].sort((a, b) => {
