@@ -634,4 +634,4 @@
 - [x] 將出題順序與接續設定保存至本回合狀態，保留 5／10／20 題選擇
 - [x] 補齊順序選取、未刷題接續與模式相容性測試
 - [x] 完成桌面／手機視覺 QA、TypeScript check、production build
-- [ ] 保存題號順序刷題 checkpoint 並同步 GitHub PR
+- [x] 保存題號順序刷題 checkpoint 並同步 GitHub PR
