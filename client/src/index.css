@@ -128,3 +128,23 @@ button { cursor: pointer; }
 .csv-export-history button { flex:0 0 auto; color:#46658e; }
 @media (max-width:560px) { .csv-classification-range { grid-template-columns:1fr; }.csv-preset-save,.csv-preset-apply,.csv-preset-rename { align-items:stretch; }.csv-preset-save input,.csv-preset-apply select,.csv-preset-rename input { width:100%; flex-basis:100%; }.csv-preset-save button,.csv-preset-apply button,.csv-preset-rename button { flex:1 1 0 !important; } }
 @media (max-width:560px) { .csv-export-history li { align-items:stretch; flex-direction:column; }.csv-export-history li button { width:100%; } }
+
+.official-v2-explanation { display:grid; gap:12px; margin-top:14px; color:#52627a; }
+.official-v2-heading { display:flex; align-items:center; gap:7px; color:#26344c; font-size:1.15rem; line-height:1.35; }
+.official-v2-answer { margin:0; color:#40516f; font-size:1rem; line-height:1.65; }
+.official-v2-sections { display:grid; gap:14px; }
+.official-v2-section { display:grid; gap:4px; }
+.official-v2-section h4 { margin:0; color:#41557e; font-size:.96rem; font-weight:750; line-height:1.45; letter-spacing:.01em; }
+.official-v2-section p { margin:0; color:#5e6d83; font-size:1rem; line-height:1.85; white-space:pre-wrap; overflow-wrap:anywhere; }
+.official-v2-explanation.is-compact { margin-top:10px; gap:9px; }
+.official-v2-explanation.is-compact .official-v2-heading { font-size:1rem; }
+.official-v2-explanation.is-compact .official-v2-answer,.official-v2-explanation.is-compact .official-v2-section p { font-size:.92rem; line-height:1.75; }
+@media (max-width:560px) {
+  .official-v2-explanation { gap:11px; margin-top:12px; }
+  .official-v2-heading { align-items:flex-start; font-size:1.08rem; }
+  .official-v2-answer { font-size:.98rem; }
+  .official-v2-sections { gap:15px; }
+  .official-v2-section h4 { font-size:.92rem; }
+  .official-v2-section p { font-size:.98rem; line-height:1.9; }
+  .official-v2-explanation.is-compact .official-v2-section p { font-size:.92rem; line-height:1.82; }
+}

@@ -600,3 +600,12 @@
 - [x] 完成 TypeScript check、Vitest 70 項測試與 production build
 - [x] 完成桌面／手機瀏覽器畫面 QA
 - [x] 保存 unified explanation display checkpoint 並同步 GitHub PR
+
+## Explanation Layout Readability
+
+- [x] 盤點 V2 解析的標題標記與目前答題／錯題頁渲染路徑
+- [x] 將【V2｜為什麼】、【V2｜排除重點】、【V2｜記憶】、【解析依據】、【來源提醒】等語意區段格式化為獨立段落
+- [x] 調整官方答案＋V2 解析區塊的段落間距、行高、標題層級與手機版換行
+- [x] 補齊語意解析格式化單元測試與既有功能回歸測試
+- [x] 完成桌面／手機視覺 QA、TypeScript check、production build
+- [ ] 保存版面調整 checkpoint 並同步 GitHub PR
