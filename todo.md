@@ -635,3 +635,39 @@
 - [x] 補齊順序選取、未刷題接續與模式相容性測試
 - [x] 完成桌面／手機視覺 QA、TypeScript check、production build
 - [x] 保存題號順序刷題 checkpoint 並同步 GitHub PR
+
+## Learning Card Source Review
+
+- [x] 唯讀盤點專案主資料夾中五份最新版知識卡／對照檔案
+- [x] 核對各檔欄位、資料筆數、題號連結與官方答案邊界
+- [x] 評估是否可作為既有 App 學習卡 MVP 的正式來源，不寫入 CMS 或實作介面
+- [x] 向使用者交付整合或獨立製作的建議與待確認決策
+
+## AI 210 Learning Card Source Search
+
+- [x] 唯讀搜尋 Google Drive 中 AI 210 題相關的 Markdown 學習卡與題號對應檔案
+- [x] 核對候選檔案的版本、內容範圍與 AI 題號覆蓋情況：目前只有製作規格，未發現候選完整版或 coverage report
+- [x] 回報可否與既有 439 題學習卡來源合併，不實作或寫入 CMS
+
+## Learning Card PDF Source Search
+
+- [x] 唯讀搜尋 Google Drive 中 AI 210 題、知識地圖與學習卡相關 PDF
+- [x] 核對候選 PDF 的版本、內容範圍與是否包含 AI 210 題成果：未發現 AI-210 題候選完整版／coverage report PDF
+- [x] 回報可供驗收或參考的 PDF 清單與使用建議，不實作或寫入 CMS
+
+## Website Structure and Responsive Audit
+
+- [x] 盤點目前網站路由、主要頁面、底部導覽與登入後結構
+- [x] 檢查桌面版首頁、測驗、錯題、星號、問題回報與統計／匯出頁
+- [x] 檢查手機版 390px／375px 主要頁面的排版、固定導覽、按鈕間距與文字換行
+- [x] 檢查互動流程、瀏覽器 console／network 錯誤與長時間載入狀態
+- [x] 整理問題優先級與後續修正建議，不直接修改程式
+- [x] 交付網站結構與響應式檢測報告
+
+## Mobile Home Loading P1 Fix
+
+- [x] 重現手機首頁「正在準備你的題庫…」並定位 bootstrap／登入 API 錯誤
+- [x] 修復造成首頁無限 loading 的最小程式問題
+- [x] 補上 API 失敗／逾時／重新載入的可恢復狀態
+- [x] 補齊回歸測試並完成 TypeScript、Vitest、production build
+- [x] 完成手機版重新檢查並保存 checkpoint、同步 GitHub PR

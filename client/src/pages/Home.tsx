@@ -16,6 +16,7 @@ import { trpc } from "@/lib/trpc";
 import { getStarredQuestionIds } from "@/lib/starred";
 import { getOfficialV2Explanation } from "@/lib/explanationDisplay";
 import { ALL_COURSE_TYPES, excludeAnsweredQuestions, filterQuestionsByCourse, getCourseTypes, getWeakestCourse, selectSequentialPracticeQuestions, selectSmartPracticeQuestions, sortCourseTypes, type CourseSort } from "@/lib/courseTypes";
+import { getStartupStatus } from "@shared/startupState";
 import { ALL_SUBCATEGORIES, filterQuestionsBySubcategory, getSubcategories, getWeakestSubcategory } from "@/lib/subcategories";
 import { ADMIN_PENDING_QUICK_FILTERS, filterAdminPendingQuestions, getAdminPendingQuickFilterCounts, type AdminPendingQuickFilter } from "@/lib/adminPendingFilters";
 import { buildPendingQuestionsCsv } from "@/lib/adminPendingExport";
@@ -34,8 +35,15 @@ type Answer = { questionId: string; sequenceNo: number; selectedOption: "A" | "B
 const optionLabels = { A: "A", B: "B", C: "C", D: "D" } as const;
 
 export default function Home() {
-  const { user, loading, logout } = useAuth();
-  const { data, isLoading } = trpc.quiz.bootstrap.useQuery();
+  const { user, loading, logout, refresh } = useAuth();
+  const { data, error: bootstrapError, isLoading, refetch: refetchBootstrap } = trpc.quiz.bootstrap.useQuery(undefined, { retry: 1, refetchOnWindowFocus: false });
+  const [startupTimedOut, setStartupTimedOut] = useState(false);
+  useEffect(() => {
+    if (!loading && !isLoading) { setStartupTimedOut(false); return; }
+    const timeoutId = window.setTimeout(() => setStartupTimedOut(true), 12000);
+    return () => window.clearTimeout(timeoutId);
+  }, [loading, isLoading]);
+  const startupStatus = getStartupStatus({ authLoading: loading, bootstrapLoading: isLoading, bootstrapError: Boolean(bootstrapError), timedOut: startupTimedOut });
   const requestedView = new URLSearchParams(window.location.search).get("view");
   const requestedMode = new URLSearchParams(window.location.search).get("mode");
   const [section, setSection] = useState<Section>(() => ["quiz", "wrong", "starred", "issues", "stats", "admin", "settings"].includes(requestedView ?? "") ? requestedView as Section : "home");
@@ -183,7 +191,8 @@ export default function Home() {
 
   const nav = (next: Section) => { setSection(next); if (next !== "quiz") { setFinished(false); setActiveQuestions([]); } };
 
-  if (isLoading || loading) return <div className="app-shell"><div className="loading-card">正在準備你的題庫…</div></div>;
+  if (startupStatus === "loading") return <div className="app-shell"><div className="loading-card" role="status" aria-live="polite"><Spinner />正在準備你的題庫…</div></div>;
+  if (startupStatus === "recoverable-error") return <div className="app-shell"><div className="loading-card startup-error" role="alert"><CircleAlert size={22} /><strong>題庫目前無法載入</strong><p>{startupTimedOut ? "連線等待時間較長，請檢查網路後重新載入。" : "題庫服務暫時沒有回應，請稍後重試。"}</p><Button className="primary-cta" onClick={() => { setStartupTimedOut(false); void Promise.allSettled([refetchBootstrap(), refresh()]); }}>重新載入</Button></div></div>;
 
   return <div className={`app-shell reading-scale-${fontScale === 1.15 ? "large" : fontScale === 0.9 ? "small" : "normal"} density-${density}`}>
     <header className="topbar"><div><div className="eyebrow">{SITE_MAIN_TITLE}</div><h1>{SITE_SUBTITLE}</h1></div><div className="top-actions"><Button variant="ghost" className="settings-button" aria-label="閱讀設定" onClick={() => setSection("settings")}><Settings size={17}/><span>閱讀設定</span></Button>{user ? <Button variant="ghost" className="user-pill" onClick={() => logout()}>{user.name || "已登入"} · 登出</Button> : <Button variant="outline" className="login-button" onClick={() => startLogin()}><LogIn size={16}/> Manus OAuth 登入</Button>}</div></header>
