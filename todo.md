@@ -689,3 +689,10 @@
 - [x] 新增最常錯課程與最近錯題複習日期顯示
 - [x] 完成手機／桌面版進度卡排版、測試與 production build
 - [x] 保存進度卡 checkpoint 並同步 GitHub PR
+
+## Wrong Progress Mastered Display Fix
+
+- [x] 追查首頁錯題進度卡「已熟悉」顯示破折號的資料來源與 fallback
+- [x] 修復已熟悉數值的欄位映射或查詢載入狀態
+- [x] 補齊已熟悉數值回歸測試並完成 TypeScript、Vitest、production build
+- [x] 完成手機／桌面 QA，保存 checkpoint 並同步 GitHub PR
