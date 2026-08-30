@@ -671,3 +671,21 @@
 - [x] 補上 API 失敗／逾時／重新載入的可恢復狀態
 - [x] 補齊回歸測試並完成 TypeScript、Vitest、production build
 - [x] 完成手機版重新檢查並保存 checkpoint、同步 GitHub PR
+
+## Full Project and CMS Google Drive Backup
+
+- [x] 確認目前專案版本、Google Drive 專案主資料夾與備份命名
+- [x] 打包不含秘密的完整原始碼、設定、migration、測試與依賴鎖定檔
+- [x] 產生目前 CMS 題庫／設定／相關資料的資料備份與 manifest
+- [x] 驗證壓縮檔內容、SHA-256、可解壓縮性與秘密檔案排除
+- [x] 以唯讀回讀方式確認備份已上傳至 Google Drive
+- [x] 交付備份檔案、Drive 位置、內容範圍與還原注意事項
+
+## Wrong Review Progress Card
+
+- [x] 盤點錯題欄位、統計查詢與統計頁現有結構
+- [x] 建立登入者專屬的錯題進度統計 helper／資料流
+- [x] 新增錯題總數、待複習、已熟悉、完成率與累計錯誤次數顯示
+- [x] 新增最常錯課程與最近錯題複習日期顯示
+- [x] 完成手機／桌面版進度卡排版、測試與 production build
+- [ ] 保存進度卡 checkpoint 並同步 GitHub PR

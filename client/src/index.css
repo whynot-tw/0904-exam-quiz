@@ -154,3 +154,14 @@ button { cursor: pointer; }
   .official-v2-section p { font-size:.98rem; line-height:1.9; }
   .official-v2-explanation.is-compact .official-v2-section p { font-size:.92rem; line-height:1.82; }
 }
+
+.wrong-progress-card .wrong-progress-detail { grid-column: 1 / -1; display: grid; gap: 0.18rem; padding-top: 0.85rem; border-top: 1px solid rgba(64, 93, 120, 0.14); }
+.wrong-progress-card .wrong-progress-detail span,
+.wrong-progress-card .last-reviewed span { color: var(--muted-foreground); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; }
+.wrong-progress-card .wrong-progress-detail strong { color: var(--foreground); font-size: 1rem; }
+.wrong-progress-card .wrong-progress-detail small { color: var(--muted-foreground); }
+@media (max-width: 560px) {
+  .wrong-progress-card .card-content { gap: 1rem; }
+  .wrong-progress-card .last-reviewed { min-width: 0; }
+  .wrong-progress-card .wrong-progress-detail strong { overflow-wrap: anywhere; }
+}
