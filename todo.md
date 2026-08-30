@@ -688,4 +688,4 @@
 - [x] 新增錯題總數、待複習、已熟悉、完成率與累計錯誤次數顯示
 - [x] 新增最常錯課程與最近錯題複習日期顯示
 - [x] 完成手機／桌面版進度卡排版、測試與 production build
-- [ ] 保存進度卡 checkpoint 並同步 GitHub PR
+- [x] 保存進度卡 checkpoint 並同步 GitHub PR
