@@ -696,3 +696,12 @@
 - [x] 修復已熟悉數值的欄位映射或查詢載入狀態
 - [x] 補齊已熟悉數值回歸測試並完成 TypeScript、Vitest、production build
 - [x] 完成手機／桌面 QA，保存 checkpoint 並同步 GitHub PR
+
+## Starred Question Bank Export
+- [x] 修正 StarredQuestionExportItem 與既有錯題 PDF 輸入格式的型別相容性
+- [x] 建立星號題目 CSV／PDF 共用匯出資料整理 helper，僅匯出登入者自己的星號清單
+- [x] 在星號複習頁加入「匯出 CSV」與「匯出 PDF」按鈕及處理中／成功／失敗回饋
+- [x] 補齊星號匯出官方答案、V2 解析、課程、次分類、標籤與提醒日期欄位
+- [x] 完成星號匯出單元測試、TypeScript check、完整 Vitest 與 production build
+- [x] 完成 390px 手機版操作列換行 QA
+- [ ] 保存星號題庫匯出 checkpoint 並同步 GitHub PR

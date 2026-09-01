@@ -165,3 +165,6 @@ button { cursor: pointer; }
   .wrong-progress-card .last-reviewed { min-width: 0; }
   .wrong-progress-card .wrong-progress-detail strong { overflow-wrap: anywhere; }
 }
+
+.starred-page-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }.starred-page-actions button { white-space:nowrap; }.starred-page-actions span { flex:1 1 230px; color:#846f43; font-size:.78rem; line-height:1.5; }
+@media (max-width:560px) { .starred-page-actions { align-items:stretch; }.starred-page-actions button { flex:1 1 calc(50% - 8px); min-width:0; }.starred-page-actions button:first-child { flex-basis:100%; }.starred-page-actions span { flex-basis:100%; } }
